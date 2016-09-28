@@ -1,0 +1,20 @@
+; module-definition file for SurPtrUI -- used by LINK.EXE
+
+NAME         CPSUISAM       ; application's module name
+
+DESCRIPTION  'Microsoft Windows NT4.0 Common Property Sheet UI Sample Program'
+
+EXETYPE      WINDOWS       ; required for all Windows applications
+
+STUB         'WINSTUB.EXE' ; Generates error message if application
+                           ; is run without Windows
+
+;CODE can be moved in memory and discarded/reloaded
+CODE  PRELOAD MOVEABLE DISCARDABLE
+
+;DATA must be MULTIPLE if program can be invoked more than once
+DATA  PRELOAD MOVEABLE MULTIPLE
+
+
+HEAPSIZE     4096
+STACKSIZE    8192           ; recommended minimum for Windows applications

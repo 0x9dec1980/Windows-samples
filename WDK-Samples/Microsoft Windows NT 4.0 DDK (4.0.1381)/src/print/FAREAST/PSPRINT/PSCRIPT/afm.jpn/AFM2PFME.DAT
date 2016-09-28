@@ -1,0 +1,203 @@
+#
+# Database of MicroSoft specific data needed by the
+# AFM compiler for AFM to PFM conversion.
+# Fields are as follows:
+#   1.) Adobe PostScript name of the face.
+#   2.) MicroSoft name of the face. 
+#   3.) MicroSoft family name:
+#         Swiss = SansSerif
+#         Roman = Serif
+#         Modern = Monospaced
+#         Script = handwriting
+#         Decorative = Special 
+#
+
+#
+# Windows 3.5 Japanese fonts.
+#
+
+#
+# Adobe Fonts.  The following typefaces are defined in
+# PS driver internal PFM data.
+#
+
+FutoGoB101-Bold-RKSJ-H:FutoGoB101 Bold:Modern
+FutoGoB101-Bold-RKSJ-V:@FutoGoB101 Bold:Modern
+FutoMinA101-Bold-RKSJ-H:FutoMinA101 Bold:Roman
+FutoMinA101-Bold-RKSJ-V:@FutoMinA101 Bold:Roman
+GothicBBB-Medium-RKSJ-H:GothicBBB Medium:Modern
+GothicBBB-Medium-RKSJ-V:@GothicBBB Medium:Modern
+HeiseiKakuGo-W3-RKSJ-H:HeiseiKakuGo W3:Modern
+HeiseiKakuGo-W3-RKSJ-V:@HeiseiKakuGo W3:Modern
+HeiseiKakuGo-W5-RKSJ-H:HeiseiKakuGo W5:Modern
+HeiseiKakuGo-W5-RKSJ-V:@HeiseiKakuGo W5:Modern
+HeiseiKakuGo-W7-RKSJ-H:HeiseiKakuGo W7:Modern
+HeiseiKakuGo-W7-RKSJ-V:@HeiseiKakuGo W7:Modern
+HeiseiKakuGo-W9-RKSJ-H:HeiseiKakuGo W9:Modern
+HeiseiKakuGo-W9-RKSJ-V:@HeiseiKakuGo W9:Modern
+HeiseiMaruGo-W4-RKSJ-H:HeiseiMaruGo W4:Modern
+HeiseiMaruGo-W4-RKSJ-V:@HeiseiMaruGo W4:Modern
+HeiseiMin-W3-RKSJ-H:HeiseiMin W3:Roman
+HeiseiMin-W3-RKSJ-V:@HeiseiMin W3:Roman
+HeiseiMin-W9-RKSJ-H:HeiseiMin W9:Roman
+HeiseiMin-W9-RKSJ-V:@HeiseiMin W9:Roman
+Jun101-Light-RKSJ-H:Jun101 Light:Modern
+Jun101-Light-RKSJ-V:@Jun101 Light:Modern
+Jun34-Medium-RKSJ-H:Jun34 Medium:Modern
+Jun34-Medium-RKSJ-V:@Jun34 Medium:Modern
+Jun501-Bold-RKSJ-H:Jun501 Bold:Modern
+Jun501-Bold-RKSJ-V:@Jun501 Bold:Modern
+MidashiGo-MB31-RKSJ-H:MidashiGo MB31:Modern
+MidashiGo-MB31-RKSJ-V:@MidashiGo MB31:Modern
+MidashiMin-MA31-RKSJ-H:MidashiMin MA31:Roman
+MidashiMin-MA31-RKSJ-V:@MidashiMin MA31:Roman
+Ryumin-Bold-RKSJ-H:Ryumin Bold:Roman
+Ryumin-Bold-RKSJ-V:@Ryumin Bold:Roman
+Ryumin-Light-RKSJ-H:Ryumin Light:Roman
+Ryumin-Light-RKSJ-V:@Ryumin Light:Roman
+Ryumin-Medium-RKSJ-H:Ryumin Medium:Roman
+Ryumin-Medium-RKSJ-V:@Ryumin Medium:Roman
+Ryumin-Ultra-RKSJ-H:Ryumin Ultra:Roman
+Ryumin-Ultra-RKSJ-V:@Ryumin Ultra:Roman
+Ryumin-heavy-RKSJ-H:Ryumin heavy:Roman
+Ryumin-heavy-RKSJ-V:@Ryumin heavy:Roman
+Ryumin-regular-RKSJ-H:Ryumin regular:Roman
+Ryumin-regular-RKSJ-V:@Ryumin regular:Roman
+ShinGo-Bold-RKSJ-H:ShinGo Bold:Modern
+ShinGo-Bold-RKSJ-V:@ShinGo Bold:Modern
+ShinGo-Light-RKSJ-H:ShinGo Light:Modern
+ShinGo-Light-RKSJ-V:@ShinGo Light:Modern
+ShinGo-Medium-RKSJ-H:ShinGo Medium:Modern
+ShinGo-Medium-RKSJ-V:@ShinGo Medium:Modern
+ShinGo-Ultra-RKSJ-H:ShinGo Ultra:Modern
+ShinGo-Ultra-RKSJ-V:@ShinGo Ultra:Modern
+ShinGo-regular-RKSJ-H:ShinGo regular:Modern
+ShinGo-regular-RKSJ-V:@ShinGo regular:Modern
+ShinseiKai-CBSK1-RKSJ-H:ShinseiKai CBSK1:Roman
+ShinseiKai-CBSK1-RKSJ-V:@ShinseiKai CBSK1:Roman
+TypeBankG-b-RKSJ-H:TypeBankG b:Modern
+TypeBankG-b-RKSJ-V:@TypeBankG b:Modern
+TypeBankG-hv-RKSJ-H:TypeBankG hv:Modern
+TypeBankG-hv-RKSJ-V:@TypeBankG hv:Modern
+TypeBankM-hv-RKSJ-H:TypeBankM hv:Roman
+TypeBankM-hv-RKSJ-V:@TypeBankM hv:Roman
+TypeBankM-m-RKSJ-H:TypeBankM m:Roman
+TypeBankM-m-RKSJ-V:@TypeBankM m:Roman
+
+#
+# Adobe Fonts (kana)
+#
+
+TBKomachiG-B-RKSJ-H:TBKomachiG B:Modern
+TBKomachiG-B-RKSJ-V:@TBKomachiG B:Modern
+TBKomachiG-hv-RKSJ-H:TBKomachiG hv:Modern
+TBKomachiG-hv-RKSJ-V:@TBKomachiG hv:Modern
+TBKomachiM-M-RKSJ-H:TBKomachiM M:Roman
+TBKomachiM-M-RKSJ-V:@TBKomachiM M:Roman
+TBKomachiM-hv-RKSJ-H:TBKomachiM hv:Roman
+TBKomachiM-hv-RKSJ-V:@TBKomachiM hv:Roman
+TBRyokanG-B-RKSJ-H:TBRyokanG B:Modern
+TBRyokanG-B-RKSJ-V:@TBRyokanG B:Modern
+TBRyokanG-hv-RKSJ-H:TBRyokanG hv:Modern
+TBRyokanG-hv-RKSJ-V:@TBRyokanG hv:Modern
+TBRyokanM-M-RKSJ-H:TBRyokanM M:Roman
+TBRyokanM-M-RKSJ-V:@TBRyokanM M:Roman
+TBRyokanM-hv-RKSJ-H:TBRyokanM hv:Roman
+TBRyokanM-hv-RKSJ-V:@TBRyokanM hv:Roman
+TBTsukijiG-B-RKSJ-H:TBTsukijiG B:Modern
+TBTsukijiG-B-RKSJ-V:@TBTsukijiG B:Modern
+TBTsukijiG-hv-RKSJ-H:TBTsukijiG hv:Modern
+TBTsukijiG-hv-RKSJ-V:@TBTsukijiG hv:Modern
+TBTsukijiM-M-RKSJ-H:TBTsukijiM M:Roman
+TBTsukijiM-M-RKSJ-V:@TBTsukijiM M:Roman
+TBTsukijiM-hv-RKSJ-H:TBTsukijiM hv:Roman
+TBTsukijiM-hv-RKSJ-V:@TBTsukijiM hv:Roman
+TBYukinariG-B-RKSJ-H:TBYukinariG B:Modern
+TBYukinariG-B-RKSJ-V:@TBYukinariG B:Modern
+TBYukinariG-hv-RKSJ-H:TBYukinariG hv:Modern
+TBYukinariG-hv-RKSJ-V:@TBYukinariG hv:Modern
+TBYukinariM-M-RKSJ-H:TBYukinariM M:Roman
+TBYukinariM-M-RKSJ-V:@TBYukinariM M:Roman
+TBYukinariM-hv-RKSJ-H:TBYukinariM hv:Roman
+TBYukinariM-hv-RKSJ-V:@TBYukinariM hv:Roman
+LogoArl-Bold-RKSJ-H:LogoArl Bold:Modern
+LogoArl-Bold-RKSJ-V:@LogoArl Bold:Modern
+LogoArl-Light-RKSJ-H:LogoArl Light:Modern
+LogoArl-Light-RKSJ-V:@LogoArl Light:Modern
+LogoArl-Medium-RKSJ-H:LogoArl Medium:Modern
+LogoArl-Medium-RKSJ-V:@LogoArl Medium:Modern
+LogoArl-Ultra-RKSJ-H:LogoArl Ultra:Modern
+LogoArl-Ultra-RKSJ-V:@LogoArl Ultra:Modern
+LogoCut-Bold-RKSJ-H:LogoCut Bold:Modern
+LogoCut-Bold-RKSJ-V:@LogoCut Bold:Modern
+LogoCut-Light-RKSJ-H:LogoCut Light:Modern
+LogoCut-Light-RKSJ-V:@LogoCut Light:Modern
+LogoCut-Medium-RKSJ-H:LogoCut Medium:Modern
+LogoCut-Medium-RKSJ-V:@LogoCut Medium:Modern
+LogoCut-Ultra-RKSJ-H:LogoCut Ultra:Modern
+LogoCut-Ultra-RKSJ-V:@LogoCut Ultra:Modern
+LogoLine-Bold-RKSJ-H:LogoLine Bold:Modern
+LogoLine-Bold-RKSJ-V:@LogoLine Bold:Modern
+LogoLine-Light-RKSJ-H:LogoLine Light:Modern
+LogoLine-Light-RKSJ-V:@LogoLine Light:Modern
+LogoLine-Medium-RKSJ-H:LogoLine Medium:Modern
+LogoLine-Medium-RKSJ-V:@LogoLine Medium:Modern
+LogoLine-Ultra-RKSJ-H:LogoLine Ultra:Modern
+LogoLine-Ultra-RKSJ-V:@LogoLine Ultra:Modern
+
+#
+# QMS Japan Fonts
+#
+
+TypeBankG-B-RKSJ-H:TypeBankG B:Modern
+TypeBankG-B-RKSJ-V:@TypeBankG B:Modern
+TypeBankG-H-RKSJ-H:TypeBankG H:Modern
+TypeBankG-H-RKSJ-V:@TypeBankG H:Modern
+TypeBankM-H-RKSJ-H:TypeBankM H:Roman
+TypeBankM-H-RKSJ-V:@TypeBankM H:Roman
+TypeBankM-M-RKSJ-H:TypeBankM M:Roman
+TypeBankM-M-RKSJ-V:@TypeBankM M:Roman
+
+#
+# APTi Fonts
+#
+
+HeiseiKakuGothicW5-Medium-RKSJ-H:HeiseiKakuGothicW5 Medium:Modern
+HeiseiKakuGothicW5-Medium-RKSJ-V:@HeiseiKakuGothicW5 Medium:Modern
+HeiseiMinchoW3-Light-RKSJ-H:HeiseiMinchoW3 Light:Roman
+HeiseiMinchoW3-Light-RKSJ-V:@HeiseiMinchoW3 Light:Roman
+NIS-M5-RKSJ-H:NIS M5:Roman
+NIS-M5-RKSJ-V:@NIS M5:Roman
+NIS-R1-RKSJ-H:NIS R1:Modern
+NIS-R1-RKSJ-V:@NIS R1:Modern
+NIS-S7-RKSJ-H:NIS S7:Modern
+NIS-S7-RKSJ-V:@NIS S7:Modern
+
+#
+# Ricoh Fonts
+#
+
+RicohGothicB-RKSJ-H:RicohGothicB:Modern
+RicohGothicB-RKSJ-V:@RicohGothicB:Modern
+RicohGothicEB-RKSJ-H:RicohGothicEB:Modern
+RicohGothicEB-RKSJ-V:@RicohGothicEB:Modern
+RicohGothicM-RKSJ-H:RicohGothicM:Modern
+RicohGothicM-RKSJ-V:@RicohGothicM:Modern
+RicohGyosho-RKSJ-H:RicohGyosho:Script
+RicohGyosho-RKSJ-V:@RicohGyosho:Script
+RicohKaisho-RKSJ-H:RicohKaisho:Roman
+RicohKaisho-RKSJ-V:@RicohKaisho:Roman
+RicohKyokasho-RKSJ-H:RicohKyokasho:Roman
+RicohKyokasho-RKSJ-V:@RicohKyokasho:Roman
+RicohMGothicB-RKSJ-H:RicohMGothicB:Modern
+RicohMGothicB-RKSJ-V:@RicohMGothicB:Modern
+RicohMGothicL-RKSJ-H:RicohMGothicL:Modern
+RicohMGothicL-RKSJ-V:@RicohMGothicL:Modern
+RicohMGothicM-RKSJ-H:RicohMGothicM:Modern
+RicohMGothicM-RKSJ-V:@RicohMGothicM:Modern
+RicohMinchoB-RKSJ-H:RicohMinchoB:Roman
+RicohMinchoB-RKSJ-V:@RicohMinchoB:Roman
+RicohMinchoEB-RKSJ-H:RicohMinchoEB:Roman
+RicohMinchoEB-RKSJ-V:@RicohMinchoEB:Roman
+RicohMinchoL-RKSJ-H:RicohMinchoL:Roman
+RicohMinchoL-RKSJ-V:@RicohMinchoL:Roman

@@ -1,0 +1,52 @@
+
+DLG_GENERAL DIALOG 30, 28, 147, 134
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_VISIBLE | WS_CAPTION
+FONT 9,"MS Shell Dlg"
+CAPTION "General"
+BEGIN
+    LTEXT           "Under Construction", -1, 14, 46, 107, 10
+END
+
+DLG_REGISTERWORD DIALOG 46, 36, 191, 83
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_VISIBLE | WS_CAPTION
+FONT 9,"MS Shell Dlg"
+CAPTION "Register Word"
+BEGIN
+    LTEXT           "&String", -1, 15, 17, 41, 8
+    EDITTEXT        ID_WR_STRING, 65, 16, 84, 12, ES_AUTOHSCROLL
+    LTEXT           "S&tyle", -1, 15, 37, 41, 8
+    LTEXT           "&Reading", -1, 15, 57, 41, 8
+    EDITTEXT        ID_WR_READING, 65, 55, 84, 12, ES_AUTOHSCROLL
+    COMBOBOX        ID_WR_STYLE, 65, 33, 85, 35, CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+DLG_SELECTDICTIONARY DIALOG 34, 31, 186, 85
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_VISIBLE | WS_CAPTION
+FONT 9,"MS Shell Dlg"
+CAPTION "Select Dictionary"
+BEGIN
+    LTEXT           "Current Dictionary", -1, 5, 15, 84, 8
+    LTEXT           "", ID_SD_DICPATH, 11, 28, 162, 9
+    PUSHBUTTON      "Select", ID_SD_SELDIC, 123, 43, 40, 14
+END
+
+DLG_ABOUT DIALOG 30, 65, 137, 140
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_VISIBLE | WS_CAPTION
+FONT 9,"MS Shell Dlg"
+CAPTION "ABOUT"
+BEGIN
+    LTEXT  "This is sample IME.                          ", -1, 8, 4,  130, 8
+    LTEXT  "(1) When the composition string is there.    ", -1, 8, 15, 130, 8
+    LTEXT  "Ctrl+F3:Change mode of ROMAN",                  -1, 18, 25, 130, 8
+    LTEXT  "Ctrl+F6:Change mode to HIRAGANA",               -1, 18, 35, 130, 8
+    LTEXT  "Ctrl+F7:Change mode to KATAKANA",               -1, 18, 45, 130, 8
+    LTEXT  "Ctrl+F8:Change mode to HANKAKU",                -1, 18, 55, 130, 8
+    LTEXT  "Ctrl+F9:Change mode to ALPHANUMERIC",           -1, 18, 65, 130, 8
+    LTEXT  "(2) When the composition string is there.    ", -1, 8, 75, 130, 8
+    LTEXT  "Space:Convert Key",                             -1, 18, 85, 130, 8
+    LTEXT  "Enter:Finalize Key",                            -1, 18, 95, 130, 8
+    LTEXT  "F5:Code convert to Unicode character",          -1, 18, 105, 130, 8
+    LTEXT  "F6:Convert to HIRAGANA"    ,                    -1, 18, 115, 130, 8
+    LTEXT  "F7:Convert to KATAKANA",                        -1, 18, 125, 130, 8
+END

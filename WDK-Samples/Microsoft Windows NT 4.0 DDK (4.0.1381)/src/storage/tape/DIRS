@@ -1,0 +1,2 @@
+DIRS= qic117    \
+      scsi

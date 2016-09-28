@@ -1,0 +1,16 @@
+TARGETNAME=instrm
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\streams.lib
+
+INCLUDES=inc;inc\sys;inc\sys\snet;..\inc
+
+SOURCES=ex_bot.c        \
+        ex_top.c        \
+        in_bot.c        \
+        in_top.c        \
+        in_ntos.c       \
+        in_rsrv.c       \
+        in_strm.c       \
+        in_wsrv.c

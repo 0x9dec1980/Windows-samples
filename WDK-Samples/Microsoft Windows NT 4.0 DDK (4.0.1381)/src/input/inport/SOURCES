@@ -1,0 +1,13 @@
+TARGETNAME=inport
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=
+
+i386_SOURCES=inport.rc      \
+             i386\inpcmn.c  \
+             i386\inpdep.c
+
+NTTARGETFILE0=inplog.h

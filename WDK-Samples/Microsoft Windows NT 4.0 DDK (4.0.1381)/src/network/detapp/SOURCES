@@ -1,0 +1,17 @@
+TARGETNAME=detapp
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=.
+
+SOURCES=detdlg.c   \
+        detapp.rc
+
+UMTYPE=windows
+UMBASE=0x01000000
+UMAPPL=detapp
+
+UMLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\detapp.lib \
+       obj\*\detapp.res
+
+UMENTRY=winmain

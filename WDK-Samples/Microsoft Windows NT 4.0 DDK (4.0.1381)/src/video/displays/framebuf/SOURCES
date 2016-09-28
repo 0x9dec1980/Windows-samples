@@ -1,0 +1,21 @@
+TARGETNAME=framebuf
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=GDI_DRIVER
+
+DLLBASE=0x62200000
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /WX
+
+INCLUDES=..\..\inc
+
+SOURCES=color.c         \
+        debug.c         \
+        enable.c        \
+        palette.c       \
+        pointer.c       \
+        screen.c        \
+        framebuf.rc

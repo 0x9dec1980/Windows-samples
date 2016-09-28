@@ -1,0 +1,5 @@
+DIRS= class    \
+      disk     \
+      filter   \
+      miniport \
+      tape

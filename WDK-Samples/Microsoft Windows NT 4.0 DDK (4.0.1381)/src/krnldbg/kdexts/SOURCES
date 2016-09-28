@@ -1,0 +1,12 @@
+TARGETNAME=kdexts
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+USE_CRTDLL=1
+
+DLLBASE=0x1000000
+
+SOURCES=ntkdexts.c      \
+        ntkdexts.rc
+
+UMTYPE=console

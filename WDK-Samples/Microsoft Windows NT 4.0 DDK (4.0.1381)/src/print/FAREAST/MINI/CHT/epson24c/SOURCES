@@ -1,0 +1,14 @@
+TARGETNAME=epson24c
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+TARGETLIBS=
+
+INCLUDES=..;..\..\inc
+
+DLLBASE=0x20000000
+
+SOURCES=epson24c.c \
+                     epson24c.rc \
+                     ..\modinit.c
+
+

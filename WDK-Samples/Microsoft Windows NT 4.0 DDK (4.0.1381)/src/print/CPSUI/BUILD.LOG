@@ -1,0 +1,50 @@
+BUILD: Computing Include file dependencies:
+BUILD: Examining d:\ddk\src\print\cpsui directory for files to compile.
+Compiling d:\ddk\src\print\cpsui directory ********************
+'nmake.exe /c BUILDMSG=Stop. -i NTTEST= UMTEST= NOLINK=1 NOPASS0=1 386=1'
+cl -nologo -Ii386\ -I. -I. -ID:\DDK\inc -ID:\DDK\inc -ID:\DDK\inc -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1 -DNT_UP=1  -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0400    -DWIN32_LEAN_AND_MEAN=1 -DDEVL=1 -DFPO=1    -DNDEBUG -DWIN32 -DWINVER=0x0400 -DSTRICT -Dcpsuisam    /c /Zel /Zp8 /Gy -cbstring /W3 /Gz  /QIfdiv- /QIf  /Gi- /Gm- /GX- /GR- /GF   /Oxs /Oy   -FID:\DDK\inc\warning.h /Yuprecomp.h /Fpobj\i386\precomp.pch .\cpsuidat.c
+cpsuidat.c
+
+Stop. 
+Linking d:\ddk\src\print\cpsui directory ********************
+'nmake.exe /c BUILDMSG=Stop. -i LINKONLY=1 NOPASS0=1 NTTEST= UMTEST= 386=1'
+	link -out:D:\DDK\lib\i386\free\cpsuisam.exe -machine:i386 @D:\TEMP\nma00141.
+Microsoft (R) 32-Bit Incremental Linker Version 3.10.6038
+Copyright (C) Microsoft Corp 1992-1996. All rights reserved.
+
+-MERGE:_PAGE=PAGE 
+-MERGE:_TEXT=.text 
+-SECTION:INIT,d 
+-OPT:REF 
+-INCREMENTAL:NO 
+-FORCE:MULTIPLE 
+-RELEASE 
+-FULLBUILD 
+-IGNORE:4001,4037,4039,4065,4070,4078,4087,4089 
+-NODEFAULTLIB 
+-debug:notmapped,MINIMAL 
+-debugtype:coff 
+-version:4.00 
+-osversion:4.00 
+-PDB:NONE 
+-MERGE:.rdata=.text 
+-subsystem:windows,4.00 
+-base:0x01000000 
+-entry:WinMainCRTStartup 
+-optidata 
+obj\i386\precomp.obj 
+obj\i386\res.res 
+obj\i386\debug.obj 
+obj\i386\cpsuidat.obj 
+obj\i386\cpsuisam.obj 
+D:\DDK\lib\i386\free\libc.lib 
+D:\DDK\lib\i386\free\advapi32.lib 
+D:\DDK\lib\i386\free\kernel32.lib 
+D:\DDK\lib\i386\free\gdi32.lib 
+D:\DDK\lib\i386\free\user32.lib 
+C:\MSDEV\lib\comdlg32.lib 
+C:\MSDEV\lib\winspool.lib 
+C:\MSDEV\lib\comctl32.lib 
+y:\nt\public\sdk\lib\i386\compstui.lib 
+
+Stop. 

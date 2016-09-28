@@ -1,0 +1,203 @@
+#
+# Database of MicroSoft specific data needed by the
+# AFM compiler for AFM to PFM conversion.
+# Fields are as follows:
+#   1.) Adobe PostScript name of the face.
+#   2.) MicroSoft name of the face. 
+#   3.) MicroSoft family name:
+#         Swiss = SansSerif
+#         Roman = Serif
+#         Modern = Monospaced
+#         Script = handwriting
+#         Decorative = Special 
+#
+
+#
+# Windows 3.5 Japanese fonts.
+#
+
+#
+# Adobe Fonts.  The following typefaces are defined in
+# PS driver internal PFM data.
+#
+
+FutoGoB101-Bold-RKSJ-H:太ゴB101:Modern
+FutoGoB101-Bold-RKSJ-V:@太ゴB101:Modern
+FutoMinA101-Bold-RKSJ-H:太ミンA101:Roman
+FutoMinA101-Bold-RKSJ-V:@太ミンA101:Roman
+GothicBBB-Medium-RKSJ-H:中ゴシックBBB:Modern
+GothicBBB-Medium-RKSJ-V:@中ゴシックBBB:Modern
+HeiseiKakuGo-W3-RKSJ-H:平成角ゴシックW3:Modern
+HeiseiKakuGo-W3-RKSJ-V:@平成角ゴシックW3:Modern
+HeiseiKakuGo-W5-RKSJ-H:平成角ゴシックW5:Modern
+HeiseiKakuGo-W5-RKSJ-V:@平成角ゴシックW5:Modern
+HeiseiKakuGo-W7-RKSJ-H:平成角ゴシック W7:Modern
+HeiseiKakuGo-W7-RKSJ-V:@平成角ゴシック W7:Modern
+HeiseiKakuGo-W9-RKSJ-H:平成角ゴシック W9:Modern
+HeiseiKakuGo-W9-RKSJ-V:@平成角ゴシック W9:Modern
+HeiseiMaruGo-W4-RKSJ-H:平成丸ゴシック W4:Modern
+HeiseiMaruGo-W4-RKSJ-V:@平成丸ゴシック W4:Modern
+HeiseiMin-W3-RKSJ-H:平成明朝W3:Roman
+HeiseiMin-W3-RKSJ-V:@平成明朝W3:Roman
+HeiseiMin-W9-RKSJ-H:平成明朝W9:Roman
+HeiseiMin-W9-RKSJ-V:@平成明朝W9:Roman
+Jun101-Light-RKSJ-H:じゅん101:Modern
+Jun101-Light-RKSJ-V:@じゅん101:Modern
+Jun34-Medium-RKSJ-H:じゅん34:Modern
+Jun34-Medium-RKSJ-V:@じゅん34:Modern
+Jun501-Bold-RKSJ-H:じゅん501:Modern
+Jun501-Bold-RKSJ-V:@じゅん501:Modern
+MidashiGo-MB31-RKSJ-H:見出ゴMB31:Modern
+MidashiGo-MB31-RKSJ-V:@見出ゴMB31:Modern
+MidashiMin-MA31-RKSJ-H:見出ミンMA31:Roman
+MidashiMin-MA31-RKSJ-V:@見出ミンMA31:Roman
+Ryumin-Bold-RKSJ-H:リュウミンB-KL:Roman
+Ryumin-Bold-RKSJ-V:@リュウミンB-KL:Roman
+Ryumin-Light-RKSJ-H:リュウミンL-KL:Roman
+Ryumin-Light-RKSJ-V:@リュウミンL-KL:Roman
+Ryumin-Medium-RKSJ-H:リュウミンM-KL:Roman
+Ryumin-Medium-RKSJ-V:@リュウミンM-KL:Roman
+Ryumin-Ultra-RKSJ-H:リュウミンU-KL:Roman
+Ryumin-Ultra-RKSJ-V:@リュウミンU-KL:Roman
+Ryumin-heavy-RKSJ-H:リュウミンH-KL:Roman
+Ryumin-heavy-RKSJ-V:@リュウミンH-KL:Roman
+Ryumin-regular-RKSJ-H:リュウミンR-KL:Roman
+Ryumin-regular-RKSJ-V:@リュウミンR-KL:Roman
+ShinGo-Bold-RKSJ-H:新ゴB:Modern
+ShinGo-Bold-RKSJ-V:@新ゴB:Modern
+ShinGo-Light-RKSJ-H:新ゴL:Modern
+ShinGo-Light-RKSJ-V:@新ゴL:Modern
+ShinGo-Medium-RKSJ-H:新ゴM:Modern
+ShinGo-Medium-RKSJ-V:@新ゴM:Modern
+ShinGo-Ultra-RKSJ-H:新ゴU:Modern
+ShinGo-Ultra-RKSJ-V:@新ゴU:Modern
+ShinGo-regular-RKSJ-H:新ゴR:Modern
+ShinGo-regular-RKSJ-V:@新ゴR:Modern
+ShinseiKai-CBSK1-RKSJ-H:新正楷書CBSK1:Roman
+ShinseiKai-CBSK1-RKSJ-V:@新正楷書CBSK1:Roman
+TypeBankG-b-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸｂ:Modern
+TypeBankG-b-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸｂ:Modern
+TypeBankG-hv-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸｈ:Modern
+TypeBankG-hv-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸｈ:Modern
+TypeBankM-hv-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸ明朝ｈ:Roman
+TypeBankM-hv-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸ明朝ｈ:Roman
+TypeBankM-m-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸ明朝ｍ:Roman
+TypeBankM-m-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸ明朝ｍ:Roman
+
+#
+# Adobe Fonts (kana)
+#
+
+TBKomachiG-B-RKSJ-H:TB小町GB:Modern
+TBKomachiG-B-RKSJ-V:@TB小町GB:Modern
+TBKomachiG-hv-RKSJ-H:TB小町GH:Modern
+TBKomachiG-hv-RKSJ-V:@TB小町GH:Modern
+TBKomachiM-M-RKSJ-H:TB小町MM:Roman
+TBKomachiM-M-RKSJ-V:@TB小町MM:Roman
+TBKomachiM-hv-RKSJ-H:TB小町MH:Roman
+TBKomachiM-hv-RKSJ-V:@TB小町MH:Roman
+TBRyokanG-B-RKSJ-H:TB良寛GB:Modern
+TBRyokanG-B-RKSJ-V:@TB良寛GB:Modern
+TBRyokanG-hv-RKSJ-H:TB良寛GH:Modern
+TBRyokanG-hv-RKSJ-V:@TB良寛GH:Modern
+TBRyokanM-M-RKSJ-H:TB良寛MM:Roman
+TBRyokanM-M-RKSJ-V:@TB良寛MM:Roman
+TBRyokanM-hv-RKSJ-H:TB良寛MH:Roman
+TBRyokanM-hv-RKSJ-V:@TB良寛MH:Roman
+TBTsukijiG-B-RKSJ-H:TB築地GB:Modern
+TBTsukijiG-B-RKSJ-V:@TB築地GB:Modern
+TBTsukijiG-hv-RKSJ-H:TB築地GH:Modern
+TBTsukijiG-hv-RKSJ-V:@TB築地GH:Modern
+TBTsukijiM-M-RKSJ-H:TB築地MM:Roman
+TBTsukijiM-M-RKSJ-V:@TB築地MM:Roman
+TBTsukijiM-hv-RKSJ-H:TB築地MH:Roman
+TBTsukijiM-hv-RKSJ-V:@TB築地MH:Roman
+TBYukinariG-B-RKSJ-H:TB行成GB:Modern
+TBYukinariG-B-RKSJ-V:@TB行成GB:Modern
+TBYukinariG-hv-RKSJ-H:TB行成GH:Modern
+TBYukinariG-hv-RKSJ-V:@TB行成GH:Modern
+TBYukinariM-M-RKSJ-H:TB行成MM:Roman
+TBYukinariM-M-RKSJ-V:@TB行成MM:Roman
+TBYukinariM-hv-RKSJ-H:TB行成MH:Roman
+TBYukinariM-hv-RKSJ-V:@TB行成MH:Roman
+LogoArl-Bold-RKSJ-H:ロゴアール-B:Modern
+LogoArl-Bold-RKSJ-V:@ロゴアール-B:Modern
+LogoArl-Light-RKSJ-H:ロゴアール-L:Modern
+LogoArl-Light-RKSJ-V:@ロゴアール-L:Modern
+LogoArl-Medium-RKSJ-H:ロゴアール-M:Modern
+LogoArl-Medium-RKSJ-V:@ロゴアール-M:Modern
+LogoArl-Ultra-RKSJ-H:ロゴアール-U:Modern
+LogoArl-Ultra-RKSJ-V:@ロゴアール-U:Modern
+LogoCut-Bold-RKSJ-H:ロゴカット-B:Modern
+LogoCut-Bold-RKSJ-V:@ロゴカット-B:Modern
+LogoCut-Light-RKSJ-H:ロゴカット-L:Modern
+LogoCut-Light-RKSJ-V:@ロゴカット-L:Modern
+LogoCut-Medium-RKSJ-H:ロゴカット-M:Modern
+LogoCut-Medium-RKSJ-V:@ロゴカット-M:Modern
+LogoCut-Ultra-RKSJ-H:ロゴカット-U:Modern
+LogoCut-Ultra-RKSJ-V:@ロゴカット-U:Modern
+LogoLine-Bold-RKSJ-H:ロゴライン-B:Modern
+LogoLine-Bold-RKSJ-V:@ロゴライン-B:Modern
+LogoLine-Light-RKSJ-H:ロゴライン-L:Modern
+LogoLine-Light-RKSJ-V:@ロゴライン-L:Modern
+LogoLine-Medium-RKSJ-H:ロゴライン-M:Modern
+LogoLine-Medium-RKSJ-V:@ロゴライン-M:Modern
+LogoLine-Ultra-RKSJ-H:ロゴライン-U:Modern
+LogoLine-Ultra-RKSJ-V:@ロゴライン-U:Modern
+
+#
+# QMS Japan Fonts
+#
+
+TypeBankG-B-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸB:Modern
+TypeBankG-B-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸB:Modern
+TypeBankG-H-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸH:Modern
+TypeBankG-H-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸｺﾞｼｯｸH:Modern
+TypeBankM-H-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸ明朝H:Roman
+TypeBankM-H-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸ明朝H:Roman
+TypeBankM-M-RKSJ-H:ﾀｲﾌﾟﾊﾞﾝｸ明朝M:Roman
+TypeBankM-M-RKSJ-V:@ﾀｲﾌﾟﾊﾞﾝｸ明朝M:Roman
+
+#
+# APTi Fonts
+#
+
+HeiseiKakuGothicW5-Medium-RKSJ-H:平成角ゴシック体W5:Modern
+HeiseiKakuGothicW5-Medium-RKSJ-V:@平成角ゴシック体W5:Modern
+HeiseiMinchoW3-Light-RKSJ-H:平成明朝体W3:Roman
+HeiseiMinchoW3-Light-RKSJ-V:@平成明朝体W3:Roman
+NIS-M5-RKSJ-H:JTCウインM5:Roman
+NIS-M5-RKSJ-V:@JTCウインM5:Roman
+NIS-R1-RKSJ-H:JTCウインR1:Modern
+NIS-R1-RKSJ-V:@JTCウインR1:Modern
+NIS-S7-RKSJ-H:JTCウインS7:Modern
+NIS-S7-RKSJ-V:@JTCウインS7:Modern
+
+#
+# Ricoh Fonts
+#
+
+RicohGothicB-RKSJ-H:ゴシックB:Modern
+RicohGothicB-RKSJ-V:@ゴシックB:Modern
+RicohGothicEB-RKSJ-H:ゴシックE:Modern
+RicohGothicEB-RKSJ-V:@ゴシックE:Modern
+RicohGothicM-RKSJ-H:ゴシックM:Modern
+RicohGothicM-RKSJ-V:@ゴシックM:Modern
+RicohGyosho-RKSJ-H:行書体:Script
+RicohGyosho-RKSJ-V:@行書体:Script
+RicohKaisho-RKSJ-H:正楷書体:Roman
+RicohKaisho-RKSJ-V:@正楷書体:Roman
+RicohKyokasho-RKSJ-H:教科書体:Roman
+RicohKyokasho-RKSJ-V:@教科書体:Roman
+RicohMGothicB-RKSJ-H:丸ゴシックB:Modern
+RicohMGothicB-RKSJ-V:@丸ゴシックB:Modern
+RicohMGothicL-RKSJ-H:丸ゴシックL:Modern
+RicohMGothicL-RKSJ-V:@丸ゴシックL:Modern
+RicohMGothicM-RKSJ-H:丸ゴシックM:Modern
+RicohMGothicM-RKSJ-V:@丸ゴシックM:Modern
+RicohMinchoB-RKSJ-H:明朝B:Roman
+RicohMinchoB-RKSJ-V:@明朝B:Roman
+RicohMinchoEB-RKSJ-H:明朝E:Roman
+RicohMinchoEB-RKSJ-V:@明朝E:Roman
+RicohMinchoL-RKSJ-H:明朝L:Roman
+RicohMinchoL-RKSJ-V:@明朝L:Roman

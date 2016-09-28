@@ -1,0 +1,34 @@
+TARGETNAME=msgsm32
+DLLDEF    =msgsm610.def
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+#
+#   Give the codecs a .ACM extension - uses makefile.inc.
+#
+!IF "$(MAKEDLL)" != ""
+NTTARGETFILES=$(BASEDIR)\lib\*\$(TARGETNAME).acm
+!ENDIF
+
+#
+#   define libs we need and where to find them
+#
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\gdi32.lib        \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib
+
+INCLUDES=..\inc
+
+C_DEFINES=$(ACM_DEBUG_DEFS) -DWIN32 -DUNICODE -D_UNICODE -DWINVER=0x0332 -Dusa -DACM
+
+SOURCES=init.c      \
+        codec.c     \
+        gsm610.c    \
+        config.c    \
+        debug.c     \
+        codec.rc
+
+DLLBASE=0x66650000

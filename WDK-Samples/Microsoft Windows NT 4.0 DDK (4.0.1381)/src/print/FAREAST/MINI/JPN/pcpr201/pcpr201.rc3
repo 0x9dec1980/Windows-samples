@@ -1,0 +1,52 @@
+#include <mindrvrc.h>
+
+1      RC_TABLES   PRELOAD MOVEABLE        PCPR201.GPC
+
+1      RC_FONT     LOADONCALL DISCARDABLE  PFM\MINCHOA.PFM
+2      RC_FONT     LOADONCALL DISCARDABLE  PFM\MINCHOB.PFM
+3      RC_FONT     LOADONCALL DISCARDABLE  PFM\GOTHIC.PFM
+4      RC_FONT     LOADONCALL DISCARDABLE  PFM\MINCHOOU.PFM
+5      RC_FONT     LOADONCALL DISCARDABLE  PFM\GOTHICOU.PFM
+6      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMAN5.PFM
+7      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMAN6.PFM
+8      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMAN8.PFM
+9      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMAN10.PFM
+10     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMAN12.PFM
+11     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMAN17.PFM
+12     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMANPS.PFM
+
+
+STRINGTABLE
+
+BEGIN
+       1                  "NEC PC-PR201/80A"
+       257                "%d x %d"
+       258                "A4 横置き 297 x 210 mm"
+       259                "B4 横置き 354 x 250 mm"
+       260                "B5 横置き 257 x 182 mm"
+       261                "はがき 100 x 148mm"
+       262                "はがき 横置き 148 x 100 mm"
+       263                "10 inch"
+       264                "15 inch"
+       265                "ｼｰﾄｶﾞｲﾄﾞ"
+       266                "ﾀﾞﾌﾞﾙﾋﾞﾝｼｰﾄﾌｨｰﾀﾞ(ﾎｯﾊﾟ1)"
+       267                "ﾀﾞﾌﾞﾙﾋﾞﾝｼｰﾄﾌｨｰﾀﾞ(ﾎｯﾊﾟ2)"
+       268                "ﾄﾗｸﾀﾌｨｰﾀﾞ/ﾌﾟｯｼｭﾄﾗｸﾀ"
+       269                "ｼｰﾄﾌｨｰﾀﾞ(ｼﾝｸﾞﾙﾋﾞﾝ)"
+       270                "ﾊｶﾞｷｶﾞｲﾄﾞ"
+       271                "ｺﾞｼｯｸ ROM ｶｰﾄﾞ"
+       272                "明朝(A) ROM ｶｰﾄﾞ"
+       273                "明朝(ｱｳﾄﾗｲﾝ) ﾌｫﾝﾄｶｰﾄﾞ"
+       274                "ｺﾞｼｯｸ(ｱｳﾄﾗｲｲﾝ) ﾌｫﾝﾄｶｰﾄﾞ"
+END
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_PRINTER
+#define VER_FILEDESCRIPTION_STR         "PC-PR201 driver"
+#define VER_INTERNALNAME_STR            "pcpr201.dll"
+#define VER_ORIGINALFILENAME_STR        "pcpr201.dll"
+
+#include "common.ver"

@@ -1,0 +1,13 @@
+TARGETNAME=atapi
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+SOURCES=atapi.c       \
+        atapi.rc
+
+
+C_DEFINES=-Dstrnicmp=_strnicmp

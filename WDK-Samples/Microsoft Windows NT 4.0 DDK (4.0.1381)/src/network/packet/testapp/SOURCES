@@ -1,0 +1,18 @@
+TARGETNAME=testapp
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=hellowin.rc \
+        childwin.c
+
+UMTYPE=windows
+UMBASE=0x01000000
+UMAPPL=testapp
+
+UMLIBS=obj\*\hellowin.res \
+       $(BASEDIR)\lib\*\$(DDKBUILDENV)\packet32.lib \
+       $(BASEDIR)\lib\*\$(DDKBUILDENV)\testapp.lib
+
+UMENTRY=winmain

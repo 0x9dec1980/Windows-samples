@@ -1,0 +1,18 @@
+TARGETNAME=umpd
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\spoolss.lib
+
+INCLUDES=..\inc
+
+DLLENTRY=DllEntryPoint
+DLLBASE=0x01000000
+
+C_DEFINES=-DUNICODE -DNO_STRICT
+
+USE_CRTDLL=1
+
+SOURCES=umpd.c

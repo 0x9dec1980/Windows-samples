@@ -1,0 +1,8 @@
+DIRS=4mmdat     \
+     archqic    \
+     dlttape    \
+     exabyte1   \
+     exabyte2   \
+     miniqic    \
+     tandqic    \
+     wangqic

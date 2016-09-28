@@ -1,0 +1,4 @@
+i8042prt.rc: i8042log.rc
+
+i8042log.h i8042log.rc msg00001.bin: i8042log.mc
+    mc -v i8042log.mc

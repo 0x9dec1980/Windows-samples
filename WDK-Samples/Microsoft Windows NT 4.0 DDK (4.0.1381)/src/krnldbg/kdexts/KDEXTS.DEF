@@ -1,0 +1,10 @@
+LIBRARY KDEXTS
+
+DESCRIPTION 'Default KD Extensions'
+
+EXPORTS
+    igrep
+    ustr
+    str
+    obja
+

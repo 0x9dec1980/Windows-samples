@@ -1,0 +1,5 @@
+TARGETNAME=zwcftest
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+SOURCES=zwcreate.c zwcreate.rc

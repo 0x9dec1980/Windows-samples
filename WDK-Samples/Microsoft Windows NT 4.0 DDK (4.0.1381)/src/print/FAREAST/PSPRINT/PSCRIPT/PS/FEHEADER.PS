@@ -1,0 +1,186 @@
+% Copyright (c) 1995  Microsoft Corporation
+%
+% Module Name:
+%
+%    feheader.ps
+%
+% Abstract:
+%
+%    Windows NT PostScript driver procset
+%
+% Notes:
+%
+%    Used to be hardcoded in the C source file.
+%    Now reside in the resource instead.
+%
+%    Similar to header.ps but contains the code
+%    for FE font handling.
+%
+%
+% Revision History:
+%
+%	07/07/95 -davidx-
+%		Extracted out of C source code.
+%
+%	mm/dd/yy -author-
+%		description
+
+%%BeginResource: procset NTPSOct95
+
+/NTPSOct95 200 dict dup begin
+
+% Redefine frequently used operators
+
+/bd {bind def} bind def
+/ld {load def} bd
+/ed {exch def} bd
+/a  /currentpoint ld
+/c  /curveto ld
+/d  /dup ld
+/e  /eofill ld
+/f  /fill ld
+/tr /translate ld
+/gr /grestore ld
+/gs /gsave ld
+/j  /setlinejoin ld
+/L  /lineto ld
+/M  /moveto ld
+/n  /newpath ld
+/cp /closepath ld
+/rm /rmoveto ld
+/sl /setlinewidth ld
+/sd /setdash ld
+/g  /setgray ld
+/r  /setrgbcolor ld
+/s  /stroke ld
+/t  /show ld
+/aw /awidthshow ld
+/im /imagemask ld
+/MS {moveto show} bd
+/SF {findfont exch scalefont setfont} bd
+/SM {cmtx setmatrix} bd
+/MF {findfont exch makefont setfont} bd
+/CM {/cmtx matrix currentmatrix def} bd
+/B  {M exch dup 0 rlt exch 0 exch rlt neg 0 rlt} bd
+/CB {B cp eoclip} bd
+/EA {1 index 0 /G0 put 4 string 1 1 4 -1 roll
+     {3 copy neg exch cvs dup 0 71 put cvn 3 -1 roll exch put} for pop
+    } bd
+/rlt /rlineto ld
+
+% Determine whether the interpreter is level 2 or higher
+
+/L2? /languagelevel where {pop languagelevel 2 ge} {false} ifelse def
+
+% FE font handling
+
+%
+% CoF - CopyFont
+%
+% font num bool CoF font
+%
+% Duplicate a font in order to create private variation
+% of a font.  Note we actually copying FDepVector array
+% and other a few compound objects since we have to keep
+% different instances in multiple copies of this font.
+% Bool parameter is to specify where we are copying
+% /UniqueID to the result or not.
+%
+
+/CoF {
+  3 1 roll 1 index maxlength add dict begin
+  { %forall
+    1 index /UniqueID ne 3 index or 2 index /FID ne and
+    { %ifelse
+      1 index /FDepVector eq {dup length array copy} if
+      1 index /Encoding eq {dup length array copy} if
+      1 index /CD eq {dup maxlength dict copy} if
+      1 index /CharStrings eq {dup maxlength dict copy} if % for Type1
+      1 index /Private eq {dup maxlength dict copy} if % for Type1
+      def
+    }{ %ifelse
+      pop pop
+    }ifelse
+  }forall
+  pop currentdict end
+} bd
+
+%
+% DupFont - DupFont
+%
+% key DupFont -
+%
+% Similar to the above.  Make a clone of a specified font
+% present
+%
+
+/DupFont{
+  findfont 0 false CoF definefont pop
+}bd
+
+
+/VF {
+    1 index FontDirectory exch known {
+        pop pop } {
+            findfont dup maxlength dict begin {
+                1 index/UniqueID ne 2 index/FID ne and {
+                    1 index /WMode eq {pop 0}if def
+                } {pop pop} ifelse
+            } forall
+            currentdict end definefont pop
+        } ifelse
+    } bd
+
+/_SF {
+    currentfont dup /CF exch def
+    } bd
+
+/_RF {
+    CF setfont
+    } bd
+
+/_SV {
+    _SF
+    dup /FontMatrix get dup matrix invertmatrix
+    [0 1 -1 0 0 0] exch
+    matrix concatmatrix matrix concatmatrix
+    makefont
+    dup /FontMatrix get exch
+    setfont
+    1 index length 0 exch 2 exch 1 sub {
+        -.12 -.88 3 index transform rm
+        2 index exch 2 getinterval dup
+        BF {SB} {show} ifelse
+        stringwidth neg exch neg exch rm
+        .12 -.12 2 index transform rm
+        } for
+    pop pop
+    _RF
+    } bd
+
+/MSV {M /BF false def _SV} bd
+
+% FE_BOLD
+% (string) SB
+
+/SB {
+    gs
+    blw sl
+	dup show
+    dup stringwidth neg exch neg exch rm
+        { false charpath stroke
+        } stopped {pop blw 3 mul dup rm show} if
+    gr
+}bd
+
+/MSB {M SB} bd
+
+/MSBV {M /BF true def _SV} bd
+
+/SBV {/BF true def _SV} bd
+
+/SV  {/BF false def _SV} bd
+
+/blw  1  def
+end def
+%%EndResource

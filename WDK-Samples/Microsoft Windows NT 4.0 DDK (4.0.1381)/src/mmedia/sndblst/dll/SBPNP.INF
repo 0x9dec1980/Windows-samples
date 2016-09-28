@@ -1,0 +1,134 @@
+[Version]
+Signature="$WINDOWS NT$"
+ClassGuid={4D36E96C-E325-11CE-BFC1-08002BE10318}
+Class=MEDIA
+Provider=%MSFT%
+
+[SourceDisksNames]
+1 = %DiskId%
+
+[SourceDisksFiles]
+sndblst.dll = 1
+sndblst.sys = 1
+joyport.dll = 1
+joyport.sys = 1
+
+[DestinationDirs]
+sndblstdll.CopyList = 11 ; DIRID_SYSTEM
+sndblstsys.CopyList = 12 ; DIRID_DRIVERS
+joyportdll.CopyList = 11 ; DIRID_SYSTEM
+joyportsys.CopyList = 12 ; DIRID_DRIVERS
+
+[Manufacturer]
+%CLMfgName%=CreativeLabs
+
+[CreativeLabs]
+;
+; NOTE:  We omit hardware IDs for each of these devices, so that the user will
+;        be able to supply an OEM-supplied driver with fuller functionality at
+;        the "Found New Hardware" popup.
+;
+%*CTL0001.DeviceDesc%=CTL0001_Device,, *CTL0001
+%*CTL0001.DeviceDesc%=CTL0001_Device,, *CTL0031
+%*CTL0021.DeviceDesc%=CTL0021_Device,, *CTL0021
+%*CTL0021.DeviceDesc%=CTL0021_Device,, *CTL8001
+%*CTL0051.DeviceDesc%=CTL0051_Device,, *CTL0051, *PNPffff
+%*PNPB02F.DeviceDesc%=MSJSTICK,,       *CTL7001
+
+[CTL0001_Device.NT]
+CopyFiles=sndblstdll.CopyList,sndblstsys.CopyList
+AddReg=CTL0001.AddReg, SB16.AddReg
+;AddReg=WAVE.AddReg, CTL0001.AddReg, SB16.AddReg
+Reboot
+
+[MSJSTICK.NT]
+CopyFiles=joyportdll.CopyList,joyportsys.CopyList
+AddReg=MSJSTICK.AddReg
+Reboot
+
+[CTL0001_Device.NT.Services]
+AddService = sndblst, 0x00000002, sndblst_Service_Inst
+
+[MSJSTICK.NT.Services]
+AddService = joyport, 0x00000002, joyport_Service_Inst
+
+[sndblst_Service_Inst]
+DisplayName    = %sndblst.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 1                  ; SERVICE_SYSTEM_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\sndblst.sys
+LoadOrderGroup = Base
+
+[joyport_Service_Inst]
+DisplayName    = %joyport.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 1                  ; SERVICE_SYSTEM_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\joyport.sys
+LoadOrderGroup = Base
+
+[sndblstdll.CopyList]
+sndblst.dll
+
+[sndblstsys.CopyList]
+sndblst.sys
+
+[joyportdll.CopyList]
+joyport.dll
+
+[joyportsys.CopyList]
+joyport.sys
+
+[CTL0001.AddReg]
+HKR,Drivers\wave\sndblst.dll,Description,,%*CTL0001.DeviceDesc%
+HKR,Drivers\midi\sndblst.dll,Description,,%V_INTERNAL%
+HKR,Drivers\mixer\sndblst.dll,Description,,%*CTL0001.DeviceDesc%
+HKR,Drivers\aux\sndblst.dll,Description,,%*CTL0001.DeviceDesc%
+
+[SB16.AddReg]
+HKR,Drivers\wave\sndblst.dll,Driver,,sndblst.dll
+HKR,Drivers\midi\sndblst.dll,Driver,,sndblst.dll
+HKR,Drivers\mixer\sndblst.dll,Driver,,sndblst.dll
+HKR,Drivers\aux\sndblst.dll,Driver,,sndblst.dll
+HKR,Drivers,SubClasses,,"wave,midi,aux,mixer"
+
+[MSJSTICK.AddReg]
+HKR,Drivers\jport\joyport.dll,Description,,%*PNPB02F.DeviceDesc%
+HKR,Drivers\jport\joyport.dll,Driver,,joyport.dll
+HKR,Drivers,SubClasses,,"jport"
+
+;
+; The following sections are left empty since this INF doesn't provide support
+; the corresponding functions.  Installation for these functions will actually
+; fail, but this allows us to give the user a 'Windows NT default driver" for
+; each function on the card.
+;
+[CTL0021_Device.NT]
+[CTL0051_Device.NT]
+
+;
+; We also have to have the corresponding service install sections for the above
+; 'dummy' install sections, or else the NT MEDIA class installer will reject the
+; driver node as Win95-only.
+;
+[CTL0021_Device.NT.Services]
+[CTL0051_Device.NT.Services]
+
+;
+; Localizable text.
+;
+[Strings]
+MSFT = "Microsoft"
+MediaClassName = "Sound, video and game controllers"
+CLMfgName = "Creative Labs"
+DiskId = "Creative Labs Drivers Disk"
+
+*CTL0001.DeviceDesc = "Creative Labs Sound Blaster Plug and Play"
+*CTL0021.DeviceDesc = "Creative Labs Advanced Wave Effects Synthesis for AWE 32"
+V_INTERNAL = "Creative Labs Stereo Music Synthesizer"
+*CTL0051.DeviceDesc = "Creative Labs 3D Stereo Enhancement Technology"
+*PNPB02F.DeviceDesc = "Microsoft Joystick Port Enabler"
+
+sndblst.SvcDesc = "Creative Labs Sound Blaster Driver"
+joyport.SvcDesc = "Microsoft Joystick Port Driver"

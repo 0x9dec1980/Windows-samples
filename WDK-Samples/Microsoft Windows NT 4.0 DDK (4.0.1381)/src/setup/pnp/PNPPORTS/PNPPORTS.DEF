@@ -1,0 +1,11 @@
+LIBRARY PNPPORTS.CPL
+
+DESCRIPTION 'PnP ISA Ports Sample Control Panel Applet'
+
+EXPORTS
+        CommDlg
+        CPlApplet
+        LibMain
+        RestartDlg
+        ShortCommDlg
+        PortsClassInstaller

@@ -1,0 +1,22 @@
+TARGETNAME=sndblst
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\soundlib.lib
+
+INCLUDES=..\..\soundlib\inc;..\..\inc;..\dll
+
+SOURCES=isr.c      \
+        devcaps.c  \
+        init.c     \
+        config.c   \
+        hardware.c \
+        mixer.c    \
+        mixsb16.c  \
+        sb16mix.c  \
+        sb16ctl.c  \
+        mixsbpro.c \
+        sbpromix.c \
+        sbproctl.c \
+        volume.c   \
+        sndblst.rc

@@ -1,0 +1,15 @@
+TARGETNAME=dec3200
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\libcntpr.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\win32k.lib
+
+DLLBASE=0x20200000
+
+USE_NOLIBS=1
+
+INCLUDES=..\..\inc
+
+SOURCES=dec3200.rc      \
+	code.c

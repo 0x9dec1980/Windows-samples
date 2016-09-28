@@ -1,0 +1,8 @@
+LIBRARY ESCPAGE
+
+DESCRIPTION 'ESC/Page minidriver for RASDD'
+
+PROTMODE
+
+EXPORTS
+   bInitProc

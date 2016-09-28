@@ -1,0 +1,23 @@
+TARGETNAME=wshsmple
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\wsock32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\tdi.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib  
+
+DLLENTRY=DllInitialize
+
+USE_CRTDLL=1
+
+INCLUDES=..\inc;..\streams\inc
+
+USE_CRTDLL=1
+
+SOURCES=wshsmple.c \
+        wshsmple.rc
+
+UMTYPE=console
+DLLBASE=0x200000

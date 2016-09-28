@@ -1,0 +1,19 @@
+TARGETNAME=ne2000
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER -DNE2000
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=interrup.c \
+        ne2000.c   \
+        card.c     \
+        ne2000.rc
+
+RELATIVE_DEPTH=..\..
+
+MSC_WARNING_LEVEL=/W3 /WX
+

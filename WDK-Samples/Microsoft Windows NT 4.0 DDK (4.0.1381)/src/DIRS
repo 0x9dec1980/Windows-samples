@@ -1,0 +1,12 @@
+DIRS=general    \
+     comm       \
+     input      \
+     krnldbg    \
+     mmedia     \
+     network    \
+     perf       \
+     print      \
+     setup      \
+     storage    \
+     vdd        \
+     video

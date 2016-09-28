@@ -1,0 +1,5 @@
+APPINTS - This directory contains a rudimentary structure for application
+	  based-intercept approach for writing a VDD. The details for this
+	  approach are given in the Virtual Device Driver chapter. "fax16"
+	  is a sub-directory, which has a minimal FAX stub device driver.
+	  FAX32 directory has the sources for a FAX VDD. {fax16.sys,fax32.dll}

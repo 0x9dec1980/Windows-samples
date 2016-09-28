@@ -1,0 +1,12 @@
+pfm2ifi pcpr201 gothic.pfm ..\ifi\gothic.ifi -s
+pfm2ifi pcpr201 gothicou.pfm ..\ifi\gothicou.ifi -s
+pfm2ifi pcpr201 minchoa.pfm ..\ifi\minchoa.ifi -s
+pfm2ifi pcpr201 minchob.pfm ..\ifi\minchob.ifi -s
+pfm2ifi pcpr201 minchoou.pfm ..\ifi\minchoou.ifi -s
+pfm2ifi pcpr201 roman10.pfm ..\ifi\roman10.ifi -s
+pfm2ifi pcpr201 roman12.pfm ..\ifi\roman12.ifi -s
+pfm2ifi pcpr201 roman17.pfm ..\ifi\roman17.ifi -s
+pfm2ifi pcpr201 roman5.pfm ..\ifi\roman5.ifi -s
+pfm2ifi pcpr201 roman6.pfm ..\ifi\roman6.ifi -s
+pfm2ifi pcpr201 roman8.pfm ..\ifi\roman8.ifi -s
+pfm2ifi pcpr201 romanps.pfm ..\ifi\romanps.ifi -s

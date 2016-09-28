@@ -1,0 +1,22 @@
+TARGETNAME=s3
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=MINIPORT
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\videoprt.lib 
+
+INCLUDES=..\..\inc
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /WX
+
+SOURCES=nnclk.c     \
+        s3.c        \
+        s3data.c    \
+        s3.rc       \
+        sdac.c
+
+NTTARGETFILE0=s3logerr.h
+
+

@@ -1,0 +1,12 @@
+TARGETNAME=txtonly
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+DLLENTRY=bInitProc
+DLLBASE=0x6AB00000
+
+INCLUDES=..;..\..\inc
+
+SOURCES=code.c   \
+        txtonly.rc 
+	

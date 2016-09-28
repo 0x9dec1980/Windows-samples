@@ -1,0 +1,10 @@
+LIBRARY STAR24EC
+
+DESCRIPTION 'STAR24EC  minidriver for RASDD'
+
+PROTMODE
+
+EXPORTS
+    bInitProc
+    bInitFEProc
+

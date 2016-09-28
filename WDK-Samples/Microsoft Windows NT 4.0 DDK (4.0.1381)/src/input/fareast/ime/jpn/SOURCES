@@ -1,0 +1,51 @@
+!IF 0
+
+NOTE:   Commented description of this file is in \nt\bak\bin\sources.tpl
+           
+!ENDIF
+
+MAJORCOMP=ime
+MINORCOMP=fakeime
+
+TARGETNAME=fakeimeu
+TARGETEXT=ime
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+DLLENTRY=DLLEntry
+USE_CRTDLL=1
+DLLBASE=0x73100000
+DLLDEF=fakeime.def
+SUBSYSTEM_VERSION=4.00
+
+TARGETLIBS =  $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib    \
+              $(BASEDIR)\lib\*\$(DDKBUILDENV)\GDI32.LIB       \
+              $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib      \
+              $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib    \
+              $(BASEDIR)\lib\*\$(DDKBUILDENV)\comctl32.lib    \
+              $(BASEDIR)\lib\*\$(DDKBUILDENV)\IMM32.LIB       
+
+INCLUDES=.;..
+
+C_DEFINES= -DBUILDDLL -DUNICODE
+
+SOURCES=fakeime.rc \
+        fakeimeu.c \
+        data.c     \
+        dic.c      \
+        romkan.c   \
+        imm.c      \
+        process.c  \
+        subs.c     \
+        toascii.c  \
+        ui.c       \
+        uicomp.c   \
+        uicand.c   \
+        uiguide.c  \
+        uistate.c  \
+        regword.c  \
+        config.c   \
+        immsec.c   
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj

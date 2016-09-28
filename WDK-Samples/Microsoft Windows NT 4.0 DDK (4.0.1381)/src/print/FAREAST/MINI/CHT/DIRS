@@ -1,0 +1,12 @@
+DIRS=dec3200    \
+     epson24    \
+     epson9     \
+     pcl5e      \
+     pcl5ms     \
+     paintjet   \
+     txtonly    \
+     plot       \
+     epson24c   \
+     nec24c     \
+     pansn24c   \
+     star24ec

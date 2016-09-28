@@ -1,0 +1,11 @@
+DIRS=dec3200    \
+     epson24    \
+     epson9     \
+     pcl5e      \
+     pcl5ms     \
+     paintjet   \
+     txtonly    \
+     plot       \
+     canon10v   \
+     escpage    \
+     pcpr201

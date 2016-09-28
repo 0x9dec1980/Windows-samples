@@ -1,0 +1,11 @@
+TARGETNAME=parstat
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=parstat.c       \
+        parstat.rc
+
+NTTARGETFILE0=statlog.h
+

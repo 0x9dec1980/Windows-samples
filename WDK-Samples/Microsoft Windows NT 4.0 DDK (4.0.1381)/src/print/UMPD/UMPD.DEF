@@ -1,0 +1,14 @@
+LIBRARY umpd
+
+
+DESCRIPTION 'NT 4.0 User Mode Printer Driver'
+
+EXPORTS
+     DrvSplStartDoc
+     DrvSplWritePrinter
+     DrvSplEndDoc
+     DrvSplClose
+
+     DrvSplStartPage
+     DrvSplEndPage
+     DrvSplAbort

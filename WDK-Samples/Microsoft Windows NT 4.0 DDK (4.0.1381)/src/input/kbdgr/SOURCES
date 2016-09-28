@@ -1,0 +1,9 @@
+TARGETNAME=kbdgr
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+DLLBASE=0x72800000
+INCLUDES=..\inc
+
+SOURCES=kbdgr.c         \
+        kbdgr.rc

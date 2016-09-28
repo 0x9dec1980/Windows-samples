@@ -1,0 +1,50 @@
+NOT_LEAN_AND_MEAN=1
+
+TARGETNAME=phon
+TARGETEXT=ime
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib    \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib    \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\GDI32.LIB       \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\IMM32.LIB       \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\COMDLG32.LIB    \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\UNIIME.LIB
+
+DLLBASE=0x73100000
+DLLENTRY=ImeDllInit
+USE_CRTDLL=1
+
+C_DEFINES=-DBUILDDLL -DPHON -DWINVER=0x0400 -DUNICODE
+!if defined(ETEN)
+C_DEFINES=$(C_DEFINES) -DETEN
+!endif
+!if defined(IDEBUG)
+C_DEFINES=$(C_DEFINES) -DIDEBUG
+!endif
+
+INCLUDES=.;..
+
+SOURCES=\
+	..\IMMSEC.c \
+	..\INIT.c       \
+	..\CHCAND.c     \
+	..\CANDUI.c     \
+	..\COMPOSE.c    \
+	..\COMPUI.c     \
+	..\CONFIG.c     \
+	..\CONVLIST.c   \
+	..\DATA.c       \
+	..\DIC.c        \
+	..\DDIS.c       \
+	..\NOTIFY.c     \
+	..\OFFCARET.c   \
+	..\REGWORD.c    \
+	..\STATUSUI.c   \
+	..\SEARCH.c     \
+	..\TOASCII.c    \
+	..\UI.c         \
+	..\UISUBS.c     \
+	phon.rc
+

@@ -1,0 +1,19 @@
+#include "windows.h"
+
+#include "detapp.h"
+;
+#include "dialogs.h"
+
+#include "dialogs.dlg"
+
+3000 ICON detapp.ico
+
+GenericMenu MENU
+  {
+    POPUP    "Dll"
+    {
+      MENUITEM "About...",IDM_ABOUT
+      MENUITEM SEPARATOR
+    }
+
+  }

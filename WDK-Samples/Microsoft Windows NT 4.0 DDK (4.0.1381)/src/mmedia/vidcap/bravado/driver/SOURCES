@@ -1,0 +1,19 @@
+#
+#  build instructions for the bravado video capture driver
+#
+
+TARGETNAME=bravado
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\vckernel.lib
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=init.c      \
+        config.c    \
+        overlay.c   \
+        stream.c    \
+        vidcio.c    \
+        xlate.c     \
+        hardware.c

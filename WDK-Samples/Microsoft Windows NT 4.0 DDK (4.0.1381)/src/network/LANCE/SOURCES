@@ -1,0 +1,21 @@
+TARGETNAME=lance
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=lance.c \
+        send.c \
+        transfer.c \
+        details.c \
+        dectc.c \
+        lance.rc
+
+RELATIVE_DEPTH=..\..
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+

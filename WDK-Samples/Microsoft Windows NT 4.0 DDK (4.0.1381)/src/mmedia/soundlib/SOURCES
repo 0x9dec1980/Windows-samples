@@ -1,0 +1,15 @@
+TARGETNAME=soundlib
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=inc;..\inc
+
+SOURCES=mixer.c         \
+        synth.c         \
+        registry.c      \
+        midi.c          \
+        auxout.c        \
+        dispatch.c      \
+        volume.c        \
+        soundlib.c      \
+        wave.c

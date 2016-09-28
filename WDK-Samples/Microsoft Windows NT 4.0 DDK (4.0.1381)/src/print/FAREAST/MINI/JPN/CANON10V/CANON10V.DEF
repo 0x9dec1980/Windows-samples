@@ -1,0 +1,10 @@
+LIBRARY CANON10V
+
+DESCRIPTION 'CANON10V minidriver for RASDD'
+
+PROTMODE
+
+EXPORTS
+    bInitProc
+    bInitFEProc
+

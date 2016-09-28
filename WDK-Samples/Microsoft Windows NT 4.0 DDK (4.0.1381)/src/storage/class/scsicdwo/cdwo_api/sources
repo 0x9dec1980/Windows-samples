@@ -1,0 +1,15 @@
+TARGETNAME=cdwo_api
+TARGETTYPE=LIBRARY
+TARGETPATH=$(BASEDIR)\lib
+
+INCLUDES=..\driver
+
+SOURCES=cdwo_api.c
+
+USE_CRTDLL=1
+
+UMAPPL=readtoc
+UMTYPE=console
+UMBASE=0x01000000
+UMLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\cdwo_api.lib
+

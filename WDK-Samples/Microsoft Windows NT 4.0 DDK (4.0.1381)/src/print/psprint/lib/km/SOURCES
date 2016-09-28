@@ -1,0 +1,11 @@
+TARGETNAME=pslib
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=..;..\..\inc;..\..\..\..\inc;..\..\..\lib;..\..\..\inc
+
+C_DEFINES=$(C_DEFINES) -DUNICODE -DKERNEL_MODE
+
+!INCLUDE ..\sources.inc
+
+SOURCES=$(SOURCES) kmfuncs.c

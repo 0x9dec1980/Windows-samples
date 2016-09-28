@@ -1,0 +1,11 @@
+TARGETNAME=cdaudio
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\class.lib        \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+INCLUDES=..\..\inc
+
+SOURCES=cdaudio.c       \
+        cdaudio.rc

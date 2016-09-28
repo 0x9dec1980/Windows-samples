@@ -1,0 +1,87 @@
+#################### Makefile for Post Script Utilities ####################
+#
+# MKPRN.EXE	Printer description compiler (.PPD -> .CAP, .PSS, .DIR)
+#
+# AFM.EXE	Font metrics compiler (.AFM -> .PFM)
+#
+# PFMDUMP.EXE	PFM dump utility
+#
+# SMASH.EXE	Postscript code white space remover
+#
+
+CFLAGS = -I..
+
+!ifdef DBCS
+CFLAGS = $(CFLAGS) -DDBCS
+!endif
+
+!ifdef JAPAN
+CFLAGS = $(CFLAGS) -DJAPAN
+!endif
+
+LINKFLAGS=
+!ifdef DEBUG
+LINKFLAGS=$(LINKFLAGS) /CO
+!endif
+
+pfm: afm.exe pfmdump.exe
+
+utils:  afm.exe mkprn.exe smash.exe pfmdump.exe
+
+mkprn.obj: mkprn.c ..\printcap.h
+	cl -c -W3 -Zip $*.c
+
+mkprn.exe: mkprn.obj
+	link $(LINKFLAGS) mkprn;
+!ifdef DEBUG
+	cvpack mkprn.exe
+!endif
+
+#
+# dependencies for AFM.EXE  -------> Build AFM.EXE
+#
+
+afm.obj: afm.c pfm.h
+	cl -c -Zi $(CFLAGS) afm.c
+
+charcode.obj: charcode.c pfm.h
+	cl -c -Zi $(CFLAGS) charcode.c
+
+pfm.obj: pfm.c pfm.h globals.h
+	cl -c -Zi $(CFLAGS) pfm.c
+
+etm.obj: etm.c pfm.h
+	cl -c -Zi $(CFLAGS) etm.c
+
+afm.exe: afm.obj charcode.obj pfm.obj etm.obj
+	link $(LINKFLAGS) afm.obj charcode.obj pfm.obj etm.obj;
+!ifdef DEBUG
+	cvpack afm.exe
+!endif
+
+#
+# dependencies for PFMDUMP.EXE  -------> Build PFMDUMP.EXE
+#
+
+pfmdump.obj: pfmdump.c
+	cl -c -Zi pfmdump.c
+
+pfmdump.exe: pfmdump.obj
+        link $(LINKFLAGS) pfmdump.obj;
+!ifdef DEBUG
+	cvpack pfmdump.exe
+!endif
+
+#
+# dependencies for smash.EXE --------> Build smash.EXE
+#
+
+smash.obj: smash.c
+	cl -c -Zi smash.c
+
+smash.exe: smash.obj
+        link $(LINKFLAGS) smash.obj;
+!ifdef DEBUG
+	cvpack smash.exe
+!endif
+

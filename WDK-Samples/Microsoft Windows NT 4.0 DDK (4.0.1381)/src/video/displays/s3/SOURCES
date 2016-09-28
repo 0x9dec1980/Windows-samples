@@ -1,0 +1,43 @@
+TARGETNAME=s3
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=GDI_DRIVER
+
+DLLBASE=0x62200000
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+
+
+INCLUDES=..\..\inc
+
+NTPROFILEINPUT=yes
+
+SOURCES=bank.c		\
+	bitblt.c	\
+	bltio.c 	\
+	bltmm.c 	\
+	brush.c 	\
+	color.c 	\
+                ddraw.c    \
+	debug.c 	\
+	enable.c	\
+	fastfill.c	\
+	fillpath.c	\
+	heap.c		\
+	lines.c 	\
+	lineto.c	\
+	misc.c		\
+	multi.c 	\
+	paint.c 	\
+	palette.c	\
+	pointer.c	\
+	stretch.c	\
+	strips.c	\
+	textout.c	\
+	thunk.c 	\
+	res.rc
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj

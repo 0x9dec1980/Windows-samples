@@ -1,0 +1,9 @@
+TARGETNAME=reparse
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=$(BASEDIR)\inc;..\exe
+
+SOURCES=reparse.rc  \
+                    reparse.c
+

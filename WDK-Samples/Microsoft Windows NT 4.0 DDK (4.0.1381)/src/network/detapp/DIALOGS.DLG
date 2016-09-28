@@ -1,0 +1,47 @@
+1 DLGINCLUDE "Dialogs.H"
+
+IDD_DETECT DIALOG 28, 44, 328, 196
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Netdetect Tester"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "OK", IDOK, 8, 176, 40, 14
+    LISTBOX         IDD_LISTBOX, 8, 20, 132, 148, LBS_USETABSTOPS | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDD_LISTBOX2, 144, 20, 124, 52, LBS_USETABSTOPS | 
+                    WS_VSCROLL
+    LISTBOX         IDD_LISTBOX3, 144, 84, 124, 28, LBS_SORT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Find", IDD_FIND, 56, 176, 40, 14
+    LTEXT           "Adapters Found", 1004, 144, 72, 72, 8
+    LTEXT           "Adapters", 1005, 8, 8, 132, 8
+    LTEXT           "Parameters", 1006, 144, 8, 124, 8
+    LISTBOX         IDD_LISTBOX4, 144, 124, 124, 40, LBS_USETABSTOPS | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Found Adapter Configuration", 1008, 144, 112, 124, 8
+    LISTBOX         IDD_LISTBOX5, 272, 20, 48, 48, LBS_SORT | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Range", 1010, 272, 8, 48, 8
+    PUSHBUTTON      "Create", IDD_CREATE, 104, 176, 40, 14
+    GROUPBOX        "Bus Type", 1012, 272, 80, 48, 64
+    AUTORADIOBUTTON "Internal", IDD_RADIO1, 276, 96, 39, 10
+    AUTORADIOBUTTON "ISA", IDD_RADIO2, 276, 108, 39, 10
+    AUTORADIOBUTTON "EISA", IDD_RADIO3, 276, 120, 39, 10
+    AUTORADIOBUTTON "MCA", IDD_RADIO4, 276, 132, 39, 10
+    PUSHBUTTON      "Query", IDD_QUERY, 152, 176, 40, 14, WS_DISABLED
+END
+
+IDD_ABOUT DIALOG 32, 40, 160, 72
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Net Detect Dll Tester"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK", IDOK, 64, 48, 40, 14
+    CTEXT           "Microsoft Net Detect Dll Tester", 201, 28, 4, 112, 8
+    CTEXT           "By", 202, 28, 12, 112, 8
+    CTEXT           "Brian Lieuallen", 203, 28, 20, 112, 8
+    CTEXT           "(BrianL)", 204, 28, 28, 112, 8
+    ICON            3000, 3000, 16, 28, 18, 20
+END

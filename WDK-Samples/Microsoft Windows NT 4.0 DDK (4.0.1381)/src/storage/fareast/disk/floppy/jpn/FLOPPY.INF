@@ -1,0 +1,63 @@
+;
+; FLOPPY.INF - Floppy Driver Installation Sample
+;
+;    This is a sample installation script for Japanese "3 mode" floppy
+; driver.  A user can install OEM floppy driver using this script, by
+; just selecting this file on the exploer and click right mouse button.
+;
+;   Selecting the "Install" menu option, the OEM floppy driver will be
+; copied to the system drivers directory, and renamed to FLOPPY.SYS.
+; Then, the user will be prompted to reboot the system so that the new
+; floppy driver will be in effect.
+;
+;   OEMs may want to customize the [Strting] section only.  "ModelName"
+; string will be added to the floppy driver's registry parameter.
+; OEM provided floppy driver is recommented to check this value in
+; order to support multiple PC models using single floppy driver.
+;
+; n.b. The below sample is for a Japanese floppy driver supporting PC
+; called "Model A".  Driver file name is model_a.sys.
+;
+
+
+[Version]
+Signature="$Windows NT$"
+LayoutFile=layout.inf
+
+[DestinationDirs]
+DefaultDestDir = 12 ; DIRID_DRIVERS
+
+[SourceDisksFiles]
+%DriverFileName% = 100,,,,,,,4,0,0,floppy.sys
+
+;
+; diskid = description,tagfile,unused,subdir
+;
+[SourceDisksNames]
+100 = %DisketteLabel%,%TagFile%,,%SubDirectory%
+
+[DefaultInstall.NT]
+; NT section
+CopyFiles = DriverFiles
+AddReg = AddRegistry
+Reboot
+
+;
+; target,source,notused,copyflg
+;
+[DriverFiles]
+floppy.sys,%DriverFileName%,,4
+
+[AddRegistry]
+HKLM,SYSTEM\CurrentControlSet\Services\Floppy\Parameters,ModelName,,%ModelName%
+
+;
+; String section for customization
+;
+
+[Strings]
+DisketteLabel = "Model A Floppy Driver Diskette"
+TagFile = 
+SubDirectory = \386
+DriverFileName = model_a.sys
+ModelName = "Model A"

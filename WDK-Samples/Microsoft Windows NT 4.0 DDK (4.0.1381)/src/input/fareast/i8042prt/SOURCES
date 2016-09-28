@@ -1,0 +1,29 @@
+TARGETNAME=i8042prt
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=i8042prt.rc \
+        i8042cmn.c  \
+        i8042dep.c  \
+        kbdcmn.c    \
+        kbddep.c    \
+        moucmn.c    \
+        moudep.c    \
+        devdesc.c
+        
+NTTARGETFILE0=i8042log.h
+
+C_DEFINES=-DPNP_IDENTIFY
+
+#
+# For FarEast version build.
+#
+!IF (("$(LANGUAGE)" == "JPN") || ("$(LANGUAGE)" == "KOR") || \
+     ("$(LANGUAGE)" == "CHS") || ("$(LANGUAGE)" == "CHT"))
+C_DEFINES=$(C_DEFINES) -DWINDOWS_FE
+
+SOURCES=$(SOURCES)   \
+        kbdoasys.c
+!ENDIF

@@ -1,0 +1,35 @@
+TARGETNAME=sonic
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=
+
+i386_SOURCES=alloc.c \
+        interrup.c \
+        request.c \
+        send.c \
+        sonic.c \
+        sonic.rc \
+        transfer.c
+
+MIPS_SOURCES=alloc.c \
+        interrup.c \
+        request.c \
+        send.c \
+        sonic.c \
+        sonic.rc \
+        transfer.c
+
+ALPHA_SOURCES=
+
+RELATIVE_DEPTH=..\..
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+

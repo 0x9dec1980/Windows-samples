@@ -1,0 +1,5 @@
+DIRS=vckernel   \
+     vcuser     \
+     bravado    \
+     spigot     \
+     msyuv

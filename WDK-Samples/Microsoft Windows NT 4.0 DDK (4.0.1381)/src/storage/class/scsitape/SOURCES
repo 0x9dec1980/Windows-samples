@@ -1,0 +1,15 @@
+TARGETNAME=tape
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=EXPORT_DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\class.lib
+
+LINKLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+DLLDEF=scsitape.def
+
+INCLUDES=..\..\inc
+
+SOURCES=scsitape.c \
+        physlogi.c \
+        scsitape.rc

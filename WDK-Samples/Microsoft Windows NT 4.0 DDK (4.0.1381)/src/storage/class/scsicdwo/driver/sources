@@ -1,0 +1,11 @@
+TARGETNAME=scsicdwo
+TARGETTYPE=DRIVER
+TARGETPATH=$(BASEDIR)\lib
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\class.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+INCLUDES=..\..\..\inc
+
+SOURCES=scsicdwo.c scsicdwo.rc
+
+

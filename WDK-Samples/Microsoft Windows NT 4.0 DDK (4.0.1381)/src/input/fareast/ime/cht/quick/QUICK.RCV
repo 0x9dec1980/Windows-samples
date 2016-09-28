@@ -1,0 +1,11 @@
+/********************************************************************/
+/*        QUICK.RCV                                                 */
+/********************************************************************/
+#define VER_FILEDESCRIPTION_STR         "Quick IME 4.0 version"
+
+#define VER_PRODUCTNAME_STR             "Quick"
+
+#define VER_INTERNALNAME_STR            "Quick IME"
+#define VER_ORIGINALFILENAME_STR        "QUICK.IME"
+
+#include "COMMVER.RCV"

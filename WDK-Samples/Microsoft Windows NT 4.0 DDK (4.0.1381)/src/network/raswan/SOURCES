@@ -1,0 +1,20 @@
+TARGETNAME=htdsu41
+TARGETTYPE=DRIVER
+TARGETPATH=$(BASEDIR)\lib
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+INCLUDES=..\inc
+
+C_DEFINES=/DNDIS_MINIPORT_DRIVER
+							       
+SOURCES=
+
+i386_SOURCES= htdsu.c        \
+              card.c         \
+              interrup.c     \
+              link.c         \
+              request.c      \
+              receive.c      \
+              send.c         \
+              tapi.c         \
+	      debug.c

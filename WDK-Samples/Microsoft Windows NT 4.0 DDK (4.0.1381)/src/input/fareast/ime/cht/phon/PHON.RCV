@@ -1,0 +1,11 @@
+/********************************************************************/
+/*        PHON.RCV                                                  */
+/********************************************************************/
+#define VER_FILEDESCRIPTION_STR         "Phonetic IME 4.0 version"
+
+#define VER_PRODUCTNAME_STR             "Phonetic"
+
+#define VER_INTERNALNAME_STR            "Phonetic IME"
+#define VER_ORIGINALFILENAME_STR        "PHON.IME"
+
+#include "COMMVER.RCV"

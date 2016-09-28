@@ -1,0 +1,61 @@
+#
+# Database of MicroSoft specific data needed by the
+# AFM compiler for AFM to PFM conversion.
+# Fields are as follows:
+#   1.) Adobe PostScript name of the face.
+#   2.) MicroSoft name of the face. 
+#   3.) MicroSoft family name:
+#         Swiss = SansSerif
+#         Roman = Serif
+#         Modern = Monospaced
+#         Script = handwriting
+#         Decorative = Special 
+#
+
+
+#
+# DEC Taiwan Fonts
+#
+
+Hei-Light-BIG5:細黑體:Modern
+Kai-Light-BIG5:細楷體:Modern
+Sung-Light-BIG5:細宋體:Modern
+
+#
+# DynaLab Fonts
+#
+
+DFMing-Lt-HK-BF:華康細明體:Roman
+DFHei-Md-HK-BF:華康中黑體:Modern
+DFMing-Md-HK-BF:華康中明體:Roman
+DFHei-Bd-HK-BF:華康粗黑體:Modern
+DFMing-Bd-HK-BF:華康粗明體:Roman
+DFFangSong-W4-HK-BF:華康仿宋體W4:Modern
+DFLiShu-W5-HK-BF:華康隸書體W5:Script
+DFPOP1-W7-HK-BF:華康POP1體W7:Modern
+DFGirl-W6-HK-BF:華康少女文字W6:Modern
+DFYuan-Bd-HK-BF:華康粗圓體:Modern
+DFKaiShu-W5-Estd-BF:華康標楷體W5:Roman
+DFSong-W4-Estd-BF:華康標宋體W4:Modern
+DFYuan-Lt-HK-BF:華康細圓體:Modern
+DFXingShu-Md-HK-BF:華康行書體:Script
+DFKanTingLiu-XB-HK-BF:華康勘亭流:Script
+DFLiHei-Md-HK-BF:華康儷中黑:Modern
+DFLiHei-Lt-HK-BF:華康儷細黑:Modern
+DFLiHei-Bd-HK-BF:華康儷粗黑:Modern
+DFLiSong-Lt-HK-BF:華康儷宋:Modern
+DFLiSong-Md-HK-BF:華康儷中宋:Modern
+DFLiSong-Bd-HK-BF:華康儷粗宋:Modern
+DFHei-XB-HK-BF:華康特粗黑體:Modern
+DFZongYi-XB-HK-BF:華康綜藝體:Modern
+DFMing-XB-HK-BF:華康特粗明體:Roman
+DFYuan-XB-HK-BF:華康特粗圓體:Modern
+DFLiYuan-Bd-HK-BF:華康儷粗圓:Modern
+DFLiYuan-XB-HK-BF:華康儷特圓:Modern
+DFLiYeaSong-Bd-HK-BF:華康儷雅宋:Modern
+DFLiKingHei-XB-HK-BF:華康儷金黑:Modern
+DFLiKaiShu-Md-HK-BF:華康儷楷書:Script
+DFGuYin-Md-HK-BF:華康古印體:Script
+DFHei-UB-HK-BF:華康超黑體:Modern
+DFKaiShu-W5-HK-BF:華康楷書體W5:Script
+DFMing-UB-HK-BF:華康超明體:Roman

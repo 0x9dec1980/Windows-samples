@@ -1,0 +1,11 @@
+TARGETNAME=escpage
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+INCLUDES=..;..\..\inc
+
+DLLBASE=0x20000000
+
+SOURCES=escpage.c \
+        escpage.rc
+ 

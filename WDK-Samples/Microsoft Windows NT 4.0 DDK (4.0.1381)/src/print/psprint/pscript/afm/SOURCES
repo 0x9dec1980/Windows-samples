@@ -1,0 +1,12 @@
+TARGETNAME=afm
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=PROGRAM
+TARGETLIBS=$(MSDEVDIR)\lib\binmode.obj
+
+INCLUDES=..;..\..\inc;..\..\..\lib
+
+SOURCES=afm.c
+
+UMTYPE=console
+UMAPPL=afm
+UMBASE=0x01000000

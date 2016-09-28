@@ -1,0 +1,16 @@
+#
+# Build the kernel-mode video-capture helper library
+#
+
+
+TARGETNAME=vckernel
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=..\inc
+
+SOURCES=vcinit.c    \
+        vcdisp.c    \
+        vcisr.c     \
+        vcqueue.c   \
+        vclib.c

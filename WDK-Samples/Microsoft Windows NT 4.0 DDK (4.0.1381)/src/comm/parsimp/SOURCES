@@ -1,0 +1,10 @@
+TARGETNAME=parsimp
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=parsimp.c       \
+        parsimp.rc
+
+NTTARGETFILE0=parlog.h

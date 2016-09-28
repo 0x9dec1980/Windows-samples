@@ -1,0 +1,42 @@
+NOT_LEAN_AND_MEAN=1
+
+TARGETNAME=WINGB
+TARGETEXT=IME
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib    \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib    \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\GDI32.LIB       \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\IMM32.LIB       \
+	    $(BASEDIR)\lib\*\$(DDKBUILDENV)\COMDLG32.LIB    \
+
+DLLBASE=0x73200000
+DLLENTRY=ImeDllInit
+USE_CRTDLL=1
+
+C_DEFINES=-DBUILDDLL -DCOMBO_IME -DCROSSREF -DWINVER=0x0400 -DUNICODE -D_UNICODE 
+!if defined(IDEBUG)
+C_DEFINES=$(C_DEFINES) -DIDEBUG
+!endif
+
+INCLUDES=.
+
+SOURCES=\
+	INIT.c       \
+	CHCAND.c     \
+	CANDUI.c     \
+	COMPOSE.c    \
+	COMPUI.c     \
+	DATA.c       \
+	DDIS.c       \
+	NOTIFY.c     \
+	REGWORD.c    \
+	STATUSUI.c   \
+	TOASCII.c    \
+	UI.c         \
+	UISUBS.c     \
+	WINGB.rc
+
+
+SUBSYSTEM_VERSION=4.00

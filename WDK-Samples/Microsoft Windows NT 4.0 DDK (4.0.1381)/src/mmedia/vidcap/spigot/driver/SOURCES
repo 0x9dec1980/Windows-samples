@@ -1,0 +1,18 @@
+#
+#  build instructions for the bravado video capture driver
+#
+
+TARGETNAME=spigot
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\vckernel.lib
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=init.c      \
+        config.c    \
+        stream.c    \
+        i2cio.c     \
+        xlate.c     \
+        hardware.c

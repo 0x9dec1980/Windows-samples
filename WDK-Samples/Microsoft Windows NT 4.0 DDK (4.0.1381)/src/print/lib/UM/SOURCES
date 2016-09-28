@@ -1,0 +1,33 @@
+!IF 0
+
+Copyright (c) 1989 - 1996  Microsoft Corporation
+
+!ENDIF
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+TARGETNAME=libprtu
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+C_DEFINES=$(C_DEFINES) -DUNICODE
+
+INCLUDES=..\..\inc;..
+
+
+NTPROFILEINPUT=yes
+
+PRIVINCS=
+
+!INCLUDE ..\sources.inc
+
+SOURCES=$(SOURCES)  \
+        dqpfunc.c   \
+        fontfile.c  \
+        fontread.c  \
+        bwrite.c    \
+        hndcopy.c   \
+        hndncopy.c  \
+        debug.c     \
+        wsz2heap.c  \
+        str2wchr.c

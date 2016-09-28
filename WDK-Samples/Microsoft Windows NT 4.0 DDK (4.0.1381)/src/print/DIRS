@@ -1,0 +1,8 @@
+DIRS=lib        \
+     cpsui	\
+     localmon   \
+     mini	\
+     pjlmon	\
+     psprint    \
+     umpd	\
+     winprint   

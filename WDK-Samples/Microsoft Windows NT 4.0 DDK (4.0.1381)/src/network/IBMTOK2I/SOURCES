@@ -1,0 +1,22 @@
+TARGETNAME=ibmtok2i
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+INCLUDES=..\inc;inc;..\..\inc;..\..\..\inc
+
+SOURCES=command.c  \
+        interrup.c \
+        tok162.c   \
+        request.c  \
+        reset.c    \
+        send.c     \
+        tok162.rc
+
+RELATIVE_DEPTH=..\..
+
+MSC_WARNING_LEVEL=/W3 /WX
+

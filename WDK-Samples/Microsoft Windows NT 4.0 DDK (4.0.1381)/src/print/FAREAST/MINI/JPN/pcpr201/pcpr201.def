@@ -1,0 +1,10 @@
+LIBRARY PCPR201
+
+DESCRIPTION 'PC-PR201 minidriver for RASDD'
+
+PROTMODE
+
+EXPORTS
+    bInitProc
+    bSetFuncAddr
+    CBFilterGraphics

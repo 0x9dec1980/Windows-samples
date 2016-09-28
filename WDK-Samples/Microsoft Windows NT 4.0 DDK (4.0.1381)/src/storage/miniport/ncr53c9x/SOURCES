@@ -1,0 +1,10 @@
+TARGETNAME=ncr53c9x
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+SOURCES=ncr53c9x.c      \
+	ncr53c9x.rc

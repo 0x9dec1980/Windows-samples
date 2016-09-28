@@ -1,0 +1,11 @@
+TARGETNAME=pslibu
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=..;..\..\inc;..\..\..\..\inc;..\..\..\lib;..\..\..\inc
+
+C_DEFINES=$(C_DEFINES) -DUNICODE
+
+!INCLUDE ..\sources.inc
+
+SOURCES=$(SOURCES) umfuncs.c

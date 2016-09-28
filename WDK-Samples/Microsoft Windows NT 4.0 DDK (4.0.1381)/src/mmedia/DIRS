@@ -1,0 +1,13 @@
+DIRS=drvlib     \
+     soundlib   \
+     synthlib   \
+     gsm610     \
+     imaadpcm   \
+     mcipionr   \
+     mmdrv      \
+     msfilter   \
+     mvaudio    \
+     sndblst    \
+     sndsys     \
+     synth      \
+     vidcap

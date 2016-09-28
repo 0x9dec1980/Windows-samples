@@ -1,0 +1,33 @@
+#
+#   Create an installation and configuration DLL for the Sound Blaster driver
+#
+
+TARGETNAME=sndblst
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+# Define libs we need and where to find them
+
+USE_CRTDLL=1
+
+LINKLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\drvlib.lib \
+         $(BASEDIR)\lib\*\$(DDKBUILDENV)\synthlib.lib
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib   \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib    \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\gdi32.lib    \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\comctl32.lib    \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\drvlib.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\synthlib.lib
+
+INCLUDES=..\..\drvlib\inc;..\..\inc
+
+C_DEFINES=-DUNICODE -DWINVER=0x0400
+
+SOURCES=drvproc.c   \
+        config.c    \
+        sndblst.rc
+
+DLLBASE=0x6BC00000

@@ -1,0 +1,25 @@
+#include <mindrvrc.h>
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_PRINTER
+#define VER_FILEDESCRIPTION_STR         "ESC/Page Sample Printer Driver"
+#define VER_INTERNALNAME_STR            "escpage.dll"
+#define VER_ORIGINALFILENAME_STR        "escpage.dll"
+
+#include "common.ver"
+
+1      RC_TABLES   PRELOAD MOVEABLE        escpage.gpc
+
+
+STRINGTABLE
+
+BEGIN
+       1                  "CASIO CP-500S"
+       2                  "CASIO CP-500U"
+       257                "%d x %d"
+       258                "Half Letter 5.5 x 8.5 in"
+       259                "Front Panel Default"
+END

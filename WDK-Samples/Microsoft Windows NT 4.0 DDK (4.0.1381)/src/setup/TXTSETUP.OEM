@@ -1,0 +1,314 @@
+#
+# format for txtsetup.oem.
+#
+# General format:
+#
+# [section]
+# key = value1,value2,...
+#
+#
+# The hash ('#') introduces a comment.
+# Strings with embedded spaces, commas, or hashes should be double-quoted
+#
+
+
+[Disks]
+
+# Your driver distribution may include one disk or many disks.
+# This section lists the disks in the distribution set.
+#
+# <description> is a descriptive name for a disk, used when
+#   prompting for the disk.  This should be a quoted string,
+#   like "Company XYZ Mouse Disk #1"
+#
+# <tagfile> is a file whose presence allows setup to recognize
+#   that the disk is inserted. This should be a path from the root,
+#   but may not include a drivespec.  Example: \xyzmou1.tag
+#
+# <directory> is where the files are located on the disk. This should
+#   be a path from the root but may not include a drivespec.
+#   Example: \ (root directory)
+
+d1 = <description>,<tagfile>,<directory>
+d2 = <description>,<tagfile>,<directory>
+    .
+    .
+    .
+
+
+
+[Defaults]
+
+# This section lists the default selection for each component
+# supported by this txtsetup.oem.  If a line is not present for
+# a component, the default is the first item in the [<component_name>]
+# section (see below).
+#
+# <component_name> is one of computer, display, keyboard, mouse,
+#   "keyboard layout", or scsi.
+#
+# <id> is a unique (within the component) string to be associated
+#   with an option.
+#
+# Example:
+#
+#   mouse = xyzmou1
+#
+
+<component_name> = <id>
+    .
+    .
+    .
+
+
+
+[<component_name>]
+
+# This section lists the options available for a particular component.
+#
+# <id> is the unique string for the option.  For the computer component,
+#      if this string ends in "_up", setup copies the uniprocessor kernel;
+#      if this string ends in "_mp", setup copies the multiprocessor kernel;
+#      if it ends in neither, the results are unspecified (you may
+#      get either kernel).
+#
+# <description> is a text string, presented to the user in a menu.
+#
+# Example:
+#
+#   [mouse]
+#   xyzmou1 = "Company XYZ Mouse type 1"
+
+<id> = <description>
+    .
+    .
+    .
+
+
+
+[Files.<component_name>.<id>]
+
+# This section lists the files that should be copied if the user
+# selects a particular component option.
+#
+# <file_type> is one of driver, port, class, dll, hal, inf, or detect.
+#   (see descriptions below).
+#
+# <source_disk> identifies where the file is to be copied from, and must
+#   match en entry in the [Disks] section.
+#
+# <filename> is the name of the file. This will be appended to the
+#   directory specified for the disk in the [Disks] section to form the
+#   full path of the file on the disk.
+#
+# <configname> if the file is of type driver, port, or class, then this
+#   value is used to form the name of the section containing configuration
+#   info to be set in the registry.  The name of the section is of the
+#   form [Config.<configname>] (see below).
+#
+# Example:
+#
+#   [Files.mouse.xyzmou1]
+#   port = d1,xyzmou1p.sys,xyzmou1p
+
+
+<file_type> = <source_disk>,<filename>,<configname>
+    .
+    .
+    .
+
+
+
+[Config.<configname>]
+
+# This section specifies values to be set in the registry for
+# particular component options.  Required values in the services key
+# are created automatically -- use this section to specify additional
+# keys and value to be created in services\<keyname>.
+#
+# <key_name> is relative to the services node for this device.
+#   If it is empty (ie, ""), then it refers to the services node itself.
+#   If specified, the key is created.
+#
+# <value_name> specifies the value to be set within the key.
+#
+# <value_type> is a string like REG_DWORD.  See below.
+#
+# <value> specifies the actual value; its format depends on <value_type>
+#   See below.
+#
+# Example:
+#
+#   [Config.xyzmou1p]
+#   value = "",MyValue,REG_DWORD,0
+#   value = NewKey,NewValue,REG_SZ,"this is a value"
+
+value = <key_name>,<value_name>,<value_type>,<value>...
+    .
+    .
+    .
+
+
+
+####################################################################
+
+
+<file_type> in [Files.<component_name>.<id>] sections
+-----------------------------------------------------
+
+driver:
+
+port/driver:
+
+    Valid for computer, display, mouse, keyboard, and scsi components.
+    Required for display, mouse, keyboard, and scsi.
+    File is copied to <winnt>\system32\drivers.
+
+class:
+
+    Valid for computer, mouse, and keyboard components.
+    Not required for any components.
+    If specified, replaces the standard class driver.
+    File is copied to <winnt>\system32\drivers.
+
+dll:
+
+    Valid for all components.
+    Required for Display and Keyboard Layout components.
+    File is copied to <winnt>\system32.
+
+hal:
+
+    Valid and required for computer component.
+    File is copied to <winnt>\system32\hal.dll (x86)
+    File is copied to \os\nt\hal.dll on the system partition (ARC)
+
+inf:
+
+    Valid for all components.
+    Not required for any components.
+    File is copied to <winnt>\system32.  Setup automatically renames the
+    files to make it usable with maintenance setup.
+
+detect:
+
+    x86 only.
+    Valid for the computer component.
+    Not required for any component.
+    If specified, replaces the standard x86 hardware recognizer.
+    File is copied to c:\ntdetect.com.
+
+
+####################################################################
+
+
+<value_type> fields in [Config.<configname>] sections
+--------------------------------------------------------------
+
+REG_DWORD:
+
+    One <value> is allowed; it must be a string of 1-8 hex digits.
+
+    Example:
+
+        value = parameters,XResolution,REG_DWORD,1fE
+
+
+REG_SZ, REG_EXPAND_SZ:
+
+    One <value> is allowed; it is interpreted as the string to be stored.
+
+    Example:
+
+        value = parameters,Description,REG_SZ,"This is a text string"
+
+
+REG_BINARY:
+
+    One <value> is allowed; it is a string of hex digits, each pair of
+    which is interpreted as a byte value.
+
+    Example (stores the byte stream 00,34,ec,4d,04,5a):
+
+        value = parameters,Data,REG_BINARY,0034eC4D045a
+
+
+REG_MULTI_SZ:
+
+    multiple <value> are allowed; each is interpreted as a component of
+    the multisz.
+
+    Example:
+
+        value = parameters,Strings,REG_MULTI_SZ,String1,"String 2",string3
+
+
+####################################################################
+
+# Example 1: mouse
+
+[Disks]
+d1 = "Company XYZ Mouse Support Disk",\xyzmou1.tag,\
+
+[Defaults]
+# Specifiy a default for the mouse
+mouse   = xyzmou2
+
+#
+# Mouse stuff
+#
+
+[mouse]
+xyzmou1 = "Company XYZ Mouse type 1"
+xyzmou2 = "Company XYZ Mouse type 2"
+
+[Files.mouse.xyzmou1]
+# Mouse type 1 needs only a port driver and uses the standard
+# Windows NT mouse class driver.
+driver = d1,xyzmou1p.sys,xyzmou1p
+
+[Files.mouse.xyzmou2]
+# Mouse type 1 needs only a port driver and uses its own class driver.
+port  = d1,xyzmou2p.sys,xyzmou2p
+class = d1,xyzmou2c.sys,xyzmou2c
+
+[Config.xyzmou1p]
+value = Parameters,MouseDataQueueSize,REG_DWORD,64
+value = Parameters,NumberOfButtons,REG_DWORD,2
+value = Parameters,SampleRate,REG_DWORD,28
+
+[Config.xyzmou2p]
+value = Parameters,MouseDataQueueSize,REG_DWORD,64
+value = Parameters,NumberOfButtons,REG_DWORD,2
+value = Parameters,SampleRate,REG_DWORD,32
+value = Parameters,HzMode,REG_DWORD,2
+value = Parameters,PointerDeviceBaseName,REG_SZ,PointerPort
+
+[Config.xyzmou2c]
+value = Parameters,MouseDataQueueSize,REG_DWORD,64
+value = Parameters,MaximumPortsServiced,REG_DWORD,3
+value = Parameters,ConnectMultiplePorts,REG_DWORD,1
+
+
+# Example 2: display
+
+[Disks]
+d1 = "Company XYZ Video Support Disk",\xyzdisp1.tag,\
+
+[display]
+xyzdisp1 = "Company XYZ Display"
+
+[Files.display.xyzdisp1]
+port = d1,xyzdisp.sys,xyzdisp
+dll  = d1,xyzdisp.dll
+inf  = d1,oemsetup.inf
+
+[Config.xyzdisp]
+value = "",MyVal,REG_DWORD,7
+value = Device0,VgaCompatible,REG_DWORD,0
+value = Device0,InstalledDisplayDrivers,REG_MULTI_SZ,xyzdisp
+value = Device0,DefaultSettings.BitsPerPel,REG_DWORD,8
+value = Device0,DefaultSettings.XResolution,REG_DWORD,500
+value = Device0,DefaultSettings.YResolution,REG_DWORD,400
+value = Device0,DefaultSettings.VRefresh,REG_DWORD,3c
+value = Device0,DefaultSettings.Interlaced,REG_DWORD,0

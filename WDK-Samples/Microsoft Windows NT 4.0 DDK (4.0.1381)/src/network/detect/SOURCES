@@ -1,0 +1,19 @@
+TARGETNAME=dtexampl
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\netdtect.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib
+
+USE_CRTDLL=1
+
+DLLBASE=0x1C000000
+
+DLLENTRY=NcDetectInitialInit
+
+SOURCES=dtexampl.c      \
+        detlance.c      \
+        deteisa.c       \
+        dtaux.c

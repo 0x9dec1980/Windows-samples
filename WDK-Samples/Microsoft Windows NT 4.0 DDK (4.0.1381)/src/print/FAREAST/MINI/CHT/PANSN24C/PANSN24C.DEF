@@ -1,0 +1,10 @@
+LIBRARY PANSN24C
+
+DESCRIPTION 'PANSN24C  minidriver for RASDD'
+
+PROTMODE
+
+EXPORTS
+    bInitProc
+    bInitFEProc
+

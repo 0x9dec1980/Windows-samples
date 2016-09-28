@@ -1,0 +1,11 @@
+
+TARGETNAME=macaddr
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=PROGRAM
+
+INCLUDES=$(BASEDIR)\src\network\inc
+
+SOURCES=macaddr.c
+
+UMTYPE=console
+UMBASE=0x100000

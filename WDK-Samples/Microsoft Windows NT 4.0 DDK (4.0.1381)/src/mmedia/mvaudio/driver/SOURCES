@@ -1,0 +1,20 @@
+TARGETNAME=mvaudio
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\soundlib.lib
+
+INCLUDES=..\..\soundlib\inc;..\..\inc
+
+SOURCES=\
+        pas.c      \
+        mvmix.c    \
+        isr.c      \
+        devcaps.c  \
+        init.c     \
+        config.c   \
+        hardware.c \
+        mixer.c    \
+        controls.c \
+        mix_objs.c \
+        mvaudio.rc

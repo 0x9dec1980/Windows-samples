@@ -1,0 +1,15 @@
+TARGETNAME=sermouse
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=cseries.c       \
+        debug.c         \
+        mseries.c       \
+        sermcmn.c       \
+        sermdep.c       \
+        uart.c          \
+        sermouse.rc
+
+NTTARGETFILE0=sermlog.h

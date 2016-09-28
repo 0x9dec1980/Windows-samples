@@ -1,0 +1,10 @@
+LIBRARY NEC24C
+
+DESCRIPTION 'NEC24C  minidriver for RASDD'
+
+PROTMODE
+
+EXPORTS
+    bInitProc
+    bInitFEProc
+

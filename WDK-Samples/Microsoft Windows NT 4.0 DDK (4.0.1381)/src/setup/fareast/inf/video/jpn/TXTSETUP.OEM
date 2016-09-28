@@ -1,0 +1,665 @@
+#
+# txtsetup.oem のフォーマット
+#
+# 基本フォーマット:
+#
+# [セクション]
+# キー = 値 1,値 2,...
+#
+#
+# '#' で始まる行はコメントです。スペース、カンマ、シャープを含む文字列はダブル
+# クォーテーションで囲んでください。
+#
+
+
+[Disks]
+
+# このセクションでは、ディスク セットで使用するすべてのディスクを記述します。
+#
+# <description> はディスクの説明文の名前で、ディスクの挿入などを要求する場合に
+#   使用されます。
+# <tagfile> はディスクが挿入されていることを確認するために使用するファイル名
+#   です。
+# <directory> はファイルの存在するディレクトリ名です。
+#
+
+d1 = "OEM DISK (VIDEO)", \disk1, \
+
+
+[Defaults]
+
+# このセクションでは、必要な各ハードウェア コンポーネントのデフォルト選択値を
+# 記述します。デフォルト選択値を記述しなかった場合、コンポーネントのデフォルト
+# 選択値には、その [<component_name>] セクション（後述）の最初のオプションが
+# 使用されます。
+#
+# <component_name> は computer、display、keyboard、mouse、または scsi のうちの
+#   いずれかです。
+# <id> はオプションを認識するための "コンポーネント内で" ユニークな文字列です。
+
+display = "TSENGLAB OEM ET4000 640x480x4x60"
+
+
+[display]
+
+# このセクションでは、このコンポーネントで利用できるオプションを記述します。
+#
+# <id> はユニークなオプション名です。
+# <description> メニューで使用されるテキスト文字列です
+# <key_name> このコンポーネント用に作成されるレジストリ キーの名前です。
+#   HKEY_LOCAL_MACHINE\ControlSet001\Services に作成されます。
+
+    "TSENGLAB OEM ET4000 640x480x4x60"        = "OEM ET4000 640x480, 16色 60Hz"         , oemvio
+    "TSENGLAB OEM ET4000 640x480x4x72"        = "OEM ET4000 640x480, 16色 72Hz"         , oemvio
+    "TSENGLAB OEM ET4000 640x480x8x60"        = "OEM ET4000 640x480, 256色 60Hz"        , oemvio
+    "TSENGLAB OEM ET4000 640x480x8x72"        = "OEM ET4000 640x480, 256色 72Hz"        , oemvio
+    "TSENGLAB OEM ET4000 800x600x4x60"        = "OEM ET4000 800x600, 16色 60Hz"         , oemvio
+    "TSENGLAB OEM ET4000 800x600x4x72"        = "OEM ET4000 800x600, 16色 72Hz"         , oemvio
+    "TSENGLAB OEM ET4000 800x600x8x60"        = "OEM ET4000 800x600, 256色 60Hz"        , oemvio
+    "TSENGLAB OEM ET4000 800x600x8x72"        = "OEM ET4000 800x600, 256色 72Hz"        , oemvio
+    "TSENGLAB OEM ET4000 1024x768x4x60"       = "OEM ET4000 1024x768, 16色 60Hz"        , oemvio
+    "TSENGLAB OEM ET4000 1024x768x4x70"       = "OEM ET4000 1024x768, 16色 70Hz"        , oemvio
+    "TSENGLAB OEM ET4000 1024x768x4x45I"      = "OEM ET4000 1024x768, 16色 ｲﾝﾀﾚｰｽ"  , oemvio
+    "TSENGLAB OEM ET4000 1024x768x8x60"       = "OEM ET4000 1024x768, 256色 60Hz"       , oemvio
+    "TSENGLAB OEM ET4000 1024x768x8x70"       = "OEM ET4000 1024x768, 256色 70Hz"       , oemvio
+    "TSENGLAB OEM ET4000 1024x768x8x45I"      = "OEM ET4000 1024x768, 256色 ｲﾝﾀﾚｰｽ" , oemvio
+
+
+["Files.display.TSENGLAB OEM ET4000 640x480x4x60"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 640x480x4x72"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 640x480x8x60"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 640x480x8x72"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 800x600x4x60"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 800x600x4x72"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 800x600x8x60"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+["Files.display.TSENGLAB OEM ET4000 800x600x8x72"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 1024x768x4x60"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 1024x768x4x70"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 1024x768x4x45I"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 1024x768x8x60"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 1024x768x8x70"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Files.display.TSENGLAB OEM ET4000 1024x768x8x45I"]
+
+# このセクションでは、ユーザーがコンポーネント オプションを選択した場合に、
+# コピーすべきファイルを記述します
+#
+# <file_type> は driver、port、class、dll、hal、inf、または detect のうちの
+#   いずれかです。
+# <source_disk> はファイルの存在するディスクを示す識別子で、[Disks]セクションの
+#   内容と一致していなければなりません。
+# <filename> はコピーするファイル名です。[Disk]セクション内のディレクトリ名と
+#   連結して使用されます。
+
+driver = d1,oemvio.sys
+dll    = d1,oem.dll
+dll    = d1,oem256.dll
+inf    = d1,oemsetup.inf
+
+
+["Config.display.TSENGLAB OEM ET4000 640x480x4x60"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    280
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    1e0
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    3c
+
+["Config.display.TSENGLAB OEM ET4000 640x480x4x72"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    280
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    1e0
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    48
+
+["Config.display.TSENGLAB OEM ET4000 640x480x8x60"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    280
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    1e0
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    3c
+
+
+["Config.display.TSENGLAB OEM ET4000 640x480x8x72"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    280
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    1e0
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    48
+
+
+["Config.display.TSENGLAB OEM ET4000 800x600x4x60"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    320
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    258
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    3c
+
+["Config.display.TSENGLAB OEM ET4000 800x600x4x72"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    320
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    258
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    48
+
+
+["Config.display.TSENGLAB OEM ET4000 800x600x8x60"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    320
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    258
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    3c
+
+
+["Config.display.TSENGLAB OEM ET4000 800x600x8x72"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    320
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    258
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    48
+
+
+["Config.display.TSENGLAB OEM ET4000 1024x768x4x60"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    400
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    300
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    3c
+
+["Config.display.TSENGLAB OEM ET4000 1024x768x4x70"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    400
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    300
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    46
+
+["Config.display.TSENGLAB OEM ET4000 1024x768x4x45I"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    4
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    400
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    300
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    1
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    2d
+
+["Config.display.TSENGLAB OEM ET4000 1024x768x8x60"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    400
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    300
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    3c
+
+["Config.display.TSENGLAB OEM ET4000 1024x768x8x70"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    400
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    300
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    0
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    46
+
+["Config.display.TSENGLAB OEM ET4000 1024x768x8x45I"]
+
+# このセクションでは、コンポーネント オプション用のレジストリに設定する値を指定
+# します。services\xxx キーに必要な値が自動的に作成されます。このセクションは 
+# services\xxx にキーを追加したり、services\xxx や services\xxx\yyy に値を追加
+# するときに使用してください。
+#
+# <key_name> はこのコンポーネント用の services ノードからの相対です。
+#   指定しない場合、services ノードを参照します。
+#   指定するとそのキーを最初に作成します。
+# <value_name> キー内に指定する値の名前を指定します。
+# <value_type> REG_DWORD のような文字列です。
+# <value> 実際に設定する値を指定します。このフォーマットは <value_type> によっ
+#   て異なります。
+
+
+value = "",      tag,                         REG_DWORD,    b
+value = Device0, VgaCompatible,               REG_DWORD,    1
+value = Device0, InstalledDisplayDrivers,     REG_MULTI_SZ, oem, oem256
+value = Device0, DefaultSettings.BitsPerPel,  REG_DWORD,    8
+value = Device0, DefaultSettings.XResolution, REG_DWORD,    400
+value = Device0, DefaultSettings.YResolution, REG_DWORD,    300
+value = Device0, DefaultSettings.Interlaced,  REG_DWORD,    1
+value = Device0, DefaultSettings.VRefresh,    REG_DWORD,    2d

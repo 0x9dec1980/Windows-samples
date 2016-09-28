@@ -1,0 +1,47 @@
+TARGETNAME=pscript
+
+TARGETTYPE=GDI_DRIVER
+TARGETPATH=$(BASEDIR)\lib
+!IF "$(LANGUAGE)" == "CHS" || \
+    "$(LANGUAGE)" == "CHT" || \
+    "$(LANGUAGE)" == "JPN" || \
+    "$(LANGUAGE)" == "KOR"
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\pslib.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\libcntpr.lib
+
+C_DEFINES=$(C_DEFINES) -DFE_BOLD
+!ELSE
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\pslib.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\libcntpr.lib
+!ENDIF
+
+INCLUDES=.;..\inc;..\..\..\inc
+
+C_DEFINES=$(C_DEFINES) -DUNICODE -DKERNEL_MODE
+
+SOURCES=    enable.c    \
+            output.c    \
+            brush.c     \
+            bitblt.c    \
+            pslayer.c   \
+            escape.c    \
+            textout.c   \
+            quryfont.c  \
+            fonttree.c  \
+            fontdata.c  \
+            page.c      \
+            paths.c     \
+            patfill.c   \
+            fntmanag.c  \
+            type1.c     \
+            filter.c    \
+            ropdsa.c    \
+            header.c    \
+            softfont.c  \
+            utils.c     \
+            dsc.c       \
+            pscript.rc
+
+PRECOMPILED_INCLUDE=pscript.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj

@@ -1,0 +1,7 @@
+DIRS=intpar     \
+     parclass   \
+     parport    \
+     parsimp    \
+     parstat    \
+     pollpar    \
+     serial

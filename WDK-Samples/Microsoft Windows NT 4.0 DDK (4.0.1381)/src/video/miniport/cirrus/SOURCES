@@ -1,0 +1,14 @@
+TARGETNAME=cirrus
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=MINIPORT
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\videoprt.lib
+
+INCLUDES=..\..\inc
+
+SOURCES= cirrus.c          \
+         modeset.c         \
+         cirrus.rc         \
+         cldata.c          \
+         sr754x.c          \
+         clddc2b.c

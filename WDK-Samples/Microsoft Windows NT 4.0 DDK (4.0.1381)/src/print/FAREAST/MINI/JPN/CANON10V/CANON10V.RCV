@@ -1,0 +1,17 @@
+/********************************************************************/
+/*        BJ10MS.RCV                                                 */
+/*        Version control data generated from layouts.dat           */
+/********************************************************************/
+#include <version.h>
+
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_PRINTER
+#define VER_FILEDESCRIPTION_STR         "Canon Bubble Jet BJ-10/15 Series printer driver"
+#define VER_INTERNALNAME_STR            "CANON10V"
+#define VER_LEGALCOPYRIGHT_YEARS        "1993-1995"
+#define VER_ORIGINALFILENAME_STR        "CANON10V.DLL"
+
+
+
+#include <common.ver>

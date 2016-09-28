@@ -1,0 +1,7 @@
+TARGETNAME=ramdisk
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+
+SOURCES=ramdisk.c ramdisk.rc

@@ -1,0 +1,44 @@
+#include <mindrvrc.h>
+#include "canon10v.rcv"
+
+1      RC_TABLES   PRELOAD MOVEABLE        CANON10V.GPC
+2      RC_TABLES   PRELOAD MOVEABLE        NT.GPC
+
+1      RC_FONT     LOADONCALL DISCARDABLE  ifi\MINCHO.ifi
+2      RC_FONT     LOADONCALL DISCARDABLE  ifi\MINCHO2.ifi
+3      RC_FONT     LOADONCALL DISCARDABLE  ifi\GOTHIC.ifi
+4      RC_FONT     LOADONCALL DISCARDABLE  ifi\GOTHIC2.ifi
+5      RC_FONT     LOADONCALL DISCARDABLE  ifi\MOHITSU.ifi
+6      RC_FONT     LOADONCALL DISCARDABLE  ifi\MOHITSU2.ifi
+7      RC_FONT     LOADONCALL DISCARDABLE  ifi\gyosho.ifi
+8      RC_FONT     LOADONCALL DISCARDABLE  ifi\gyosho2.ifi
+9      RC_FONT     LOADONCALL DISCARDABLE  ifi\kaisho.ifi
+10     RC_FONT     LOADONCALL DISCARDABLE  ifi\kaisho2.ifi
+11     RC_FONT     LOADONCALL DISCARDABLE  ifi\COUR05.ifi
+12     RC_FONT     LOADONCALL DISCARDABLE  ifi\COUR06.ifi
+13     RC_FONT     LOADONCALL DISCARDABLE  ifi\COUR10.ifi
+14     RC_FONT     LOADONCALL DISCARDABLE  ifi\COUR12.ifi
+15     RC_FONT     LOADONCALL DISCARDABLE  ifi\COUR15.ifi
+16     RC_FONT     LOADONCALL DISCARDABLE  ifi\COURPS.ifi
+17     RC_FONT     LOADONCALL DISCARDABLE  ifi\goth05.ifi
+18     RC_FONT     LOADONCALL DISCARDABLE  ifi\goth06.ifi
+19     RC_FONT     LOADONCALL DISCARDABLE  ifi\goth10.ifi
+20     RC_FONT     LOADONCALL DISCARDABLE  ifi\goth12.ifi
+21     RC_FONT     LOADONCALL DISCARDABLE  ifi\goth15.ifi
+22     RC_FONT     LOADONCALL DISCARDABLE  ifi\gothps.ifi
+
+
+STRINGTABLE
+
+BEGIN
+       1                  "Canon BJ-10v"
+       2                  "Canon BJ-10v Custom"
+       3                  "Canon BJ-10v Lite"
+       4                  "Canon BJ-10v Select"
+       5                  "Canon BJ-15v"
+       6                  "Canon BJ-15v Pro"
+       257                "%d x %d"
+       258                "µ°Ä¼°ÄÌ¨°ÀÞ"
+       259                "Ê¶Þ·Ì¨°ÀÞ"
+       260                "Ê¶Þ·‘Î‰žASF"
+END

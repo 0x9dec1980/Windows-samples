@@ -1,0 +1,35 @@
+LIBRARY         PHON.IME
+
+DESCRIPTION     'ª`­µ¿é¤Jªk 4.0 ª©'
+
+SECTIONS
+        .bss          READ WRITE SHARED ; initialized data
+        .data         READ WRITE SHARED ; global data
+        .idata        READ WRITE        ; import tables
+        INSTDATA      READ WRITE
+        .rsrc         READ       SHARED ; resources
+
+EXPORTS
+                ImeConversionList
+                ImeConfigure
+                ImeDestroy
+                ImeEscape
+                ImeInquire
+                ImeProcessKey
+                ImeSelect
+                ImeSetActiveContext
+                ImeSetCompositionString
+                ImeToAsciiEx
+                NotifyIME
+
+                ImeRegisterWord
+                ImeUnregisterWord
+                ImeGetRegisterWordStyle
+                ImeEnumRegisterWord
+
+                UIWndProc
+                CompWndProc
+                CandWndProc
+                StatusWndProc
+                OffCaretWndProc
+                ContextMenuWndProc

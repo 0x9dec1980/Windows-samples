@@ -1,0 +1,10 @@
+TARGETNAME=mouclass
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=mouclass.rc     \
+        mouclass.c
+
+NTTARGETFILE0=moulog.h

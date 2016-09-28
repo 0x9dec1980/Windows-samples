@@ -1,0 +1,34 @@
+/**********************************************************************/
+/*                                                                    */
+/*      FAKEIME.RC - Windows 95 FAKEIME                               */
+/*                                                                    */
+/*      Copyright (c) 1994-1995  Microsoft Corporation                */
+/*                                                                    */
+/**********************************************************************/
+#include "winuser.h"
+#include "imm.h"
+#include "fakeime.h"
+
+#define IDC_STATIC (-1)
+
+FAKEIMEICON  ICON    fakeime.ico
+
+STATUSBMP  BITMAP LOADONCALL DISCARDABLE MOVEABLE status.bmp
+CLOSEBMP  BITMAP LOADONCALL DISCARDABLE MOVEABLE close.bmp
+
+STRINGTABLE
+BEGIN
+    IDS_DICFILENAME,    "FAKEIME.DIC"
+    IDS_CONFIGNAME,     "FAKEIME.DLL"
+
+    IDS_GL_NODICTIONARY,      "Can not find dictionary"
+    IDS_GL_TYPINGERROR,       "Typing Error No Roman"
+
+    IDS_NOREADING,        "There is no reading string\r\nPlease enter the reading string"
+    IDS_NOSTRING,         "There is no string\r\nPlease enter the string"
+    IDS_NOMEMORY,         "Memory Error"
+    IDS_REGWORDRET,       "Fail to register Word"
+END
+
+#include "fakeime.dlg"
+#include "fakeime.rcv"

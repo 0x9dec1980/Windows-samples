@@ -1,0 +1,339 @@
+
+This file contains a brief description of changes and/or enhancements
+to video display drivers in Windows NT 3.5.
+
+-----------------------------------------------------------------------------
+
+Miniport Drivers:
+-----------------
+
+- Refresh Rate changes
+
+  All miniport drivers should return the refresh rate of a mode if
+  that mode will end up in a particular refresh rate.
+
+  If the card's refresh rate is externally configured, then the
+  miniport should return one (1) for the refresh rate.  A typical
+  example would be when a configuration utility must be run to
+  program ROM, The refresh rate of one will be translated by the
+  applet to mean "Use Hardware Default".
+
+  Some 1.0 drivers returned zero (0) for the default refresh rate.
+  That value should also be changed to 1.  Old installations still
+  work properly with new drivers that incorporate this change.
+
+- New Timer routines
+
+  A new timer routine is now exported by the video port driver for
+  use by the video miniport drivers.  This is a timer that expires
+  every second.  It was added to support cards that want to read the
+  state of other cards every second.  Some high end boards need to
+  read the vga registers from time to time so they can emulate the
+  vga registers.
+
+- New PCI routine
+
+  There is a new routine that can be called by a miniport driver to
+  get the PCI configuration information for a card.  The appropriate
+  card IDs must be provied to the function.
+
+  The port driver will call the HAL, which in turns talks to the PCI
+  bus directly.  The HAL is designed to work with a particular BUS,
+  so any hardware specific bus modifications are hidden away in the
+  HAL.
+
+  Any driver that needs PCI information should call this function
+  instead of trying to read the PCI configuration space directly.
+
+- IOCTL_QUERY_AVALIALBLE_MODES called often
+
+  This routine is now called by the DrvGetModes function in the
+  display driver.  This function must return all the modes (including
+  frequencies) supported by the specific board installed in the
+  machine.  The driver must find out the amount of VRAM installed,
+  chip revision, etc, and then return only the modes that are
+  supported by the specific board.
+
+  This list of modes will be displayed by the video applet.
+
+- IOCTL_RESET_DEVICE is now mandatory on all platforms.
+
+  The IOCTL_RESET_DEVICE ioctl is called by DrvAssertMode, which is
+  now a mandatory function.  On X86 platform, this function must
+  restore the device to a vga state (such as mode 0x3).  This
+  function will also be called whenever we swtich from one graphics
+  mode to another, as will be caused by the "test" button in the
+  video applet.
+
+- New HwResetDevice miniport function.
+
+  This is a new function that can be exported by a miniport driver.
+  It will be called by the HAL in case of a BugCheck.  It should be
+  implemented for every card where int 10, mode 3 will *not* reset
+  the video to a standard character mode.
+
+  The main use of this function is to re-enable character mode so
+  that the NT bugcheck screen works properply.
+
+- Drivers are now pageable
+
+  All miniport drivers have now been made pageable.  This allows the
+  NT executive to take code and data from the running video miniport
+  and page it to disk, reducing the system footprint.
+
+  Simple #pragma's are added to every C module.  These pragmas
+  indicate which functions can be made pageable.  For video miniport
+  drivers, this consists of all functions EXCEPT:
+
+    - ISRs, or functions called from an ISR.
+    - Functions called through a VideoPortSynchronize routine.
+
+  Data (such as mode tables) can also be made pageable by moving all
+  of it into a C file and marking the C file as pageable.
+
+  See any video miniport shipped in the Windows NT 3.5 DDK for
+  examples.
+
+
+Display Drivers:
+----------------
+
+- Multiple PDEVs
+
+  The display drivers must now support multiple PDEVs.  There is a
+  PDEV for the default desktop on which all the applications run.  It
+  is possible, however, to create a new PDEV with a new desktop,
+  which is what the video applet does.
+
+  The video applet will create a new PDEV to do a test of a new mode
+  selected by the user.  This new PDEV can have a different refresh
+  rate, resolution or color depth then any other desktop.
+
+  - No globals
+
+    The display driver must now ensure there are no globals,
+    otherwise state may be overwritten and lost when a second
+    DrvEnablePDEV or DrvEnableSurface fucntion is called.
+
+  - All state info MUST be saved in the PDEV.
+
+    Any state info a driver needs must be associated to the PDEV.
+    The PDEV is always passed down on any graphics operation and must
+    be used to get or set global data.
+
+- DrvDisableSurface, DrvDisablePDEV, DrvDisableDriver are now called.
+
+  These function have never been called in a 1.0 display driver
+  because the graphics engine has never been called to shutdown the
+  driver.
+
+  With the new video applet, a PDEV and a surface are created to
+  display the test screen, and then destroyed afterwards.
+
+  In some cases, the test bitmap is displayed by a different driver
+  than the main display driver.  For example, you could be running a
+  16 colour mode with the VGA driver, and test a 64K colour mode with
+  the vga64K driver.
+
+  The display driver will be loaded dynamically and the PDEV and
+  surface created to display the test bitmap.  Then the surface, PDEV
+  will be destroyed and the driver unloaded.
+
+- Change to the Version number
+
+  All display drivers now return a version number of the form
+  16:4:4:8 (32 bits) The top 16 bits must be 0.  The next 4 are
+  Microsoft major verison numbers.  The next 4 are Microsoft minor
+  verison numbers.  The last eight are for OEMs\IHVs.  The bottom
+  byte should be incremented on each new release of the binary.
+
+  This version number is displayed as the second version number in
+  the video applet "Adapter Information" box.
+
+  *NOTE* This is different than the DDI version number which is used
+  by the graphics engine to determine which DDI functions are
+  properly supported by the display driver.  (e.g. the engine will
+  not call the driver to create a second PDEV on drivers whose DDI
+  version number is 1.0)
+
+- Display drivers must return the refresh rate (new field in GDIINFO)
+
+  The display driver must now return the refresh rate for the current
+  mode.  This is used by the video applet to display the refresh rate
+  for the current mode.  This refresh rate should be exactly what the
+  miniport returned as the refresh rate for this mode.
+
+- Font sizes are now provided by USER & new DDI for font size.
+
+  Windows NT now has a simple solution for supporting large fonts,
+  and other system fonts.
+
+  The registry now contains the font size the user selected.  This
+  value default to 96 DPI.  It can be modified by using the video
+  applet.
+
+  For 96 and 120 DPI fonts, the display does NOTHING.  There should
+  be no resources in the display associated to those font sizes
+  (Microsoft stripped out all of that information from our display
+  drivers in the DDK).  These resources are now part of USER.
+
+  Display drivers still have the options of installating different
+  font sizes, such as 160DPI fonts.  These should be installed via an
+  .inf, using the video applet.
+
+  If the font size specified by the user is different than 96, or
+  120, the display driver will get called.  The new DDI entry point
+  DrvGetResourceId is called by USER go get a pointer to the bitmap
+  (or icon) from the display driver.  The resources should be set up
+  the same way 96 or 120 DPI resources were setup in 1.0 drivers.
+  These files have been left in the DDK as examples.
+
+  When the machine is booted, the display driver will get the font
+  size in the DEVMODE structure.  This value should be returned to
+  GDI in the GDIINFO structure.
+
+- DrvGet modes is now called
+
+  DrvGetModes is now a required DDI entry point.  It is called by the
+  video applet (via EnumDisplayDeviceModes which then calls
+  GetGetModes which calls the driver) to get the list of modes
+  supported by a particular display driver.
+
+  USER will dynamically load all display drivers associated with a
+  miniport. (based on the InstalledDisplayDrivers key in the
+  registry)  Each display driver will be called to get the list of
+  modes supported by that driver combination. (so the vga64K display
+  driver will only return the 64K color modes that were returned in
+  the list of modes it got from the miniport driver).
+
+  This function can get called even when the driver has not been
+  loaded.  There is no PDEV and no surface available in this call.
+
+- DrvAssertMode is now called on all platforms.
+
+  DrvAssertMode it is used to reset the device to a default mode.
+  The system also used this function to manage multiple PDEVs on a
+  single device.  Each time the system wants to switch from one PDEV
+  to another, it will call DrvAssertMode(FALSE) for one pdev, and
+  call DrvAssertMode(TRUE) (or DrvEnablePDEV) to switch out (or
+  create) the second PDEV.
+
+  To come back to the original PDEV, the engine will call
+  DrvAssertMode(FALSE) (or DrvDisablePDEV and DrvDisableSurface) on
+  the second PDEV, and then call DrvAssertMode(TRUE) on the original
+  PDEV.
+
+- Backwards compatibility maintained
+
+  Backwards compatibility in GDI has been maintained such that
+  drivers compiled using the Windows NT 3.1 DDK should work fine on
+  Windows NT 3.5 (with the exception that the Test button and the
+  Small Font/Large Font selection in the Display option of the
+  Control Panel will be disabled).  Drivers originally written using
+  the Windows NT 3.1 DDK and compiled with the Windows NT 3.5 DDK
+  will require some code changes, most of which are documented here.
+
+- Trapezoids removed
+
+  All trapezoid support has been removed from the DDI.  Any
+  references to GCAPS_TRAPPAINT, CT_TRAPEZOIDS, TC_TRAPEZOIDS,
+  TRAPEZOID, DDAOBJ, or JD_ENUM_TRAPEZOID should be removed from the
+  driver.  Drivers are instead encouraged to hook DrvFillPath
+  directly; there is example code in the S3 sample driver for
+  generating trapezoids from arbitrary convex paths.
+
+- Some default hatches removed
+
+  The number of default hatches that a driver is required to support
+  has been reduced.  HS_FDIAGONAL1, HS_BDIAGONAL1, HS_SOLID,
+  HS_DENSE1 through HS_DENSE8, HS_NOSHADE, and HS_HALFTONE should be
+  removed from drivers to save space.  HS_DDI_MAX, which is typically
+  used by drivers to declare the size of the pattern array, has
+  correspondingly been reduced, so current drivers may not compile
+  unless this is addressed.
+
+- Line drawing convention change
+
+  A bug in the Grid Intersection Quantization convention for certain
+  fractional end-point lines has been fixed.  Consequently, any
+  drivers that support fractional end-point lines will need to pick
+  up this change in order to pass the Hardware Compatibility Lab test
+  suites for Windows NT 3.5.
+
+- Identity translates will always be marked as such
+
+  Windows NT 3.1 had a bug in GDI where identity translates did not
+  always have XO_TRIVIAL set.  This has been fixed, so it is no
+  longer necessary to have code that verifies that a non-identity
+  translate is truly non-identity.
+
+- GCAPS_DITHERONREALIZE
+
+  Dithering and brush realization may now optionally happen in one
+  call to DrvRealizeBrush, instead of separate calls to
+  DrvDitherColor and DrvRealizeBrush.  Implementing this
+  functionality will improve dithering speed by reducing the code
+  path through GDI and elminating extra memory allocations.
+  Applications or benchmarks that use many dithered brushes will
+  benefit from this optimization.
+
+- Device bitmaps in off-screen memory
+
+  Display drivers are encouraged to implement device bitmaps (hooked
+  via DrvCreateDeviceBitmap) in off-screen memory.  Off-screen device
+  bitmaps improve system performance by using the accelerator
+  hardware to do drawing, improves the speed of bitmap-to-screen
+  blts, and reduces the working set of the CPU by off-loading
+  bitmaps.  The S3 driver contains a complete sample implementation.
+  (This implementation also lends itself easily to implementing
+  multiple-display support in the display driver.)
+
+
+Some tips
+---------
+
+- If you use code from the sample drivers included in the Beta DDK,
+  please be sure to pick up any bug fixes made after the Beta DDK is
+  released.  WinDiff is an invaluable tool for finding any such fixes
+  when the final DDK is released.
+
+- The sample S3 driver has had numerous performance enhancements;
+  you are encouraged to check them out.
+
+- WinDbg may now be used for source-level debugging of display
+  drivers.
+
+- Be sure to test your driver using the Full Drag feature of
+  Windows NT 3.5, which may be enabled in the Desktop option of the
+  Control Panel.  This feature exercises a lot of clipping code in
+  the driver.
+
+- Never read even a byte past the end of a bitmap; doing so may
+  cause an access violation in the driver and a shutdown of the
+  Windows Subsystem.
+
+- In DrvBitBlt, never dereference argument pointers unless the rop
+  indicates that they are needed.  For example, never reference
+  'pptlBrush->iSolidColor' unless the rop indicates that a pattern is
+  needed; doing so for a rop such as BLACKNESS may cause an access
+  violation.  This rule must also be followed for any drawing
+  functions that include a mix parameter.
+
+- A driver should generally never use more than 4k of stack space
+  for any code path.  That is, the stack space used by a subroutine
+  and all its callers in the driver should never sum to more than 4k.
+  Using more than 4k of total stack space may cause an access
+  violation in low-memory situations, because GDI only guarantees the
+  driver that it has 4k of usable stack space.
+
+  Using more than 4k of stack space in a particular function may
+  result in an access violation at any time, because the guard page
+  used for growing the stack may be missed.  The amount of stack
+  space allocated by a function may be easily determined on an x86
+  machine by disassembling the prologue of a function and looking at
+  the amount by which 'esp' is initially decremented.
+
+- Use of the port and memory access macros declared in 'ioaccess.h'
+  will help facilitate porting to Alpha computers.
+
+-----------------------------------------------------------------------------

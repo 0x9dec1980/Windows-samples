@@ -1,0 +1,21 @@
+!IF 0
+
+Copyright (c) 1989  Microsoft Corporation
+
+!ENDIF
+
+TARGETNAME=class
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+DLLDEF=class.def
+
+INCLUDES=..\..\inc
+
+SOURCES=class.c \
+        class.rc
+
+DLLDEF=obj\$(TARGET_DIRECTORY)\class.def
+
+NTTARGETFILE0=$(DLLDEF)

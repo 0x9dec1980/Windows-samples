@@ -1,0 +1,12 @@
+TARGETNAME=packet
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+INCLUDES=..\..\inc;..\inc
+
+SOURCES=packet.c    \
+        openclos.c  \
+        read.c      \
+        write.c

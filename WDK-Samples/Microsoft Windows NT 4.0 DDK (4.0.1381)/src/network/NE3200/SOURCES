@@ -1,0 +1,25 @@
+TARGETNAME=ne3200
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+NTPROFILEINPUT=yes
+
+INCLUDES=..\inc;..\..\inc;..\..\..\inc
+
+SOURCES=command.c  \
+        interrup.c \
+        ne3200.c   \
+        request.c  \
+        reset.c    \
+        send.c     \
+        ne3200.rc
+
+RELATIVE_DEPTH=..\..
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+
+

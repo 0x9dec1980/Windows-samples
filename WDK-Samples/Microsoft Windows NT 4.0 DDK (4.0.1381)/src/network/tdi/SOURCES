@@ -1,0 +1,35 @@
+TARGETNAME=st
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\tdi.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+INCLUDES=..\inc
+
+SOURCES=\
+        address.c \
+        connect.c \
+        connobj.c \
+        devctx.c \
+        event.c \
+        framesnd.c \
+        iframes.c \
+        ind.c \
+        info.c \
+        packet.c \
+        rcv.c \
+        rcveng.c \
+        request.c \
+        send.c \
+        sendeng.c \
+        st.rc \
+        stcnfg.c \
+        stdrvr.c \
+        stmac.c \
+        stndis.c \
+        uframes.c
+
+!IFNDEF 386_WARNING_LEVEL
+386_WARNING_LEVEL=/W3
+!ENDIF

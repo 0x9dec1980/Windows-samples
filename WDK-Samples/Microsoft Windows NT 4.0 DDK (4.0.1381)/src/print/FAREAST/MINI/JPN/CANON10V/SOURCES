@@ -1,0 +1,11 @@
+TARGETNAME=canon10v
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+INCLUDES=..\..\inc
+
+DLLBASE=0x20000000
+
+SOURCES=canon10v.c \
+    canon10v.rc \
+    ..\modinit.c

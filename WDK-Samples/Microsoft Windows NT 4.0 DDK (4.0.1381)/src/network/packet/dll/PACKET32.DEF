@@ -1,0 +1,17 @@
+LIBRARY packet32
+
+DESCRIPTION 'Packet driver dll'
+
+EXPORTS
+        PacketOpenAdapter
+        PacketInitPacket
+        PacketAllocatePacket
+        PacketSendPacket
+        PacketResetAdapter
+        PacketReceivePacket
+        PacketWaitPacket
+        PacketCloseAdapter
+        PacketSetFilter
+        PacketFreePacket
+        PacketGetAdapterNames
+        PacketRequest

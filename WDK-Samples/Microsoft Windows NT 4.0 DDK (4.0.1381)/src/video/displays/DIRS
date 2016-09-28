@@ -1,0 +1,6 @@
+DIRS=framebuf   \
+     mga        \
+     s3         \
+     vga        \
+     vga256     \
+     vga64k

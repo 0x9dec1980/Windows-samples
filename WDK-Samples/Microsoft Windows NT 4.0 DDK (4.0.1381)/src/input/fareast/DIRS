@@ -1,0 +1,7 @@
+DIRS=i8042prt  \
+     inport    \
+     kbdclass  \
+     kbdus     \
+     mouclass  \
+     sermouse  \
+     ime
