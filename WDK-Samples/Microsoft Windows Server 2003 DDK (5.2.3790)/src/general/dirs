@@ -1,0 +1,9 @@
+DIRS= \
+     cancel \
+     event \
+     ioctl \
+     portio \
+     toaster \
+     tracedrv \
+     ups \
+     wmicli

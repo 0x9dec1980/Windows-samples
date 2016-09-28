@@ -1,0 +1,39 @@
+#/*++
+#
+#Copyright (c) 1991 - 2002 Microsoft Corporation
+#
+#Module Name:
+#
+#   ###   #####  ##  ## #####   ####  #####  ###
+#  ##  # ##   ## ##  ## ##  ## ##   # ##    ##  #
+#  ###   ##   ## ##  ## ##  ## ##     ##    ###
+#   ###  ##   ## ##  ## #####  ##     #####  ###
+#    ### ##   ## ##  ## ####   ##     ##      ###
+#  #  ## ##   ## ##  ## ## ##  ##   # ##    #  ##
+#   ###   #####   ####  ##  ##  ####  #####  ###
+#
+#Abstract:
+#
+#    Makefile for building the Microsoft GUI application.
+#
+#--*/
+#
+TARGETNAME=sagui
+TARGETPATH=obj
+TARGETTYPE=PROGRAM
+
+UMTYPE=windows
+UMENTRY=wmain
+
+USER_INCLUDES=\
+  $(DDK_INC_PATH)
+
+TARGETLIBS=\
+  $(SDK_LIB_PATH)\comctl32.lib\
+  $(SDK_LIB_PATH)\ole32.lib\
+  $(SDK_LIB_PATH)\oleaut32.lib
+
+SOURCES=\
+  gui.cpp\
+  gui.rc
+

@@ -1,0 +1,6 @@
+DIRS= \
+     firefly \
+     gameenum \
+     hclient \
+     hidgame \
+     vhidmini

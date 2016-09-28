@@ -1,0 +1,139 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="tracedrv_files/filelist.xml">
+<title>Tracedrv</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>ianserv</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>jeffmeng</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>15</o:TotalTime>
+  <o:Created>2001-09-11T15:09:00Z</o:Created>
+  <o:LastSaved>2002-01-09T01:51:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>146</o:Words>
+  <o:Characters>836</o:Characters>
+  <o:Company>Microsoft Corporation</o:Company>
+  <o:Lines>6</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>981</o:CharactersWithSpaces>
+  <o:Version>10.3501</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:ApplyBreakingRules/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal><span class=SpellE><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt'>Tracedrv</span></b></span><b style='mso-bidi-font-weight:
+normal'><span style='font-size:14.0pt'> (Windows XP Sample)<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>SUMMARY<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span class=SpellE>TraceDrv</span> is an example of a very
+simple driver which really does nothing. It is intended purely as a code sample
+to show the use of Software Tracing in a driver.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The driver initializes tracing and on receipt of a <span
+class=SpellE>DeviceIOControl</span> it will start a thread that logs 100 trace
+messages.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>The changes connected with software tracing are commented,
+and this example is discussed in the DDK documentation.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Note: This sample driver is not a PnP driver. This is a
+minimal driver meant to demonstrate an OS feature. Neither it nor its sample
+program is intended for use in a production environment. Rather, they are
+intended for educational purposes and as a skeleton driver.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'>TESTING<o:p></o:p></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>To test this driver, run TraceCTL.exe, a simple Win32
+console application. <span class=SpellE>TraceCTL</span> will automatically load
+the driver and start it. Once the driver is started, <span class=SpellE>TraceCTL</span>
+will send an IOCTL to the driver and the driver will start a thread to log 100
+trace messages. </p>
+
+</div>
+
+</body>
+
+</html>

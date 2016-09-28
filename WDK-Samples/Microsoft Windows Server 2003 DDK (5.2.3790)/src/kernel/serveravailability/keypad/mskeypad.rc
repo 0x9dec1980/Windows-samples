@@ -1,0 +1,39 @@
+/*++
+
+Copyright (c) 1991 - 2002 Microsoft Corporation
+
+Module Name:
+
+    ##    ##  ###  ##  ## ##### ##  ## #####    ###   #####      #####   ####
+    ###  ### ##  # ## ##  ##    ##  ## ##  ##   ###   ##  ##     ##  ## ##   #
+    ######## ###   ####   ##     ####  ##  ##  ## ##  ##   ##    ##  ## ##
+    # ### ##  ###  ###    #####  ####  ##  ##  ## ##  ##   ##    #####  ##
+    #  #  ##   ### ####   ##      ##   #####  ####### ##   ##    ####   ##
+    #     ## #  ## ## ##  ##      ##   ##     ##   ## ##  ##  ## ## ##  ##   #
+    #     ##  ###  ##  ## #####   ##   ##     ##   ## #####   ## ##  ##  ####
+
+Abstract:
+
+    This module contains the resource definition for the
+    keypad miniport driver.
+
+Environment:
+
+    Kernel mode only.
+
+Notes:
+
+--*/
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                VFT_DRV
+#define VER_FILESUBTYPE             VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR     "Microsoft Virtual Keypad Driver"
+#define VER_INTERNALNAME_STR        "mskeypad.sys"
+#define VER_ORIGINALFILENAME_STR    "mskeypad.sys"
+#define VER_LANGNEUTRAL
+
+#include "common.ver"
+

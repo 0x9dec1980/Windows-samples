@@ -1,0 +1,10 @@
+DIRS= \
+     ac97 \
+     ddksynth \
+     dmusuart \
+     fmsynth \
+     GFX \
+     mpu401 \
+     msvad \
+     sb16 \
+     stdunk

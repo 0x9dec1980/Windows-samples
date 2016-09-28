@@ -1,0 +1,96 @@
+
+PLAT_DIR           = win9x
+ALT_PROJECT_TARGET = win9x
+
+ASM_DEFINES  = $(ASM_DEFINES) /Zp4
+C_DEFINES    = $(C_DEFINES) /UWINNT /DWIN95 /D__DD_OPT_SURFACE /DP3SAMPWIN9X
+USER_C_FLAGS = $(USER_C_FLAGS) /Zp
+
+TARGETNAME=PERM3DD
+TARGETTYPE=DYNLINK
+TARGETPATH=obj
+
+!IFNDEF MSC_WARNING_LEVEL
+MSC_WARNING_LEVEL=/W3
+!ENDIF
+
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) /WX $(GLINT_DRIVER_FLAGS)
+
+INCLUDES=                                       \
+    ..;                                         \
+    ..\..\inc;                                  \
+    $(BASEDIR)\inc;                             \
+    $(BASEDIR)\inc\crt;                         \
+    $(BASEDIR)\inc\wxp;                         \
+    $(BASEDIR)\inc\ddk\wxp;                     \
+    $(BASEDIR)\inc\win_me;
+
+#INCLUDES=..\..\inc\DX8;$(INCLUDES)
+
+#NTPROFILEINPUT=yes
+
+C_DEFINES = $(C_DEFINES) -DW95_DDRAW=1 -DPXRX_DMA_BUFFER_CHECK=0 -DWANT_DMA=1
+
+!IF "$(DDKBUILDENV)" == "free"
+X86_CPU_OPTIMIZATION= /G6 
+!else
+MSC_OPTIMIZATION=/Odi
+!ENDIF
+
+386_STDCALL = 0
+
+UMTYPE=windows
+
+DLLDEF=perm3dd.def
+DLLBASE=0xB00B0000
+DLLENTRY=_DllMainCRTStartup
+
+#USE_MSVCRT=1
+USE_LIBC=1
+#USE_NOLIBS=1
+NO_NTDLL=1
+
+LARGE_ADDRESS_AWARE=1
+
+USE_MAPSYM=1
+
+LINKER_FLAGS = $(LINKER_FLAGS) /IGNORE:4092,4223
+
+SOURCES=    ..\dd.c             \
+            ..\ddblt.c          \
+            ..\ddbltfx.c        \
+            ..\dddownld.c       \
+            ..\ddenable.c       \
+            ..\ddover.c         \
+            ..\ddsurf.c         \
+            ..\ddvideo.c        \
+            ..\d3d.c            \
+            ..\d3dcntxt.c       \
+            ..\d3dbuff.c        \
+            ..\d3dprim.c        \
+            ..\d3ddp2op.c       \
+            ..\d3ddp2p3.c       \
+            ..\d3dsset.c        \
+            ..\d3dstrct.c	    \
+            ..\d3dsurf.c        \
+            ..\d3dstate.c       \
+            ..\d3dtxt.c         \
+            ..\d3dtxman.c       \
+            ..\debug.c          \
+            ..\stateset.c       \
+            ..\linalloc.c
+
+SOURCES=$(SOURCES) w9xhelp.c perm3dd.rc
+
+LINKLIBS= $(LINKLIBS) \
+          $(BASEDIR)\lib\win_me\ddraw.lib     \
+          $(BASEDIR)\lib\win_me\kernel32.lib  \
+          $(BASEDIR)\lib\w2k\*\user32.lib    \
+          $(BASEDIR)\lib\w2k\*\gdi32.lib     \
+          $(BASEDIR)\lib\w2k\*\advapi32.lib  \
+          $(BASEDIR)\lib\w2k\*\winmm.lib
+
+#PRECOMPILED_INCLUDE=precomp.h
+#PRECOMPILED_PCH=precomp.pch
+#PRECOMPILED_OBJ=precomp.obj
+
