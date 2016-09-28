@@ -1,0 +1,6 @@
+!include ..\sources.inc
+
+TARGETNAME=devupper
+
+C_DEFINES= $(C_DEFINES)  -DDEVICE_UPPER=1
+

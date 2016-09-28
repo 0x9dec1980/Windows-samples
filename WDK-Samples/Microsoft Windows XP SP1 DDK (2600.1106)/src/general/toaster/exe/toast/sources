@@ -1,0 +1,16 @@
+TARGETNAME=toast
+TARGETTYPE=PROGRAM
+UMTYPE=console
+UMENTRY=main
+UMBASE=0x400000
+
+TARGETPATH=obj
+
+INCLUDES=..\..\inc
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib
+            
+SOURCES= toast.c
+         
+         
+

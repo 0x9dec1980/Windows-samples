@@ -1,0 +1,39 @@
+copy ACCESS.ASM        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\ACCESS.ASM
+copy Blt16.asm         %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Blt16.asm
+copy contxt16.asm      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\contxt16.asm
+copy CURSOR.ASM        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\CURSOR.ASM
+copy ddctxt.inc        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\ddctxt.inc
+copy debug.c           %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\debug.c
+copy debug.h           %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\debug.h
+copy Dibeng.h          %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Dibeng.h
+copy DIBLINK.ASM       %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\DIBLINK.ASM
+copy dibtodev.asm      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\dibtodev.asm
+copy DISABLE.ASM       %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\DISABLE.ASM
+sed "/@@BEGIN_MSINTERNAL/,/@@END_MSINTERNAL/D" drv2.c           > %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\drv2.c
+copy ENABLE.ASM        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\ENABLE.ASM
+copy GDIInter.asm      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\GDIInter.asm
+copy GETRESID.ASM      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\GETRESID.ASM
+copy GLDD.C            %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\GLDD.C
+copy GLINT.DEF         %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\GLINT.DEF
+copy glint.h           %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\glint.h
+copy glint.inc         %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\glint.inc
+copy GLINTBLT.ASM      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\GLINTBLT.ASM
+copy GLINTHW.ASM       %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\GLINTHW.ASM
+copy Heap.c            %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Heap.c
+copy Heap.h            %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Heap.h
+copy INIT.ASM          %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\INIT.ASM
+copy INKREADY.ASM      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\INKREADY.ASM
+copy MACROS.INC        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\MACROS.INC
+sed "/@@BEGIN_MSINTERNAL/,/@@END_MSINTERNAL/D" makefile           > %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\makefile
+copy Object.asm        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Object.asm
+copy OUTPUT.ASM        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\OUTPUT.ASM
+copy PALETTE.ASM       %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\PALETTE.ASM
+copy Pointer.c         %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Pointer.c    
+copy POLYGON.ASM       %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\POLYGON.asm
+copy POLYLINE.ASM      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\POLYLINE.asm
+copy POLYSCAN.ASM      %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\POLYSCAN.ASM
+copy SSWITCH.ASM       %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\SSWITCH.ASM
+copy Text.asm          %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Text.asm
+copy Text32.asm        %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\Text32.asm
+copy glint.rc          %DXDDKROOT%\display\samples\Dx\mini\3dlabsp2\drv\glint.rc
+

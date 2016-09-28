@@ -1,0 +1,6 @@
+DIRS=exe        \
+     sys
+
+ \
+     exe \
+     sys

@@ -1,0 +1,26 @@
+TARGETNAME=HBtnKey
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+TARGETPATH=obj
+
+TARGETLIBS= $(DDK_LIB_PATH)\HidClass.lib
+
+!IFDEF DDKBUILDENV
+C_DEFINES=$(C_DEFINES) -DDDK_BUILD
+!ENDIF
+
+INCLUDES=   $(INCLUDES) \
+            $(DDK_INC_PATH); \
+            ..\hidbtn; \
+            ..\util;
+
+SOURCES=    hidbtn.c    \
+            pnp.c       \
+            ioctl.c     \
+            hbtnkey.c   \
+            trace.c     \
+            tracedat.c  \
+            hbtnkey.rc  \
+            errlog.c    \
+            errcodes.mc
+

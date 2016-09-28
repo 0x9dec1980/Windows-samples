@@ -1,0 +1,9 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\TESTDRV]
+"ImagePath"="\\SystemRoot\\system32\\drivers\\testdrv.sys"
+"Type"=dword:00000001
+"Start"=dword:00000001
+"Group"="Base"
+"ErrorControl"=dword:00000001
+

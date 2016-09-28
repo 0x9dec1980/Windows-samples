@@ -1,0 +1,6 @@
+DIRS=\
+    kbdgr \
+    kbdfr
+ \
+     kbdfr \
+     kbdgr

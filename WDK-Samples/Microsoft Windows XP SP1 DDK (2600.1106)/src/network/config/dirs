@@ -1,0 +1,4 @@
+DIRS= \
+     bindview \
+     netcfg \
+     oemupg

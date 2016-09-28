@@ -1,0 +1,74 @@
+*****************************************************************************
+*                                                                           *
+* THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+* PURPOSE.                                                                  *
+*                                                                           *
+* Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+*                                                                           *
+*****************************************************************************
+
+                                vc2conv.txt 
+                                -----------
+
+This document explains the procedures for converting VxD makefiles 
+from C8 and link386 to Microsoft Visual C++ 2.0 (MSVC20) makefiles.
+
+There is at least one and possibly three steps required before the 
+MSVC20 tools can be used for building VxDs. If the VxD has some modules 
+written in C, then the command lines for compiling these C files may 
+contain the '-d2omf' switch. This switch needs to be removed, it is no 
+longer supported by the MSVC20 compiler.
+
+The second step requires the addition of the -coff and -DBLD_COFF
+assembler switches to the assembler command line. The -coff switch
+instructs the assembler to generate COFF instead of OMF. The -DBLD_COFF
+switch defines BLD_COFF which will disable certain sections in VMM.INC
+which are incompatible with COFF. The latest version of the assembler
+which fully supports COFF is contained in the DDK\MASM611C directory.
+
+The third step is not quite as simple, as it requires a change in the
+link command line. 
+
+A LINK386 command line and response file might look like this:
+
+LINK386 /L /MAP /NOI /NOD /NOPACKCODE /NOE @cvxdsamp.lnk
+
+where cvxdsamp.lnk would look like this:
+
+ cvxdsamp.obj cvxdctrl.obj vkdgko.obj
+ cvxdsamp.vxd
+ cvxdsamp.map
+ vxdomf.lib
+ cvxdsamp.def
+
+
+To link with the same files with the MSVC20 linker, use the following
+command and response file:
+
+LINK @cvxdsamp.lnk
+
+where cvxdsamp.lnk would look like this:
+
+ -MACHINE:i386 
+ -DEBUG:NONE 
+ -PDB:NONE
+ -DEF:cvxdsamp.def 
+ -OUT:cvxdsamp.vxd 
+ -MAP:cvxdsamp.map
+ -VXD 
+ vxdwraps.clb cvxdsamp.obj cvxdctrl.obj vkdgko.obj
+
+
+One non-obvious difference between these two methods of linking is
+that the MSVC20 linker requires libraries to be in COFF format. If
+the libraries used with link386 are OMF libraries they need to be
+rebuilt using the MSVC20 librarian. Here is an example command line
+using the MSVC20 librarian.
+
+lib /OUT:vxdwraps.clb vxdwraps.clb obj1.obj obj2.obj ...
+
+The format of the module definition file (.DEF) need not change,
+however, there are some statements in the .DEF file which will be 
+ignored by the MSVC20 linker, this is expected.

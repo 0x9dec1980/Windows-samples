@@ -1,0 +1,18 @@
+dirs= WaterMark   \
+      OEMPS       \
+      OEMUI       \
+      OEMUNI      \
+      custhlp     \
+      psuirep     \
+      SyncSet     \
+      ThemeUI
+
+ \
+     custhlp \
+     oemps \
+     oemui \
+     oemuni \
+     psuirep \
+     syncset \
+     themeui \
+     watermark

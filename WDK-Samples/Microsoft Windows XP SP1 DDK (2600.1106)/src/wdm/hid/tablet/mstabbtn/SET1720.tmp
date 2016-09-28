@@ -1,0 +1,16 @@
+#include <windows.h>
+
+#ifdef DDK_BUILD
+  #include <ntverp.h>
+#else
+  #include <TabletPCVer.h>
+#endif
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_SYSTEM
+#define VER_FILEDESCRIPTION_STR         "Microsoft Tablet PC Buttons HID Driver"
+#define VER_INTERNALNAME_STR            "mstabbtn.sys"
+#define VER_ORIGINALFILENAME_STR        "mstabbtn.sys"
+
+#include <Common.ver>
+#include "errcodes.rc"

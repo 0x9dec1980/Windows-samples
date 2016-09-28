@@ -1,0 +1,12 @@
+DIRS=\
+  private\
+  51\
+  kd\
+  testwmi
+     
+
+ \
+     50 \
+     51 \
+     kd \
+     testwmi

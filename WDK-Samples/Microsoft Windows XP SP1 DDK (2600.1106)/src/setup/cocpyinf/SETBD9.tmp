@@ -1,0 +1,223 @@
+<HTML>
+<HEAD>
+<TITLE>Sample Coinstaller for Copying INF Files</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content="Microsoft FrontPage 5.0" name=GENERATOR>
+</HEAD>
+
+<BODY link=#0000ff><FONT face=Verdana size=5>
+<H2>Sample Coinstaller for Copying INF Files</H2></FONT><FONT face=Verdana size=2>
+<P><SPAN style="COLOR: #ff0000; FONT-FAMILY: Arial; FONT-SIZE: 10pt">[This is 
+preliminary documentation and subject to change.]</SPAN></P>
+<P><b><i style="mso-bidi-font-style:normal"><span style="font-size:9.5pt;mso-bidi-font-size:10.0pt;font-family:Arial">Abstract:
+</span></i></b>This document accompanies a sample coinstaller that can be used
+to build an INF file that can be used to copy multiple INF files. These
+instructions apply for the Microsoft® Windows® 2000 and Windows Whistler
+operating systems.
+
+<p>Note that support for the <b>CopyINF</b> directive discussed
+in this document is built into the Windows Whistler operating system.
+
+<H3>SUMMARY</H3>
+This document accompanies a sample coinstaller that can be
+used to build and then install additional device INF files on the target system
+during a device installation. The instructions herein apply to the Microsoft
+Windows 2000 and Windows Whistler operating systems.
+
+<p>The sample coinstaller described in this article interprets <b>CopyINF</b>
+directives in a [<i>DDInstall</i>] section in an INF file. The sample
+demonstrates using a co-installer to perform processing after a device has been
+installed, parsing the INF section that is being used for the installation, and
+the use of the SetupCopyOEMInf, SetupGetInfInformation,
+SetupQueryInfOriginalFileInformation and SetupDiGetActualSectionToInstall APIs.
+
+<p>If you wish to use the “CopyINF” directive to copy
+multiple INF files from a single INF file on a target Windows® 2000 system,
+refer to the document on using the redistributable “CoCpyINF.DLL” provided
+with this DDK.
+
+<H3>HOW IT WORKS</H3>
+
+<p>The co-installer is registered as part of device installation via
+a [<i>DDInstall</i>.CoInstallers] section. After the Coinstaller has been
+registered, it will receive device installation callbacks for the remainder of the install.
+
+<p>When the Coinstaller receives the DIF_INSTALLDEVICE callback the first time it is
+called (Context-&gt;PostProcessing is FALSE), it returns a status of
+ERROR_DI_POSTPROCESSING_REQUIRED. This return code causes the Coinstaller to be called
+again once the install has been completed. The device installation will then invoke other
+Coinstallers. The class installer or the default installer will do the actual
+installation. All Coinstallers that returned ERROR_DI_POSTPROCESSING_REQUIRED will then be
+called in reverse order, with Context-&gt;PostProcessing set to TRUE and Context-&gt;InstallResult
+specifying if the install succeeded.
+
+<p>This sample will call PostProcessInstallDevice only if the install succeeded. If it appears
+that this is a new INF file (that has not previously been copied to the system INF directory), it
+will look for all “CopyINF” keywords in the [<i>DDInstall</i>] section. For each matching
+keyword, it will retrieve all the filenames to the right of the '=' and call SetupCopyOEMInf for each one.
+
+<p>The syntax of the <b>CopyINF</b> directive is:
+<p style="margin-left:.25in">[<em>DDInstall</em>]<br>
+<b>CopyINF =</b> <em>filename.inf</em><i>[</i><strong>,</strong><em>filename2.inf]</em>...
+
+<p>For a detailed example, see the two coinstaller sample INF files provided in the Install subdirectory.
+
+<p><b>Notes:</b>
+<ul>
+  <li>
+    <p class="MsoListBullet">The CoCpyInf example uses a published but
+    previously undocumented API: SetupQueryInfOriginalFileInformation. This API
+    returns the original name of an OEM INF file.
+  </li>
+</ul>
+<blockquote>
+  <p class="Lp1">If the current INF file name and the original INF file name are
+  different, then the CoCpyInf example assumes that the INF file has already
+  been copied and will not perform the file copies.
+  
+  <p class="Lp1">When a device installation from a third-party INF occurs, that
+  INF is copied to the system INF directory under a unique OEM<i>&lt;n&gt;</i>.inf<b>
+  </b>name. The sample coinstaller determines whether the additional <b>CopyINF</b>
+  actions are necessary, depending on whether the INF’s original name differs
+  from its current name. If the two names are the same, then the INF has not yet
+  been installed into the INF directory, so the additional INF files are copied.
+  If the INF’s original and current names differ, this indicates installation
+  is from a third-party INF that already resides in the INF directory. In that
+  case, the additional INF copy operations do not need to be performed, because
+  they would have been copied previously.
+  
+  <p class="Lp1">Attempting to perform the additional copies in this scenario
+  wouldn’t work anyway, because the third-party media is no longer available.
+</blockquote>
+
+<ul>
+  <li>
+    <p class="MsoListBullet">Note:<span style="mso-spacerun: yes">&nbsp; </span>When
+    creating a new public version of a coinstaller, always give it a different
+    unique name. Once a coinstaller is installed, if it and a newer binary have
+    the same name, the existing coinstaller may be used instead.
+  </li>
+</ul>
+<p><b>Important:</b> The coinstaller described in this article is available as a
+redistributable binary in the &lt;ddkroot&gt;\tools\coinstallers subdirectory. If
+you modify this coinstaller for your own use, you must give it a new unique name. You
+must also change the CopyINF directive to a different name -- such as CopyMyINFs -- and,
+of course, change your coinstaller to reference this new directive.
+
+<H3>BUILDING THE COINSTALLER SAMPLE</H3>
+<h5>To build the coinstaller sample:</h5>
+<ol><li>
+<p class="MsoListNumber">Click the Free Build Environment or Checked Build Environment icon in the
+Windows 2000 DDK program group to set basic environment variables needed by
+Windows 2000.
+<li>
+<p class="MsoListNumber">In a command window, change to the directory containing the coinstaller
+device source code. For example:</li>
+<blockquote>
+<p><b>cd src\setup\cocpyinf</b>
+</blockquote>
+<li>
+<p class="MsoListNumber">Modify the “sources” file to specify the new coinstaller name.
+<li>
+<p class="MsoListNumber">Use the macro BLD or run the following from the command prompt:
+</ol><blockquote>
+<p><b>build –c</b>
+<p>This invokes the Microsoft make routines that produce the Build.log, Build.wrn, and Build.err log files.
+<p>When the build completes, the coinstaller will be placed in the Lib\I386 subdirectory of the
+&lt;TARGETPATH&gt; directory specified in the Sources file.
+<p>If the build does not succeed, check for these errors:  1) the build environment is not set up
+properly, or 2) modifications made to the sample source code introduced errors.
+</blockquote>
+
+<H3>USING THE COINSTALLER</H3>
+<p><b>Note:  </b>If you wish to use the unmodified coinstaller to provide the “CopyINF” directive on a target
+Windows® 2000 system, refer to the document on using the redistributable “CoCpyINF.DLL” provided with this DDK.
+
+<p>To use this coinstaller, you must register it by adding a DDInstall.CoInstallers section to the INF file for your drivers. (Note that the
+examples below use a new coinstaller name, &quot;MyCoInst&quot;, and entry point, &quot;MyEntryFunction&quot;.)
+
+<p><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>
+
+Add a [<i>DDInstall</i>.CoInstallers] section for each device specified in the INF to register the coinstaller and copy the coinstaller
+binary. For example:
+<blockquote>
+<p><style="margin-left:.5in">[InstallA.NT.CoInstallers]<br>
+AddReg = CoCopyINF.AddReg<br>
+CopyFiles= CoCopyINF.CopyFiles
+</blockquote>
+
+<p><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Add an [<i>AddReg</i>] section to register the coinstaller. For example:
+<blockquote>
+<p><style="margin-left:.5in">[CoCopyINF.AddReg]<br>
+HKR,,CoInstallers32,0x10000,&quot;cocpyinf.DLL,CoCopyINF&quot;
+</blockquote>
+
+<p><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Add a [<i>CopyFiles</i>] section to copy the coinstaller binary. For example:
+<blockquote>
+<p><style="margin-left:.5in">[CoCopyINF.CopyFiles]<br>
+cocpyinf.dll,,,0x10
+</blockquote>
+
+<p style="tab-stops:list .25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Add an appropriate entry to the [DestinationDirs] section. For example:
+<blockquote>
+<p><style="margin-left:.5in">[DestinationDirs]<br>
+CoCopyINF.CopyFiles = 11 ; %windir%\System32
+</blockquote>
+
+<p><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Add sections to install the drivers.<br style="mso-special-character:line-break">
+<br style="mso-special-character:line-break">
+
+For more information, see the sample INF files.
+
+<H3>TESTING</H3>
+<p>To ensure that the INF files are not in the system, type:
+<p>Del %windir%\INF\OEM*.?NF
+<p>Note that this step is only safe to do for testing purposes, and will delete any other third party
+INF files that are present on the system. The system may be left in an unstable state.
+<p>To ensure that an older version of the co-installer is not used, type:
+<p>Del %windir%\System32\<i>YourCoinstallerName</i>.dll
+<p>Again, this step is only safe to do for testing purposes.
+<p>Uninstall the devices in Device Manager.
+<p>Install the devices by clicking on the &quot;Scan for
+hardware changes&quot; item in the Device Manager Action Menu.
+<p>Once all the relevant devices have been installed, you should
+check that a re-install also works. Uninstall the devices in Device Manager
+again (this time without removing the OEM*.?NF files) and click on &quot;Scan
+for hardware changes&quot; again.
+
+<H3>CODE TOUR</H3>
+<H4>File Manifest</H4>
+</FONT><FONT face="Courier" size="3">
+<TABLE BORDER=0 CELLSPACING=1 CELLPADDING=0 width="916">
+<TR><TD width="151" valign="top"><U>File</u></TD><TD width="755"><u>Description<u></TD></TR>
+<TR><TD width="151" valign="top"><i>CoCpyInf.htm</i></TD><TD width="755">Sample tour documentation for this binary (this file).</TD></TR>
+<TR><TD width="151" valign="top"><i>Cocpyinf.c</i></TD><TD width="755">Source file for the sample coinstaller.</TD></TR>
+<TR><TD width="151" valign="top"><i>Cocpyinf.rc</i></TD><TD width="755">Resource file that specifies information such as file type, version, and so on.</TD></TR>
+<TR><TD width="151" valign="top"><i>Cocpyinf.def</i></TD><TD width="755">Definition file that lists exported APIs.</TD></TR>
+<TR><TD width="151" valign="top"><i>Sources</i></TD><TD width="755">Generic file that lists source files and all the build options.</TD></TR>
+<TR><TD width="151" valign="top"><i>Makefile</i></TD><TD width="755">File that redirects to the real make file that is shared by all the driver components of the Windows 2000
+DDK.</TD></TR>
+<TR><TD width="151" valign="top"><i>Install\a.inf</i></TD><TD width="755">Sample INF file that demonstrates installation and registration of the coinstaller together with the copying of
+an INF file.</TD></TR>
+<TR><TD width="151" valign="top"><i>Install\b.inf</i></TD><TD width="755">Second sample INF file that demonstrates installation and registration of the
+    coinstaller together with the
+copying of an INF file.</TD></TR>
+</TABLE>
+
+<H3>FEEDBACK</H3>
+<P>We welcome your comments, problem reports and wish-list requests. Please 
+submit them by pointing your Internet browser to <A href="http://www.microsoft.com/ddk">http://www.microsoft.com/ddk</A>. 
+</FONT></P>
+<P align=center><FONT face=Verdana size=2><A href="#top">Top of page</A></P></FONT>
+<TABLE border=0" cellSpacing="0" width="624">
+<TR>
+<TD bgColor="#00ffff" height="2" vAlign="middle"></TD></TR></TABLE>
+<FONT face="MS Sans Serif" size=1>
+<P>&copy; Microsoft Corporation 2000</FONT><FONT face=Verdana size=2> 
+</P></FONT>
+</BODY>

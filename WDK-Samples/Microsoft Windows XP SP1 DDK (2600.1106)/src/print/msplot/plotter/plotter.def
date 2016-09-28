@@ -1,0 +1,9 @@
+LIBRARY plotter
+
+
+EXPORTS
+    DllEntryPoint
+    DrvQueryDriverInfo
+    DrvEnableDriver
+    DrvDisableDriver
+

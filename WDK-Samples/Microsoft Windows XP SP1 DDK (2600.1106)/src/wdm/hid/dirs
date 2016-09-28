@@ -1,0 +1,6 @@
+DIRS= \
+     gameenum \
+     hclient \
+     hidgame \
+     monitor \
+     tablet

@@ -1,0 +1,11 @@
+DIRS=\
+    EUDC \
+    PHON \
+    CHAJEI \
+    QUICK 
+
+ \
+     chajei \
+     eudc \
+     phon \
+     quick

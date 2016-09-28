@@ -1,0 +1,17 @@
+TARGETNAME=notify
+TARGETPATH=obj
+TARGETTYPE=PROGRAM
+
+INCLUDES=..\..\inc;
+
+SOURCES=notify.rc \
+	notify.c  \
+
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib 
+	
+UMTYPE=windows
+UMBASE=0x01000000
+UMENTRY=winmain
+
+

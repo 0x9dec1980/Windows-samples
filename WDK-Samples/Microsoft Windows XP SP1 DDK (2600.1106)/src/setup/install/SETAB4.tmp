@@ -1,0 +1,149 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./install_files/filelist.xml">
+<title>Install</title>
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=blue style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h2><span style='font-family:Verdana'>Windows 2000 Driver Install Sample <o:p></o:p></span></h2>
+
+<p><span style='font-size:10.0pt;font-family:Arial;color:red'>[This is
+preliminary documentation and subject to change.]</span><span style='font-size:
+10.0pt;font-family:Verdana'><o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>SUMMARY<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>This is a sample program
+that can programmatically install a Device Driver in Windows 2000. This sample
+also illustrates the usage of many SetupDi API calls. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>This sample is compliant
+with x86 and iA64 platforms. This sample builds properly with
+Microsoft&reg; Visual C&reg; 6.0. There are no known issues with this application.<o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>BUILDING THE SAMPLE<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>To build this sample,
+enter the free or checked build environment and run <b>build</b> from the src\general\install
+directory. This sample links with newdev.lib, which is present in the DDK lib
+directories. Once built, this sample produces install.exe. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>If the user requires a
+program that has no console window, the sources file can be changed from &#8220;UMTYPE=console&#8221;
+to &#8220;UMTYPE=windows&#8221;.<o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>CODE TOUR<o:p></o:p></span></h3>
+
+<h4><span style='font-family:Verdana'>File Manifest<o:p></o:p></span></h4>
+
+<pre><u>File<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Description<o:p></o:p></u></pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre>install.c<span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Source file </pre><pre>makefile<span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Standard Windows NT makefile</pre><pre>install.rc<span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span>Resource file </pre><pre>Sources<span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Dependency and include file</pre>
+
+<h3><span style='font-family:Verdana'>PROGRAMMING TOUR<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>This program utilizes the
+Windows 2000 API function UpdateDriverForPlugAndPlayDevices(), this API takes
+an existing Device Node ( devnode ) in the Windows Plug and Play device tree
+and binds it to a driver.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>If the devnode doesn&#8217;t already
+exist, then this program will create a devnode and register it with the system
+in the root of the devnode tree. This is called a Root-Enumerated driver.<o:p></o:p></span></p>
+
+<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<p align=center style='margin:0in;margin-bottom:.0001pt;text-align:center;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Courier New"'><a
+href="#top"><span style='font-family:Verdana'>Top of page</span></a></span><span
+style='font-size:10.0pt;font-family:Verdana;mso-fareast-font-family:"Courier New";
+mso-bidi-font-family:"Courier New"'> <o:p></o:p></span></p>
+
+<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<table border=0 cellspacing=0 cellpadding=0 width=624 style='width:6.5in;
+ mso-cellspacing:0in'>
+ <tr style='height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<p style='margin:0in;margin-bottom:.0001pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:7.5pt;font-family:"MS Sans Serif";mso-fareast-font-family:
+"Courier New";mso-bidi-font-family:"Courier New"'>&copy; Microsoft Corporation 1999</span><span
+style='font-size:10.0pt;font-family:Verdana;mso-fareast-font-family:"Courier New";
+mso-bidi-font-family:"Courier New"'> <o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+# ******************************Module*Header**********************************\
+# *
+# *                           ***************************
+# *                           * Permedia 2  SAMPLE CODE *
+# *                           ***************************
+# *
+# * Module Name: Makefile
+# *
+# * Copyright (c) 1994-1998 3Dlabs Inc. Ltd. All rights reserved.
+# * Copyright (c) 1995-2001 Microsoft Corporation.  All rights reserved.
+# *
+# *****************************************************************************/
+#
+# setup for dependancies
+#
+
+HTOINC = $(_NTBINDIR)\multimedia\DirectX\dxddk\mill\display\mini\p3samp\inc\h2inc.exe
+
+
+all: glinfo.inc p3info.inc
+
+# htoinc crashes if no INCLUDE path is set up!
+glinfo.inc: glinfo.h
+		set INCLUDE=.
+        $(HTOINC)  glinfo.h -o glinfo.inc
+		copy glinfo.inc glinfo.tmp
+		find /V "casemap" < glinfo.tmp > glinfo.inc
+		del glinfo.tmp
+
+p3info.inc: p3info.h
+		set INCLUDE=.
+        $(HTOINC)  p3info.h -o p3info.inc
+		copy p3info.inc p3info.tmp
+		find /V "casemap" < p3info.tmp > p3info.inc
+		del p3info.tmp
+
+clean:
+!if EXIST(glinfo.inc)
+        del  glinfo.inc 
+!ENDIF
+
+!if EXIST(p3info.inc)
+        del  p3info.inc 
+!ENDIF
+

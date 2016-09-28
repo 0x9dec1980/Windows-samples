@@ -1,0 +1,231 @@
+
+*   PLEASE NOTE: This is sample code that was written to illustrate possible
+*   usage of services that are documented in the Windows Device Development 
+*   Kit. Microsoft does not guarantee the accuracy or reliability of this 
+*   code.
+
+
+Please see the README.TXT file, and source files for more detailed
+information on each VxD.
+
+=============================================================================
+EATPAGES.VXD
+
+This VxD demonstrates the use of the Linked List services, as well
+as the System Page Allocator functions. The VxD will simply allocate
+half of the free physical pages at boot time, and free them at
+system exit. This can be useful to simulate low memory conditions.
+
+Uses the following services:
+         VMMCall _GetDemandPageInfo
+         VMMCall _PageAllocate
+         VMMCall _PageFree
+         VMMCall List_Create
+         VMMCall List_Allocate      
+         VMMCall List_Attach_Tail   
+         VMMCall List_Get_First
+         VMMCall List_Get_Next      
+         VMMCall List_Remove        
+         VMMCall List_Deallocate    
+
+=============================================================================
+GENERIC.VXD
+
+The basic structure of a VxD is illustrated by this VxD. As written, 
+it can be loaded although it performs no function. This VxD can be 
+used as a base set of source files to start a VxD project. 
+
+=============================================================================
+GPTRAP.VXD
+
+This VxD uses the Hook_PM_Fault to catch GP faults.  When this VxD receives
+control because of a GP fault, it will execute an INT 1.  If execution is
+continued, control is passed to the next handler in the fault handler chain.
+
+The "VxDStub" code for this VxD is an example in itself.  The stub hooks
+INT 2Fh then terminates with stay resident.  When Windows later loads,
+this TSR responds to the INT 2Fh, AX=1605h (Windows initialization)
+broadcast.  The TSR returns a structure that will cause the VxD to be loaded.
+Thus, no "device=" line is required in the SYSTEM.INI file.
+
+Uses the following services:
+         VMMCall Hook_PM_Fault
+
+=============================================================================
+VDIALOG.VXD
+
+The purpose of this sample VxD is to demonstrate the basic use of the 
+Install_IO_Handler and Shell_Resolve_Contention function calls. The 
+Install_IO_Handler call enables this VxD to trap IN and OUT's to a port
+from any VM.  The Shell_Resolve_Contention call is then used to display a
+dialog box when another VM attempts to use a port that is already assigned 
+to another VM.
+
+This VxD also demonstrates the use of Enable_Local_Trapping and 
+Disable_Local_Trapping to allow the owner of the port in question to 
+freely do I/O to the port without overhead.
+
+Uses the following services:
+         VMMCall Install_IO_Handler
+         VMMCall Enable_Local_Trapping 
+         VMMCall Disable_Local_Trapping
+
+         VxDCall Shell_Resolve_Contention
+
+=============================================================================
+VFINTD.VXD
+
+This sample has been provided to demonstrate the technique of 
+handling the virtualization of a particular IRQ.
+
+Uses the following services:
+         VxDCall VPICD_Virtualize_IRQ
+         VxDCall VPICD_Set_Int_Request
+         VxDCall VPICD_Clear_Int_Request
+         VxDCall VPICD_Phys_EOI
+
+=============================================================================
+VIDLED.VXD
+
+This VxD demonstrates how to use the Call_When_Idle function.
+
+Uses the following services:
+         VMMCall Call_When_Idle
+
+=============================================================================
+VITD.VXD
+
+This VxD provides a simulation of a hardware interval timer for virtual
+machines. To install it, build VITD.VXD, place the final VITD.VXD in
+the Windows SYSTEM directory, and add a "device=VITD.VXD" line in the 
+[386Enh] section of the SYSTEM.INI and restart Windows.
+
+Please see the README.TXT file, and source files for more detailed
+information.
+
+Uses the following services:
+         VMMCall _Allocate_Device_CB_Area
+         VMMCall Fatal_Memory_Error
+         VMMCall Install_Mult_IO_Handlers
+         VMMCall Get_VM_Exec_Time        
+         VMMCall Cancel_Time_Out         
+         VMMCall Call_Priority_VM_Event  
+         VMMCall Begin_Nest_Exec            
+         VMMCall Exec_Int                   
+         VMMCall End_Nest_Exec
+
+         VxDCall VTD_Get_Version
+         VxDCall VTD_Begin_Min_Int_Period
+         VxDCall VTD_Get_Interrupt_Period
+         VxDCall VTD_End_Min_Int_Period
+
+=============================================================================
+VMIOD.VXD
+
+This VxD can be used to monitor the I/O traffic associated with a particular
+device. Specifically, IN's and OUT's to a single I/O port will trigger 
+debugging output on the secondary monitor of the system.  Note that you 
+must have a secondary monitor to use this VxD.
+
+Uses the following services:
+         VMMCall Install_IO_Handler
+         VMMCall Get_Profile_Hex_Int       
+         VMMCall Clear_Mono_Screen
+         VMMCall Set_Mono_Cur_Pos
+         VMMCall Out_Mono_String
+
+=============================================================================
+VMIRQD.VXD
+
+This VxD can be used to monitor the activity associated with a particular
+hardware interrupt (IRQ). Specifically, hardware interrupts, EOIs, IRETs,
+virtual interrupts, and mask changes associated with a particular IRQ
+will trigger debugging output on the secondary monitor of the system.  
+Note that you must have a secondary monitor to use this VxD.
+
+Uses the following services:
+         VMMCall Get_Profile_Decimal_Int   
+         VMMCall Clear_Mono_Screen
+         VMMCall Set_Mono_Cur_Pos
+         VMMCall Out_Mono_String
+
+         VxDCall VPICD_Virtualize_IRQ
+         VxDCall VPICD_Set_Int_Request
+         VxDCall VPICD_Clear_Int_Request
+         VxDCall VPICD_Phys_EOI
+
+=============================================================================
+VMPAGES.VXD
+
+This VxD demonstrates how to export a VxD service (in this case GetVMPgCount),
+to an application.
+
+Uses the following services:
+         VMMCall _GetVMPgCount
+
+=============================================================================
+VNMID.VXD
+
+This VxD shows how to hook the NMI (Non-maskable interrupt). It
+currently does not actually DO anything with the NMI except to
+chain to the previous handler.
+
+Uses the following services:
+         VMMCall Get_NMI_Handler_Addr      
+         VMMCall Set_NMI_Handler_Addr
+         VMMCall Hook_NMI_Event
+
+=============================================================================
+VPOSTD.VXD
+
+This collection of programs demonstrates one way a VxD can cause a message
+to be posted to a Windows application.  This example also shows a fairly
+useful implementation of real and protected mode APIs.
+
+Uses the following services:
+         VMMCall _Allocate_Device_CB_Area
+         VMMCall Fatal_Memory_Error
+         VMMCall Get_Sys_VM_Handle
+         VMMCall Test_Sys_VM_Handle      
+         VMMCall Get_Crit_Section_Status 
+         VMMCall Call_When_VM_Ints_Enabled
+         VMMCall Call_Priority_VM_Event
+         VMMCall Begin_Nest_Exec
+         VMMCall Simulate_Push
+         VMMCall Simulate_Far_Call
+         VMMCall Resume_Exec
+         VMMCall End_Nest_Exec
+
+=============================================================================
+VWATCHD.VXD
+
+VwatchD is a Virtual Device that demonstrates the basic structure of 
+a VxD.  This VxD issues a Trace_Out (ie: sends messages to the COMx:
+port) at it's entry points.  By watching the messages it displays, you
+can study the situations which cause the various VxD entry points to 
+be called.  
+
+This VxD shows all major entry points, VERY simple APIs (separate APIs
+for V86 mode as well as PM mode), and a "debug_dump" section.
+
+Uses the following services:
+         VMMCall _Allocate_Device_CB_Area
+         VMMCall Get_System_Time
+
+         VxDCall VwatchD_Get_Version
+
+=============================================================================
+VWFD.VXD
+
+This VxD, when installed on a system running Windows in enhanced mode,
+allows DOS applications to determine if they are running in a window
+or full-screen. TSTWF.ASM is a sample DOS program that uses the VWFD
+API. 
+
+Uses the following services:
+         VMMCall _Allocate_Device_CB_Area
+         VMMCall Fatal_Memory_Error
+         VMMCall Hook_Device_Service     
+         VMMCall Get_Next_VM_Handle      
+         VMMCall Test_Cur_VM_Handle      
+

@@ -1,0 +1,235 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft FrontPage 5.0">
+<TITLE>HIDGAME</TITLE>
+<META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<style>
+<!--
+span.SpellE
+	{}
+span.GramE
+	{}
+-->
+</style>
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff" leftmargin="8">
+<FONT FACE="Verdana"><H2><span style='font-family:Verdana'>Tablet PC HID <span class=SpellE>Minidrivers</span><o:p></o:p></span> </H2>
+
+<span style="color:#FF0000">[This is preliminary documentation and subject to change.]</span> 
+
+<H3>SUMMARY</H3><FONT FACE="Verdana" SIZE=2> 
+
+<p>
+The tablet directory contains
+the following sample HID <span class=SpellE>minidrivers</span> for pen and
+button devices that are installed on a Tablet PC:
+<ul><li>
+The HBtnKey driver is a HID minidriver for a button device that uses an i8042 
+port-compatible interface. 
+If a device of this type is installed, the HBtnKey driver is loaded on top of the system-supplied i8042prt.sys driver, 
+which acts as a lower-level device filter driver. The HBtnKey driver translates scan codes to bits in a button status bit array. 
+The driver also includes a keyboard simulation feature that you can use to test a driver using a PS/2 keyboard on a desktop system. 
+The corresponding sample INF file is <i>hidbtn.inf</i>. 
+This INF file installs the HBtnKey service for devices whose device ID is ACPI\MSTabletPCKeyButtons. To install a device using 
+<i>hidbtn.inf</i>, 
+you must specify a device ID of ACPI\MSTabletPCKeyButtons in the ACPI BIOS.
+</li><li>
+The MSTabBtn driver is a HID mindriver
+for a button device that is implemented by a 32-bit register in I/O space. The
+driver supports from 1 to 31 buttons (the most significant bit in the register
+is used as an interrupt status bit). The driver supports a software debounce capability. 
+The corresponding sample INF file is <i>hidbtn.inf</i>. This
+INF file installs the MSTabBtn service for devices whose device ID is ACPI\MSTabletPCButtons. To install a device using <i>hidbtn.inf</i> you must specify a
+device ID of  <FONT FACE="Verdana" SIZE=2> 
+
+ACPI\MSTabletPCButtons i</FONT>n the ACPI BIOS.
+</li><li>
+The <span class=SpellE><i style='mso-bidi-font-style:
+normal'>MutohPen</i></span> and <span class=SpellE><i style='mso-bidi-font-style:
+normal'>WacomPen</i></span> drivers are HID <span class=SpellE>minidrivers</span>
+for pen devices from Fine Point, Inc. and <span class=SpellE>Wacom</span>
+Technology Corporation, respectively. These are electromagnetic input devices
+that use a 16550 UART-compatible  interface. If such a
+device is installed, the corresponding driver is loaded on top of the
+system-supplied <span class=SpellE><i style='mso-bidi-font-style:normal'>serial.sys</i></span>
+driver, which acts as a lower-level device filter driver. The corresponding
+sample INF file is <span class=SpellE><i style='mso-bidi-font-style:normal'>hiddigi.inf</i></span>.
+This INF file installs the <span class=SpellE>MutohPen</span> service for 
+devices whose device ID is ACPI\MAI3310.<span style='mso-spacerun:yes'>  </span>To install a
+device of this type using <span class=SpellE><i style='mso-bidi-font-style:
+normal'>hiddigi.inf</i></span>, you must specify a device ID of ACPI\MAI3310 in
+the ACPI BIOS. This INF file also installs the <span class=SpellE>WacomPen</span>
+service for devices whose device ID is ACPI\WACF004. To install a device of this type using
+<span class=SpellE><i style='mso-bidi-font-style:normal'>hiddigi.inf</i></span>,
+you must specify a device ID of ACPI\WACF004 in the ACPI BIOS.
+</li></ul></p>
+
+<p>
+The sample drivers share code that is located in the following directories:
+<ul><li>
+The <i>Tablet\<span
+class=SpellE>HidBtn</span></i></i> directory contains code that is common to the <span
+class=SpellE>HBtnKey</span> and <span class=SpellE>MSTabBtn</span> drivers.
+</li><li>
+The <i>Tablet\HidPen</i> directory contains code that is common to the <span
+class=SpellE>MutohPen</span> and <span class=SpellE>WacomPen</span> drivers.
+</li><li>
+The <i>Tablet\Util</i> directory contains utility functions that are common to all
+the sample drivers. The utility functions handle tracing driver operation and
+error logging.
+</li><li>
+The <i>Tablet\Inf</i> directory contains the INF files for the drivers.
+</li></ul>
+
+<p>The sample drivers demonstrate
+how to support pen and button devices that are installed in a Tablet PC. These sample drivers are
+designed so that vendors can easily customize them to support their devices.
+The sample code supports the infrastructure necessary for basic WDM driver
+operation, including standard driver routines, dispatch routines, Plug and
+Play, power management, and handling HIDClass device IOCTLs. Unless a device requires special handling of these
+basic operations, a vendor does not have to modify the infrastructure code. The
+code includes OemXxx functions, OEM_Xxx structures, and OEM_Xxx constants which indicate the code that a vendor
+typically needs to customize for a specific device type.
+</p>
+
+
+<h3>BUILDING A SAMPLE</h3>
+
+<p>
+Use the standard driver build tools for
+<FONT FACE="Verdana"><FONT FACE="Verdana" SIZE=2>Microsoft</font><FONT SIZE=1>©</font><FONT FACE="Verdana" SIZE=2>&nbsp;Windows</font><FONT SIZE=1>©</font><FONT FACE="Verdana" SIZE=2>&nbsp;XP</font></font>. In a driver directory type <i>build</i>. 
+The build script will generate the corresponding driver (<i>htbkey.sys</i>, <i>mstabbtn.sys</i>, 
+<i>mutohpen.sys</i>, or <i>wacompen.sys</i>).
+</p>
+
+
+<h3>INSTALLING A DEVICE</h3>
+
+<p>
+To install the drivers, copy the driver files (the <i>.sys</i> files) and
+the INF files to the same location. In
+device manager, do the following sequence of steps:
+<ul>
+  <li>Right-click the device, and select 
+  <span style='mso-bidi-font-weight:normal; font-weight:700'>Update
+Driver</span>.</li>
+  <li>Select
+<b style='mso-bidi-font-weight:normal'>Install from a list or specific location
+(Advanced)</b>.</li>
+  <li>Click
+<b style='mso-bidi-font-weight:normal'>Next</b>.</li>
+  <li>Select
+<b style='mso-bidi-font-weight:normal'>Don't search. I will choose the driver
+to install</b>.</li>
+  <li>Click
+<b style='mso-bidi-font-weight:normal'>Have Disk</b>.</li>
+  <li>In the <b>Install From Disk </b>dialog box, input
+the path of the directory where you copied the driver and INF file.</li>
+  <li>Click
+<b style='mso-bidi-font-weight:normal'>OK</b>.</li>
+  <li>Click <b>Finish</b>.</li>
+</ul>
+</p>
+
+
+
+<h3>RESOURCES</h3></FONT><FONT FACE="Verdana" SIZE=2><P>
+
+<p>For information about  Microsoft</font><FONT SIZE=2 face="Verdana">&nbsp;Windows</font><FONT FACE="Verdana" SIZE="2"> XP Tablet</font><FONT SIZE=1>©</font><FONT FACE="Verdana" SIZE="2">&nbsp;PC Edition and the Tablet&nbsp;PC, see <a
+href="http://www.microsoft.com/tabletpc">http://www.microsoft.com/tabletpc</a>.
+</p>
+
+<h3>CODE TOUR</h3>
+
+<p>This section includes a file manifest of all the files in the <i>src\wdm\hid\Tablet</i> 
+directory.</p>
+
+<h4>File Manifest</h4>
+
+<h5><i>Tablet\HbtnKey</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+Errcodes.mc      Contains event code and messages.
+HbtnKey.c        Contains the OEM specific code.
+HbtnKey.h        Contains the OEM specific definitions.
+HbtnKey.rc       Resource file for the driver.
+Makefile         DDK build environment make file.
+Pch.h            Precompile header file.
+Sources          DDK sources file.
+</font></pre>
+
+<h5><i>Tablet\MSTabBtn</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+Errcodes.mc      Contains event code and messages.
+Makefile         DDK build environment make file.
+MSTabBtn.c       Contains the OEM specific code.
+MSTabBtn.h       Contains the OEM specific definitions.
+MSTabBtn.rc      Resource file for the driver.
+Pch.h            Precompile header file.
+Sources          DDK sources file.
+</font></pre>
+
+<h5><i>Tablet\MutohPen</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+Errcodes.mc      Contains event code and messages.
+Makefile         DDK build environment make file.
+MutohPen.c       Contains the OEM specific code.
+MutohPen.h       Contains the OEM specific definitions.
+</font><FONT FACE="Verdana" SIZE="2"><FONT FACE="Courier" SIZE=2>MutohPen</font></font><FONT FACE="Courier" SIZE=2>.rc      Resource file for the driver.
+Pch.h            Precompile header file.
+Sources          DDK sources file.
+
+<h5><i>Tablet\WacomPen</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+Errcodes.mc      Contains event code and messages.
+Pch.h            Precompile header file.
+Sources          DDK sources file.
+Makefile         DDK build environment make file.
+WacomPen.c       Contains the OEM specific code.
+WacomPen.h       Contains the OEM specific definitions.
+WacomPen.rc      Resource file for the driver.
+
+<h5><i>Tablet\HidPen</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+HidPen.c         Contains the standard driver routines common to the pen drivers.
+HidPen.h         Contains the common pen definitions.
+Ioctl.c          Handles all the internal HIDClass IOCTLs.
+OEMPen.c         Contains the OEM code that is common to many OEMs.          
+Pnp.c            Handles PnP and power management.
+Serial.c         Contains all functions that deal with the serial port.
+Serial.h         Contains serial port definitions.
+
+<h5><i>Tablet\Util</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+Errlog.c         Contains all the error logging functions.        
+Errlog.h         Contains error logging definitions.
+Trace.c          Contains the debug trace functions.
+Trace.h          Contains the debug trace definitions.
+TraceDat.c       Contains lookup name tables for tracing.
+TraceDat.h       Contains name table definitions.
+
+<h5><i>Tablet\Inf</i></h5>
+<pre><FONT FACE="Courier" SIZE=2><u>Files            Description</u>
+Hidbtn.inf       INF file for the HBtnKey and MSTabBtn drivers.
+Hiddigi.inf      INF file for the MutohPen and WacomPen drivers.
+
+
+</FONT><P ALIGN="CENTER"><A HREF="#top"><FONT FACE="Verdana" SIZE=2>Top of page</FONT></A><FONT FACE="Verdana" SIZE=2> </P></FONT>
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=624>
+<TR><TD VALIGN="MIDDLE" BGCOLOR="#00ffff" HEIGHT=2>
+<P></TD>
+</TR>
+</TABLE>
+
+<FONT FACE="MS Sans Serif" SIZE=1><P>&copy; 2002 Microsoft Corporation</FONT><FONT FACE="Verdana" SIZE=2> </P></FONT></pre>
+
+</pre>
+
+</pre>
+
+</pre>
+
+</pre>
+
+</BODY>
+</HTML>

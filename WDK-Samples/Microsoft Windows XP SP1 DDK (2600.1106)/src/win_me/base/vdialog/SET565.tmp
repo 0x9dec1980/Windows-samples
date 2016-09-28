@@ -1,0 +1,32 @@
+/****************************************************************************
+*                                                                           *
+* THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+* PURPOSE.                                                                  *
+*                                                                           *
+* Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+*                                                                           *
+****************************************************************************/
+
+#include "windows.h"
+#include "winacc.h"
+
+WinaccMenu MENU
+BEGIN
+    MENUITEM "&Read!", IDM_ACTION
+    POPUP        "&Help"
+    BEGIN
+        MENUITEM "&About Winacc...", IDM_ABOUT
+    END
+END
+
+AboutBox DIALOG 22, 17, 144, 75
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About Winacc"
+BEGIN
+    CTEXT "Microsoft Windows"     -1,       0,  5, 144,  8
+    CTEXT "Winacc Application"   -1,       0, 14, 144,  8
+    CTEXT "Version 3.1"           -1,       0, 34, 144,  8
+    DEFPUSHBUTTON "OK"          IDOK,      53, 59,  32, 14,      WS_GROUP
+END

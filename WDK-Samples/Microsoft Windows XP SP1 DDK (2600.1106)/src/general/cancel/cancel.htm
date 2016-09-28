@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>CANCEL</TITLE>
+<META NAME="Template" CONTENT="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+</HEAD>
+<BODY TEXT="#000000" LINK="#0000ff" VLINK="#800080" BGCOLOR="#ffffff" leftmargin="8">
+<FONT FACE="Verdana"><H2><A NAME="MYSAMPLE">CANCEL</A> </H2>
+
+<H3>SUMMARY</h3></FONT><FONT FACE="Verdana" SIZE=2><P>
+This sample demonstrates the use of new cancel safe queue (IoCsqInitialize, IoCsqInsertIrp, IoCsqRemoveIrp, IoCsqRemoveNextIrp) APIs introduced on Windows XP for queuing IRPs in the driver's internal device queue. By using these APIs, driver writers do not have to worry about any IRP cancellation race condition issues. A common problem with cancellation of IRPs in a driver is synchronization between the cancel lock or the InterlockedExchange in the I/O Manager with the driver's queue lock. These APIs abstract the cancel logic while allowing the driver to implement the queue and associated synchronization. <p>
+
+
+<p>
+The sample is accompanied by a simple multithreaded Win32 console application to stress-test the driver's cancel and cleanup routines.<P>
+            This driver is written for an hypothetical data acquisition
+            device that requires polling at a regular interval.
+            The device has some settling period between two reads. 
+            Upon user request the driver reads data and records the time. 
+            When the next read request comes in, it checks the interval 
+            to see if it's reading the device too soon. If so, it pends
+            the IRP and sleeps for a while and tries again.
+
+            Upon arrival, IRPs are queued in a cancel-safe queue and a 
+            semaphore is signaled. A polling thread waiting indefinitely on the
+            semaphore wakes up to the signal and processes queued IRPs sequentially. <P>
+
+<p>This sample is adapted from the original cancel sample (http://support.microsoft.com/support/kb/articles/Q188/2/76.asp)  written for NT4.0. <p>
+The building and installation instructions given here apply to Windows® 2000 and Windows® XP systems.<P>
+
+<B>Note</B>:To enable developers to use the cancel-safe queue (IoCsqXXX) interface on Windows 2000 systems, the XP DDK Win2K Build environment comes with a header files, Csq.h, that contains IoCsq function prototypes and a static library, csq.lib, to link against. The 'SOURCES' file of the driver has instructoin on how to build the sample for Windows 2000.<P>
+<p>This sample driver is not a PnP driver. This is a minimal driver meant to demonstrate an OS feature. Neither it nor its sample programs are intended for use in a production environment. Rather, they are intended for educational purposes and as a skeleton driver.
+<H3>BUILDING THE SAMPLE</h3></FONT><FONT FACE="Verdana" SIZE=2><P>
+Click the Free Build Environment or Checked Build Environment icon under Development Kits program group to set basic environment variables. <P>
+
+Change to the directory containing the device source code, such as CD Src\General\Cancel. <P>
+
+Run <B>build -ceZ,</B> or use the macro <B>BLD</B>. This command invokes the Microsoft make routines to build the components. If the build succeeds, you will find the driver, cancel.sys, and the test application, canclapp.exe, in the i386 subdirectory of the %TARGETPATH% directory specified in the Sources file. If it fails you can find errors and warnings in the buildxxx.err and buildxxx.err respectively, where xxx is eithr chk or fre depending on the build environment. <P>
+
+<H3>TESTING</h3></FONT><FONT FACE="Verdana" SIZE=2><P>
+To test this driver, run Testapp.exe, a simple Win32 multithreaded console mode application. The driver will be automatically loaded and started. When you exit the app, the driver will stopped and removed.<P>
+Usage:testapp (NumberOfThreads)<P>
+<b>Note</b>: NumberOfThreads is limited to a maximum of 10 threads; the default value if run without the option is 1. The main thread waits for user input. If you press Q, the application exits gracefully; otherwise it exits the process abruptly forcing all the threads to be terminated and all pending I/Os to be canceled. Other threads perform I/O asynchronously in a loop. After every overlapped read, the thread goes into an alertable sleep and wakes as soon as completion routines is executed, when the read IRP gets completed by the driver. You should run multiple instances of the application to stress test the driver.<P>
+
+<H3>CODE TOUR</H3>
+<H4>File Manifest</H4>
+</FONT><U><PRE>File&#9;&#9;Description
+</U>
+Cancel.htm&#9;Documentation for this sample (this file).
+Cancel.c&#9;Source file of the sample driver.
+Sources&#9;	Generic file that lists source files and all the build options.
+Cancel.ini&#9;.Ini file for setting up the registry to load the driver.
+Testapp.c&#9;Source file of the test application.
+Install.c&#9;Contains functions to load/start/stop/remove the driver.
+Testapp.h&#9;Header file for common definitions and function prototypes.
+Cancel.rc&#9;Resource file that specify information such as file type, version, etc.
+Makefile&#9;This file merely indirects to the real makefile that is shared by all the driver components of the Windows NT DDK.
+</pre></FONT><P ALIGN="CENTER"><A HREF="#top"><FONT FACE="Verdana" SIZE=2>Top of page</FONT></A><FONT FACE="Verdana" SIZE=2> </P></FONT>
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=624>
+<TR><TD VALIGN="MIDDLE" BGCOLOR="#00ffff" HEIGHT=2>
+<P></TD>
+</TR>
+</TABLE>
+
+<FONT FACE="MS Sans Serif" SIZE=1><P>&copy; 1998 Microsoft Corporation</FONT><FONT FACE="Verdana" SIZE=2> </P></FONT></BODY>
+</HTML>
+

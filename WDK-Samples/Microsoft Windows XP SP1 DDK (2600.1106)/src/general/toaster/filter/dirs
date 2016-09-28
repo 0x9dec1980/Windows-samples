@@ -1,0 +1,14 @@
+DIRS=busfilter \
+     buslower  \
+     busupper  \
+     claslower \
+     clasupper \
+     devlower  \
+     devupper
+ \
+     buslower \
+     busupper \
+     claslower \
+     clasupper \
+     devlower \
+     devupper

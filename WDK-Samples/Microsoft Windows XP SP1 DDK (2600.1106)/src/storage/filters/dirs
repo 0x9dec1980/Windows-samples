@@ -1,0 +1,4 @@
+DIRS= \
+     addfilter \
+     cdaudio \
+     diskperf

@@ -1,0 +1,103 @@
+How to Obtain a Virtual Device ID Number
+=========================================
+
+Summary:
+
+In the DECLARE_VIRTUAL_DEVICE line of every VxD is the "VxD ID" field.
+This field will be either a unique number assigned to that virtual
+device, or the constant Undefined_Device_ID.
+
+Certain virtual devices for Windows must a have unique identifier.
+A VxD that calls an MS-DOS device or a terminate-and-stay-resident
+program must have an ID. An ID is also required for a VxD that provides any
+of the following:
+
+   - Service(s)
+   - a V86 mode API
+   - a protected mode API
+
+In addition, Windows provides no protection against loading a VxD using 
+Undefined_Device_ID more than once.  When Windows loads, it gets a list of 
+all virtual devices to be loaded (through the INT 2fh, AX=1605h broadcast and 
+the SYSTEM.INI file).  If a particular VxD is specified more than once and it
+uses Undefined_Device_ID, that VxD will be loaded multiple times.  If,
+however, the virtual device has its own unique ID, Windows will recognize
+the situation, inform the user, and abort the loading process (unless there
+is code in the VxD to allow Windows to continue).
+
+In order to get a unique VxD ID, the form below needs to filled out and
+returned to Microsoft.  Via electronic-mail, the form can be sent to the
+Internet address:   vxdid@microsoft.com
+This address can be reached from any service that has Internet access.
+This includes Compuserve, MCI Mail, etc.
+
+A prefix may be required to connect to InterNet. For example,
+CompuServe mail would be addressed as follows:
+
+   >INTERNET:vxdid@microsoft.com
+
+Alternately, you can fax this information to Windows DDK Product
+Support, at 1-206-93MS-FAX or mail the information to:
+
+   Windows DDK Product Support Services
+   Microsoft Corporation
+   One Microsoft Way
+   Redmond, Washington 98052-6399
+
+(E-mail is preferred and will probably have faster turn around time.)
+
+*****************************************************************************
+*****************************************************************************
+*****************************************************************************
+Virtual Device ID Request
+=========================
+
+Contact Name(s): 
+
+Phone Number(s): (    )  ___- ____
+
+CIS or Online Acct: ____________  
+
+Internet ID:_______________________________________
+    
+   Company Name: 
+        Address: 
+        Address: 
+ City/State/Zip: 
+        Country:
+# VxD's planned:
+
+
+----- Repeat following section for each VxD -----
+
+  VxD Name: _______.VXD      Virtual __________ Device
+
+  Will this VxD be loaded from TSR? Y/N ___
+
+  Will the VxD call out to a DOS TSR/device driver
+  via "INT 2Fh Call out" (INT 2Fh, AX=1607h) ? Y/N ___
+
+  Please provide estimated number of:
+  API's/Exports: V86? ___   PM? ___  
+  VxD Services? ___  
+
+  If replacing a "standard" VxD, which one:______________
+
+Purpose of VxD:
+
+
+
+
+Technical Summary (eg: IRQ hooked, I/O ports trapped, etc):
+
+
+
+
+
+In what way or with what products will this VxD be distributed?
+
+
+
+
+
+Will its API or Services be documented for other companies to call?

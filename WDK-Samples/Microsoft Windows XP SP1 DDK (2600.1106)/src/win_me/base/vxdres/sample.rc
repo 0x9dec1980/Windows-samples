@@ -1,0 +1,30 @@
+/****************************************************************************
+*                                                                           *
+* THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+* PURPOSE.                                                                  *
+*                                                                           *
+* Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+*                                                                           *
+****************************************************************************/
+
+#include <version.h>
+#define Not_VxD
+#include <vmm.h>
+
+#define VER_FILETYPE			VFT_VXD
+
+#ifdef SAMPLE_DEVICE_ID
+#define VER_FILESUBTYPE 		SAMPLE_DEVICE_ID
+#else
+#define VER_FILESUBTYPE 		UNDEFINED_DEVICE_ID
+#endif
+
+#define VER_FILEDESCRIPTION_STR 	"Sample Virtual Device (Version 1.0)"
+#define VER_INTERNALNAME_STR		"SAMPLE"
+#define VER_LEGALCOPYRIGHT_YEARS	"1994-1995"
+#define VER_LEGALCOPYRIGHT_STR          "Copyright \251 MyCorp Inc." VER_LEGALCOPYRIGHT_YEARS
+#define VER_ORIGINALFILENAME_STR	"SAMPLE.VXD"
+
+#include <common.ver>

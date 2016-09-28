@@ -1,0 +1,65 @@
+##############################################################################
+#
+#	Microsoft Confidential
+#	Copyright (C) Microsoft Corporation 2001
+#	All Rights Reserved.
+#
+#	Makefile for Permedia3 MiniVDD directory
+#                                                                          
+#############################################################################
+
+VXDNAME	= PERM3MVD
+SOURCES = perm3mvd.asm i2c.c ddkernel.c devctrl.c hardware.c 
+SOURCES	= $(SOURCES) vesa.c vesaddc.c writecmb.c mtrr.asm init.c reglog.c
+SOURCES = $(SOURCES) video.c perm3.c perm3rom.c perm3dat.c
+
+BOARD	= GLINT
+#!if "$(VERDIR)" == "debug"
+#MYCC_IS_VC60 = 1
+#!endif
+DDKROOT     = $(BASEDIR)
+MEBIN       = $(BASEDIR)\bin\win_me\bin
+MEBIN16     = $(BASEDIR)\bin\win_me\bin16
+DXDDKROOT   = $(BASEDIR)\src\win_me\display\mini
+DXSDKROOT   = $(BASEDIR)\src\win_me\display\mini
+
+ASM         = $(MEBIN)\ml
+
+ADDRC       = $(MEBIN)\adrc2vxd
+
+MYMAPSYM    = $(MEBIN)\mapsym
+
+MYCC        = cl
+LINK32      = link
+MYRC        = $(MEBIN16)\rc
+
+VERSIONHDR  = $(DDKROOT)\inc\win_me\inc16\version.h
+RCINCLUDE   = $(DDKROOT)\inc\win_me\inc16
+
+VXDDIR = ..
+
+#
+# Use WIN40COMPAT for proper DDK_VERSION so that VXD can be loaded on all Win9x
+#
+
+MYAFLAGS    = -DDX5 -D$(BOARD) -coff -DBLD_COFF -FR -nologo -W2 -Zd -c -Cx -DMASM6 -Sg -DMINIVDD=1 -DWIN98 -DPOWER_STATE_MANAGE -DWIN40COMPAT
+MYAFLAGS    = $(MYAFLAGS) -I$(VXDDIR)\..\inc -I$(VXDDIR)\..\..\mini\p3samp\inc 
+MYAFLAGS    = $(MYAFLAGS) -I$(DDKROOT)\inc\win_me
+OVERRIDE_AVXDFLAGS = $(MYAFLAGS)
+
+MYCFLAGS    = -D_X86_ -DBLD_COFF -FR -G5fyz -bzalign -W3 -Gs -nologo -Zp1 -Zl -c -Z7 -DWIN98 -DPOWER_STATE_MANAGE
+MYCFLAGS    = $(MYCFLAGS) -D$(BOARD) -DWANTVXDWRAPS -DWIN32 -DMINIVDD -DIS_32 -Oi -DWIN40COMPAT
+MYCFLAGS    = $(MYCFLAGS) -I$(VXDDIR)\..\inc
+MYCFLAGS    = $(MYCFLAGS) -I$(VXDDIR)\..\..\mini\p3samp\inc 
+MYCFLAGS    = $(MYCFLAGS) -I$(DDKROOT)\inc\win_me
+MYCFLAGS    = $(MYCFLAGS) -I$(MSVCDIR)\include -D$(C32_ROOT)\include
+
+!if "$(VERDIR)" == "retail"
+MYCFLAGS = $(MYCFLAGS) -FAcs
+!endif
+
+OVERRIDE_CVXDFLAGS = $(MYCFLAGS) -DDDFLIP_INTERVALN -DUSE_HARDWARECURSOR
+
+VXDLIBS = $(DDKROOT)\lib\win_me\vxdwraps.clb 
+!include ..\mini_vdd.mk
+

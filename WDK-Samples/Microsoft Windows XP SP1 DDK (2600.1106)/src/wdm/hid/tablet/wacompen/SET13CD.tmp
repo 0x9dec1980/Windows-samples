@@ -1,0 +1,27 @@
+TARGETNAME=wacompen
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+TARGETPATH=obj
+
+TARGETLIBS= $(DDK_LIB_PATH)\HidClass.lib
+
+!IFDEF DDKBUILDENV
+C_DEFINES=$(C_DEFINES) -DDDK_BUILD
+!ENDIF
+
+INCLUDES=   $(INCLUDES) \
+            $(DDK_INC_PATH); \
+            ..\hidpen; \
+            ..\util;
+
+SOURCES=    hidpen.c    \
+            pnp.c       \
+            ioctl.c     \
+            serial.c    \
+            oempen.c    \
+            wacompen.c  \
+            trace.c     \
+            tracedat.c  \
+            wacompen.rc \
+            errlog.c    \
+            errcodes.mc

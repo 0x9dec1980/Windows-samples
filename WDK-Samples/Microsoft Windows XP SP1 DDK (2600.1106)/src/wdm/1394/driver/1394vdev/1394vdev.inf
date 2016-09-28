@@ -1,0 +1,121 @@
+; 1394VDEV.INF -- 1394VDEV/1394DIAG device .inf for Windows 98 and Windows NT 
+
+[Version]
+signature="$CHICAGO$"
+Class=1394TestDevice
+ClassGuid={737613E5-69EA-4b96-9C2A-EEBC220F4C39}
+Provider=%Msft%
+LayoutFile=LAYOUT.INF
+CatalogFile=1394vdev.cat
+DriverVer=05/01/2001
+
+[SourceDisksNames]
+1="IEEE-1394 Test Tools"
+
+[SourceDisksFiles]
+1394api.dll=1
+1394vdev.sys=1
+1394diag.sys=1
+
+
+[DestinationDirs]
+defaultdestdir=11
+1394Core.CopyDriver=10,system32\drivers
+1394Core.CopyDll=11
+
+; =================== Class Sections ===========================
+[ClassInstall32]
+Addreg=1394DevicesClassReg
+
+[ClassInstall]
+Addreg=1394DevicesClassReg
+
+[1394DevicesClassReg]
+HKR,,,,%1394DevicesClassName%
+HKR,,Icon,,-21
+
+[Manufacturer]
+%MicrosoftMfg%=Microsoft
+
+; =================== Microsoft ========================
+
+[Microsoft]
+%V1394\1394_VIRTUAL_DEVICE.DeviceDesc%=1394VDEV,V1394\1394_VIRTUAL_DEVICE
+%1394\MICROSOFT&1394_DIAGNOSTIC_DEVICE.DeviceDesc%=1394DIAG,1394\MICROSOFT&1394_DIAGNOSTIC_DEVICE
+%1394\MICROSOFT&1394_DIAGNOSTIC_DEVICE.DeviceDesc%=1394DIAG,1394\031887&040892
+
+;
+; 1394vdev
+;
+[1394VDEV]
+AddReg=1394VDEV.AddReg
+CopyFiles=1394CORE.CopyDriver,1394CORE.CopyDll
+
+[1394VDEV.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,1394vdev.sys
+
+[1394VDEV.NT]
+CopyFiles=1394CORE.CopyDriver,1394CORE.CopyDll
+
+[1394VDEV.NT.Services]
+AddService=1394VDEV,2,1394VDEV_ServiceInstall
+
+[1394VDEV_ServiceInstall]
+DisplayName=%V1394\1394_VIRTUAL_DEVICE.DeviceDesc%
+ServiceType=1
+StartType=0
+ErrorControl=1
+ServiceBinary=%12%\1394vdev.sys
+
+;
+; 1394diag
+;
+[1394DIAG]
+AddReg=1394DIAG.AddReg
+CopyFiles=1394CORE.CopyDriver,1394CORE.CopyDll
+
+[1394DIAG.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,1394diag.sys
+
+[1394DIAG.NT]
+CopyFiles=1394CORE.CopyDriver,1394CORE.CopyDll
+
+[1394DIAG.NT.Services]
+AddService=1394DIAG,2,1394DIAG_ServiceInstall
+
+[1394DIAG_ServiceInstall]
+DisplayName=%1394\031887&040892.DeviceDesc%
+ServiceType=1
+StartType=0
+ErrorControl=1
+ServiceBinary=%12%\1394diag.sys
+
+;
+; core files
+;
+[DefaultInstall]
+CopyFiles=1394CORE.CopyDriver,1394CORE.CopyDll
+
+[1394CORE.CopyDriver]
+1394diag.sys
+1394vdev.sys
+
+[1394CORE.CopyDll]
+1394api.dll
+
+;
+; Strings
+;
+[Strings]
+Msft="Microsoft"
+MicrosoftMfg="Microsoft"
+
+1394DevicesClassName="1394 Test Devices"
+
+V1394\1394_VIRTUAL_DEVICE.DeviceDesc="1394 Virtual Device"
+1394\031887&040892.DeviceDesc="1394 Diagnostic Device"
+1394\MICROSOFT&1394_DIAGNOSTIC_DEVICE.DeviceDesc="1394 Diagnostic Device"
+
+

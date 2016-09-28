@@ -1,0 +1,33 @@
+/****************************************************************************
+*                                                                           *
+* THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+* PURPOSE.                                                                  *
+*                                                                           *
+* Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+*                                                                           *
+****************************************************************************/
+
+/** postapp.rc                                                          **/
+
+
+/* the includes required */
+    #include <windows.h>
+    #include "postapp.h"
+
+
+/* misc. resources */
+    ICON_POSTAPP    ICON    postapp.ICO
+
+
+/* the menu */
+    MENU_POSTAPP MENU
+    BEGIN
+        MENUITEM "GetVersion!",         IDM_GETVERSION
+        MENUITEM "GetAPIAddr!",         IDM_GETAPIADDR
+        MENUITEM "CallPostHost!",       IDM_CALLPOSTHOST
+    END
+
+
+/** postapp.rc **/

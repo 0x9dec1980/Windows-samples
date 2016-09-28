@@ -1,0 +1,39 @@
+;****************************************************************************
+;                                                                           *
+; THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+; KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+; IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+; PURPOSE.                                                                  *
+;                                                                           *
+; Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+;                                                                           *
+;****************************************************************************
+
+; module-definition file for winacc -- used by LINK.EXE
+
+NAME         Winacc       ; application's module name
+
+DESCRIPTION  'Sample Application for Microsoft Windows for use with VDialogD'
+
+EXETYPE      WINDOWS       ; required for all applications for Windows
+
+STUB         'WINSTUB.EXE' ; Generates error message if application
+                           ; is run without Windows
+
+;CODE can be moved in memory
+CODE  PRELOAD MOVEABLE
+
+;DATA must be MULTIPLE if program can be invoked more than once
+DATA  PRELOAD MOVEABLE MULTIPLE
+
+
+HEAPSIZE     1024
+STACKSIZE    5120          ; recommended minimum for applications for Windows
+
+
+; All functions that will be called by any Windows routine
+; MUST be exported.
+
+EXPORTS
+        MainWndProc   @1   ; name of window processing function
+        About         @2   ; name of "About" processing function

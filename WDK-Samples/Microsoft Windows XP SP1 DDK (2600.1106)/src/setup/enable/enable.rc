@@ -1,0 +1,95 @@
+/*++
+
+Copyright (c) 1999-2000  Microsoft Corporation
+
+Module Name:
+
+    enable.rc
+
+Abstract:
+
+    Resource Script for Enable
+
+Environment:
+
+    user mode only
+
+Notes:
+
+  THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+  KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+  IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+  PURPOSE.
+
+  Copyright (c) 1999-2000 Microsoft Corporation.  All Rights Reserved.
+
+
+Revision History:
+
+  10/17/99: Created Keith S. Garner
+
+--*/
+
+
+#include "resource.h"
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE    VFT_APP
+#define VER_FILESUBTYPE VFT2_UNKNOWN
+#define VER_FILEDESCRIPTION_STR     "Enable/Disable Program for Windows 2000 Drivers"
+#define VER_INTERNALNAME_STR        "Enable.exe"
+#define VER_ORIGINALFILENAME_STR    "Enable.exe"
+
+#include <common.ver>
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 250, 230
+STYLE DS_3DLOOK | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Enable and Disable Devices"
+MENU IDR_MENU1
+BEGIN
+    CONTROL         "Tree1",IDC_TREE1,"SysTreeView32",TVS_DISABLEDRAGDROP | 
+                    TVS_NOTOOLTIPS | WS_BORDER,0,0,250,230,WS_EX_CLIENTEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&Change"
+    BEGIN
+        MENUITEM "&Enable Device",              ID_CHANGE_ENABLEDEVICE
+        , GRAYED
+        MENUITEM "&Disable Device",             ID_CHANGE_DISABLEDEVICE
+        , GRAYED
+    END
+    POPUP "&Options"
+    BEGIN
+        MENUITEM "Refresh Display",             ID_FILE_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "&Show hidden devices",        ID_OPTIONS_SHOWHIDDENDEVICES
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDI_ICON1               ICON    DISCARDABLE     "ENABLE.ICO"
+

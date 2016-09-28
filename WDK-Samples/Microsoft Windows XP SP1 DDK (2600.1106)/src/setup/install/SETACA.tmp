@@ -1,0 +1,16 @@
+TARGETNAME=install
+TARGETTYPE=PROGRAM
+
+UMTYPE=console
+UMBASE=0x1000000
+
+TARGETPATH=obj
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib \
+           $(DDK_LIB_PATH)\newdev.lib 
+ 
+INCLUDES=
+SOURCES=     \
+        install.c \
+		install.rc
+

@@ -1,0 +1,27 @@
+TARGETNAME=mutohpen
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+TARGETPATH=obj
+
+TARGETLIBS= $(DDK_LIB_PATH)\HidClass.lib
+
+!IFDEF DDKBUILDENV
+C_DEFINES=$(C_DEFINES) -DDDK_BUILD
+!ENDIF
+
+INCLUDES=   $(INCLUDES) \
+            $(DDK_INC_PATH); \
+            ..\hidpen; \
+            ..\util;
+
+SOURCES=    hidpen.c    \
+            pnp.c       \
+            ioctl.c     \
+            serial.c    \
+            oempen.c    \
+            mutohpen.c  \
+            trace.c     \
+            tracedat.c  \
+            mutohpen.rc \
+            errlog.c    \
+            errcodes.mc

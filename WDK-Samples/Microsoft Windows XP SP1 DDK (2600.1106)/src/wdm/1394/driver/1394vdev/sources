@@ -1,0 +1,19 @@
+TARGETNAME=1394VDEV
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+DRIVERTYPE=WDM
+
+C_DEFINES=-DDRIVER
+
+USE_MAPSYM=1
+
+USER_C_FLAGS=/FAcs
+
+INCLUDES=..\..\inc;..\common;
+
+SOURCES= \
+        1394vdev.c \
+        1394vdev.rc \
+        ioctl.c \
+        pnp.c \
+        power.c

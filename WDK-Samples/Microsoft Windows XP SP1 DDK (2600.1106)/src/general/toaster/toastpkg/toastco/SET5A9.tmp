@@ -1,0 +1,22 @@
+TARGETNAME=tostrco2
+TARGETPATH=obj
+TARGETTYPE=DYNLINK
+DLLENTRY=DllInitialize
+
+C_DEFINES=-DUNICODE -D_UNICODE
+
+SOURCES= toastco.c toastco.rc
+
+TARGETLIBS= \
+       $(SDK_LIB_PATH)\setupapi.lib  \
+       $(SDK_LIB_PATH)\user32.lib \
+       $(SDK_LIB_PATH)\kernel32.lib \
+       $(SDK_LIB_PATH)\comctl32.lib \
+       $(SDK_LIB_PATH)\advapi32.lib
+
+UMTYPE=windows
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+

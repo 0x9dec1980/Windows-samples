@@ -1,0 +1,3 @@
+DIRS=enum   \
+     notify \
+     toast

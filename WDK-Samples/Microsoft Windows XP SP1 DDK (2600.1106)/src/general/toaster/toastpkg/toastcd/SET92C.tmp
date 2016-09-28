@@ -1,0 +1,12 @@
+[AutoRun]
+open=i386\toastva.exe
+icon=i386\toastva.exe,0
+
+[AutoRun.i386]
+open=i386\toastva.exe
+
+[AutoRun.ia64]
+open=ia64\toastva.exe
+
+[DeviceInstall]
+DriverPath=\

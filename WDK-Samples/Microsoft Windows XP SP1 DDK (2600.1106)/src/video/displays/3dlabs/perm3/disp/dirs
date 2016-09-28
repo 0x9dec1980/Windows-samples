@@ -1,0 +1,6 @@
+DIRS=dx    \
+     gdi
+
+ \
+     dx \
+     gdi

@@ -1,0 +1,26 @@
+;****************************************************************************
+;                                                                           *
+; THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+; KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+; IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+; PURPOSE.                                                                  *
+;                                                                           *
+; Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+;                                                                           *
+;****************************************************************************
+
+NAME        POSTAPP
+
+DESCRIPTION 'VPostD Sample VxD for Windows'
+
+EXETYPE     WINDOWS
+
+STUB        'WINSTUB.EXE'
+
+CODE        LOADONCALL MOVEABLE
+DATA        LOADONCALL MOVEABLE MULTIPLE
+
+HEAPSIZE    4196
+STACKSIZE   5120
+
+EXPORTS     WndProc

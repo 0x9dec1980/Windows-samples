@@ -1,0 +1,23 @@
+TARGETNAME=enable
+TARGETTYPE=PROGRAM
+
+UMTYPE=windows
+UMBASE=0x1000000
+UMENTRY=winmain
+
+TARGETPATH=obj
+
+TARGETLIBS=$(SDK_LIB_PATH)\setupapi.lib \
+           $(SDK_LIB_PATH)\comctl32.lib \
+		   $(SDK_LIB_PATH)\cfgmgr32.lib
+
+
+INCLUDES=
+ 
+SOURCES=     \
+        enable.c \
+		enable.rc \
+		debug.c \
+		config.c \
+		setupdi.c
+

@@ -1,0 +1,9 @@
+DIRS=bus            \
+     func           \
+     exe            \
+     coinstaller    \
+     classinstaller \
+     filter         \
+     toastmon       \
+     toastpkg
+

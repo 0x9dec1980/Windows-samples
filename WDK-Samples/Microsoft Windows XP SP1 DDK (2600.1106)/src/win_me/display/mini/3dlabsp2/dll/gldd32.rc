@@ -1,0 +1,38 @@
+
+#include <version.h>
+
+#ifndef WIN32
+#undef  VERSION
+#define VERSION                     "4.12.01.0000"
+#endif
+#undef VER_PRODUCTVERSION_STR     
+#undef VER_PRODUCTVERSION        
+#undef VER_PRODUCTVERSION_BUILD   
+#undef VER_PRODUCTVERSION_DW       
+#undef VER_PRODUCTVERSION_W        
+#undef VER_COPYRIGHT_CURRENT_YEAR  
+
+#define VER_PRODUCTVERSION_STR      "4.12.01.0000\0"
+#define VER_PRODUCTVERSION          4,12,01,0000
+#define VER_PRODUCTVERSION_BUILD    0000
+#define VER_PRODUCTVERSION_DW       (0x040c010000 | 0000>
+#define VER_PRODUCTVERSION_W        (0x040c)
+#define VER_COPYRIGHT_CURRENT_YEAR  "2000"
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_DISPLAY
+#define VER_FILEDESCRIPTION_STR         "gldd32 Windows 95 Display Driver"
+#define VER_INTERNALNAME_STR            "gldd32"
+#define VER_ORIGINALFILENAME_STR        "gldd32.dll"
+#define VER_LEGALCOPYRIGHT_YEARS        "1992-" VER_COPYRIGHT_CURRENT_YEAR
+
+#include <common.ver>
+
+//
+// we need to include the OEM resources to get LapLink to work
+//
+
+1       oembin      PRELOAD     "..\\..\\res\\config.bin"
+fonts   oembin      PRELOAD     "..\\..\\res\\fonts.bin"
+2       oembin                  "..\\..\\res\\colortab.bin"
+

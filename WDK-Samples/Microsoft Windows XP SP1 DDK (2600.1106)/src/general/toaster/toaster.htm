@@ -1,0 +1,475 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-
+1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Toaster</TITLE>
+</HEAD>
+<BODY LINK="#0000ff">
+
+<FONT FACE="Verdana" SIZE=5><H2>Toaster</H2>
+</FONT><FONT FACE="Verdana" SIZE=2>
+
+
+<H3>SUMMARY</H3></FONT><FONT FACE="Verdana" SIZE=2><P>
+The Toaster sample provides a starting point for Windows® 2000/XP driver development. It contains annotated code to illustrate the functionality of bus driver, function driver, assorted class, device, and bus filter drivers, class-installer, and device-specific co-installer for a hypothetical Toaster bus and its devices. 
+
+
+<H3>Introduction to a New Driver Model</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+Every device driver stack for a Plug and Play (PnP) device under the Microsoft® Windows® 2000/XP operating system typically comprises a bus driver, a function driver, and from zero to one or more filter drivers. These drivers must support Plug and Play, Power Management, and Windows Management Instrumentation (WMI) to provide a better user experience and greater satisfaction. 
+
+ <p>
+
+These buzzwords make sense if you have developed a driver for Windows 95 or Windows 98. But, a developer who has only worked on Windows NT® drivers might wonder: What are these things? Why do I need to worry about them? How do I implement them?
+
+ <p>
+
+Imagine a system with a new type of PnP I/O bus called a toaster bus. A controller chip on the motherboard initializes and manages the bus. The bus has a couple of ports jutting out of the box into which you can plug your toasters.
+<p>
+ 
+
+To provide support for this bus on Windows NT 4.0, you must modify the HAL (hardware abstraction layer) to recognize and initialize the I/O bus during system boot and you must provide a set of HAL functions for scanning the bus and accessing the configuration space of the devices by other drivers. Next, you must write drivers for every type of toaster device that load along with the system, and then use the exported HAL functions to scan the bus to detect the device, read the I/O resource requirements, and configure and initialize the device. These drivers are loaded regardless of whether or not a particular toaster is plugged in.  
+
+ <p>
+
+If another driver requires the I/O resources claimed by your driver, there is no resource distribution mechanism on Windows NT 4.0 to instruct the driver to relinquish them and use other resources if possible. If you want to expose instrumentation data or report some exceptional events to user mode, you must provide your own interface and custom applications. There is no generic interface like WMI and no power management.
+
+ 
+<P>
+To support this bus and its devices under Windows 2000/XP, however, you don’t have to modify the HAL or export a new set of functions. All you need to do is write a bus driver that has knowledge of bus architecture, identifies (enumerates) devices on the bus, reads their resource requirements, and configures them. This driver model also makes the operating system independent of its I/O bus. This means you don’t need help from Microsoft if you design a new I/O bus to modify the HAL. Then, you write function drivers to control individual devices connected to the bus. Later on, one can write one or more filter drivers to add or modify the features supported by bus, a specific device or class of devices. There can be any number of lower-level or upper-level filter drivers for a bus, a device, or a class of devices. 
+
+ 
+<p>
+The Windows 2000/XP DDK documentation explains these new concepts and features by providing background information and describing how to implement them in your driver(s). This article and the accompanying sample drivers package provide annotated code samples that illustrate the functionality of various drivers without getting into detailed hardware specifics. These samples will help you start coding right away.
+
+ <P>
+
+To make the sample code closer to a real-world driver, I have defined a new class of devices called the TOASTER class and wrote a bus driver, function driver, and all possible class, device, and bus filter drivers for this hypothetical TOASTER bus and its devices. I have also provided a sample of coinstaller DLL to show how you can parse a custom section from an INF file and perform some special operations before and after the installation of a device, and how you can create FriendlyName for a device. The function and bus driver also show how you can provide power manager and WMI support.
+
+ <P>
+
+You can learn the implementation details of these sample drivers by looking at the code and reading the Windows 2000/XP DDK documentation. The rest of this article discusses the contents of the package that accompanies this article and how to install, build, and test these drivers. This article also briefly examines the various registry entries created by the system to setup and load the drivers.  
+
+ 
+<P>
+
+<B>Note:</B>  This package is mostly intended to demonstrate WDM concepts for educational purposes. It is not to be used in a production environment in its entirety. One may not require all of the components of the package or all the features demonstrated in a single component to have a working driver. <P>
+
+
+ 
+<H3>Introduction to the Toaster Sample
+</H3></FONT><FONT FACE="Verdana" SIZE=2><P>
+
+This sample driver package contains <I>bus</I>, <I>func</I>, <I>filter</I>, <I>exe</I>, <I>inc</I>, <I>coinstaller</I>, <I>classinstaller</I>, <I>inf</I>, <I>toastmon</I>, and <I>toastpkg</I> directories. The following summary describes the directories and key files.
+
+ <P>
+
+<I>bus</I>
+
+ <BLOCKQUOTE> This directory contains the source code of the toaster bus driver (Busenum.sys). The job of this driver is to service the TOASTER bus controller, enumerate devices that are plugged in, and perform bus-level power management. The bus driver supports D0 and D3 power states. It also has a WMI interface.</BLOCKQUOTE>
+
+ <P>
+
+<I>func</I>
+
+ <BLOCKQUOTE> This directory contains the source code of the function driver (Toaster.sys) for standard toaster devices. This driver owns the power policy for the toaster device and supports D0 and D3 power states. It also provides WMI interface.</BLOCKQUOTE>
+
+ 
+
+<I>inc</I>
+
+ <BLOCKQUOTE>This directory contains headers files that are shared among drivers and applications.
+</BLOCKQUOTE>
+ 
+
+<I>exe </I>
+
+ <BLOCKQUOTE>This directory contains three subdirectories <I>notify</I>, <I>enum</I>, and <I>toast</I>, with files to produce <I>notify.exe</I>, <I>enum.exe</I> and <I>toast.exe</I> (user-mode console applications):
+
+ 
+<UL>
+    
+
+    <LI>
+    <I>Enum.exe</I> is a user-mode enumerator, a simple console application. Because the toaster bus is not real, you need to have a mechanism to tell the bus driver when you plug in, unplug, and eject devices from the system. This application serves that purpose. Typically it’s written as a control panel applet for non-Plug and Play (legacy) devices. For example, <I>game.cpl</I>. 
+
+ <p>
+
+Usage: Enum [-a SerialNo] Plugs in a device.  SerialNo. must be greater than zero.<br>
+
+                     [-r SerialNo or 0] Unplugs device(s) - specify 0 to unplug all the devices enumerated so far.<br>
+
+
+                          [-e SerialNo or 0] Ejects device(s) - specify 0 to eject all the devices enumerated so far.<p>
+By design every toaster device will have a globally unique serial number.
+<p>
+
+     <LI>
+   <I>Toast.exe</I>: This is a user-mode console application to control the toaster. <p>
+   <LI>
+   <I>Notify.exe</I>: This GUI application not only combines the functionality of Enum.exe and toast.exe but also shows how to handle PnP notification in user-mode. You should install the coinstaller for the toaster device by using toastco.inf to get meaninful display of PnP notification. Another cool feature of this exe is that you can specify some other HW ID (Instead of the default toaster device id) and cause other drivers to be loaded as a function driver. This is useful for testing prototype drivers to check whether the PnP code works. 
+
+ </BLOCKQUOTE>
+
+</UL>
+
+<I>filter</I>
+<p>
+ This directory contains six different subdirectories, each producing one of the following drivers from a common source file (<I>filter.c</I>): <p>
+<UL>
+   
+<LI>
+        Class upper filter (<I>clsupper.sys</I>)
+
+<LI>
+        Class lower filter (<I>clslower.sys</I>)
+
+<LI>
+        Device upper filter (<I>devupper.sys</I>)
+
+<LI>
+        Device lower filter (<I>devlower.sys</I>)
+
+<LI>
+        Bus FDO upper filter (<I>bfdoupr.sys</I>) 
+
+<LI>
+         Bus FDO lower filter (<I>bfdolwr.sys</I>) 
+
+ </UL>
+
+<I>coinstaller</I>
+
+ <BLOCKQUOTE>This directory contains source code of the device-specific coinstaller (<I>tostrco1.dll</I>). The DDK documentation has a good overview of coinstaller and its operation. The coinstaller demonstrates how to create a FriendlyName for a device based on its unique instance id. In this sample, during enumeration, the bus driver provides the serial number in the UINumber field of the device capabilities. The FriendlyName is required to uniquely identify multiple devices of the same interface class. The coinstaller also shows how to open an INF file and parse a custom section.
+</BLOCKQUOTE>
+ 
+<I>classinstaller</I>
+
+ <BLOCKQUOTE>This directory contains source code of the class-installer (<I>tostrcls.dll</I>). The DDK documentation has a good overview of classinstaller and its operation. This dummy class-installer included to provide a class icon for all the TOASTER Class devices. It is copied to the system32 directory when the class is installed for the first time in the system.
+</BLOCKQUOTE>
+
+<I>inf </I>
+<p>
+ This directory contains following files:
+<p>
+ 
+<UL>
+  <LI>
+       <I>bus.inf</I>: This .inf installs the <I>basenum.sys</I> and sets up the registry.
+
+ 
+
+<LI>
+       <I>toaster.inf</I>: This .inf creates <B>Toaster</B> class, installs <I>toaster.sys</I> and sets up the registry.
+
+<LI>
+       <I>toastco.inf</I>: This .inf file is functionally similar to toaster.inf but also installs the coinstaller.
+ 
+
+<LI>
+       <I>busf.inf</I> and <I>toasterf.inf</I>: These two .inf files are functionally similar to the above INF files but also install all the previously mentioned filter drivers. 
+
+ 
+
+
+ 
+
+<LI>
+        <I>filter.inf</I>: This .inf installs just a device upper filter for the toaster device. Please read the Filter section in this article on how to use this .inf file.
+
+</UL>
+
+<p>
+
+
+<I>toastmon </I>
+<BLOCKQUOTE>
+This has the source of a root-enumerated driver called <I>toastmon.sys</I>. More information on this is covered later in the <B>Toastmon</B> section. 
+</BLOCKQUOTE> 
+
+<I>toastpkg</I>
+<BLOCKQUOTE>
+This has the sources for an integrated device installation solution that illustrates how to provide support for the various user approaches to adding new hardware, while providing optional value-added software, etc.  More information is contained in the <A HREF="toastpkg\Toastpkg.htm">toastpkg.htm</A> file in the <I>toastpkg</I> directory.
+</BLOCKQUOTE> 
+
+<H3>BUILDING THE SAMPLE</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+To build the sample drivers, you must first set up the DDK environment on your host machine. The “Installation and Release Notes” in the Windows 2000/XP DDK has a complete description on how to do this.
+
+ <OL>
+
+
+ <LI>
+     Run the build –ceZ command in the Toaster directory to build <I>busenum.sys</I>, <I>toaster.sys</I>, <I>enum.exe</I>, <I>toast.exe</I>, <I>tostrco1.dll</I>, <I>tostrcls.dll</I>, and the six filter drivers mentioned previously. 
+
+ 
+
+ <LI>
+     Copy all the .sys, .exe, .dll, a bus driver INF file (bus.inf), and a toaster device INF file (toastco.inf) to a floppy disk or a temporary directory on the target system.
+</OL>
+  <P>
+
+
+<H3>INSTALLING   
+ THE SAMPLE</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+
+First install the bus driver. To install the bus driver on Windows 2000: <p>
+
+<OL>
+  
+<LI>
+      Double-click the ‘Add/Remove Hardware’ wizard in Control Panel.
+
+<LI>
+      Choose the ‘Add/Troubleshoot a device’ and click Next.
+
+<LI>
+      Select ‘Add a new device’ from the list and then click Next.
+
+<LI>
+      Select ‘No, I Want to Select the Hardware from a list’.
+
+<LI>
+      Select ‘System Devices’ and then click Next. 
+
+<LI>
+      Click ‘Have Disk’ and point to the directory that has the bus INF file, and choose the appropriate INF. The <I>bus.inf</I> file (“Toaster Bus Enumerator”) just installs the bus enumerator. The <I>busf.inf</I> file (“Toaster Bus Enumerator with Filters”) installs the bus enumerator and its upper and lower device filters.
+
+
+ </OL>
+
+To install the bus driver on Windows XP: <p>
+
+<OL>
+  
+<LI>
+      Double-click the ‘Add Hardware’ wizard in Control Panel.
+
+<LI>
+      Click ‘Next’.
+
+<LI>
+      Select 'Yes, I have already connected the hardware'.
+<LI>
+      Select ‘Add a new hardware device’ from the list and then click Next.
+
+<LI>
+      Select ‘Install the hardware that I manually select from a list(Advanced)’.
+
+<LI>
+      Select ‘System Devices’ and then click Next. 
+
+<LI>
+      Click ‘Have Disk’ and point to the directory that has the bus INF file, and choose the appropriate INF. The <I>bus.inf</I> file (“Toaster Bus Enumerator”) just installs the bus enumerator. The <I>busf.inf</I> file (“Toaster Bus Enumerator with Filters”) installs the bus enumerator and its upper and lower device filters.
+
+ </OL>
+<p>
+The system copies the <I>busenum.sys</I> file to the <I>%Systemroot%\system32\drivers</I> directory and sets up the following registry keys to represent the bus driver to the PnP manager:
+<p>
+
+ 
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4D36E97D-E325-11CE-BFC1-08002BE10318}\nnnn 
+<br>
+  // nnnn is the instance number of this System Class driver on the system.
+<p>
+ 
+
+It copies the INF file as OEM.n.INF, where n is a zero-based number, to the system INF directory. It also creates the standard Services keys to load the driver:
+<p>
+ 
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\busenum. 
+<p>
+ 
+
+ 
+
+Once installed the system creates device registry keys (Hardware keys) under:
+
+ <p>
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\Root\SYSTEM\nnnn
+<br>
+  // nnnn is the instance number of this System Class driver on the system.
+<p>
+ 
+
+Another quick way to install the bus driver without going through so many mouse clicks would be to use the Installer sample application present in the <I>ntddk\src\general\setup\install</I> directory. This sample allows you to root-enumerate a driver with one simple command. Please read the help file included in the sample on how to build and use the application to install this driver. 
+
+<p>
+
+
+<H3>RUNNING THE SAMPLE</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+Once the Toaster bus driver is installed and started by the PnP Manager, you can run the <I>enum.exe</I> or Notify.exe application from the command prompt to simulate plug in, unplug or ejection of toaster devices on the system. Both these applications basically send an I/O control (IOCTL) to the bus driver with the user provided globally unique serial number and Hardware ID of the device, and trigger the entire enumeration process. The PnP manager takes the ID information provided by the bus driver and searches the system INF directory to find a matching INF file. If it doesn't find a suitable INF file (that would be the case when you install for the first time) it prompts the user to specify an INF file. At this point, you can pick one of the three INF files (toaster.inf, toastco.inf or toasterf.inf) to be the device INF file. If you are testing this sample for the first time, you should choose toastco.inf. 
+<P>
+You can remove/eject a single device by giving its serial number or remove/eject all the devices by specifying 0 (zero) as the serial number of the device. 
+
+ <p>
+
+<B>To plug in a device (or rather simulate a device arrival):
+</B>
+ 
+<BLOCKQUOTE>
+C:\>enum -p 1
+</BLOCKQUOTE>
+ 
+
+<B>To unplug a device:
+</B>
+ 
+
+<BLOCKQUOTE>C:\>enum -u 1
+</BLOCKQUOTE>
+ 
+
+<B>To eject a device:
+</B>
+ 
+
+<BLOCKQUOTE>C:\>enum -e 1
+</BLOCKQUOTE>
+ 
+
+To test a plugged in device, you can use the <I>toast.exe</I> application. This application basically enumerates all the toaster class devices, displays its properties such as FriendlyName, InstanceId, and opens the last enumerated device to perform a read operation and send a DeviceIoControl to the device depending on the user command line option. 
+
+ <p>
+
+If you invoke without any option it basically opens the last enumerated interface and prompts you to initiate a Read operation in a loop. You press any key to continue the read loop or press ‘q’ to break out of the loop. If you use the –h option it opens the last enumerated interface and sends a DeviceIoControl to hide the device from the Device Manager before performing read.
+
+ <p>
+
+Usage: Toast <–h> {-h option causes the device to hide from Device Manager UI}
+
+ <p>
+
+Both these applications use the SetupDi functions to enumerate and open the device interfaces. These functions are documented in the Windows 2000/XP DDK documentation.
+
+
+<p>
+
+<H3>Filters</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+You can install device filter drivers by specifying LowerFilters or UpperFilters to the Hardware registry key (HKLM\ \SYSTEM\CurrentControlSet\Enum) for the device; and class filters by specifying them to the Software registry key (HKLM\SYSTEM\CurrentControlSet\Control\Class\<GUID>) for the device class. 
+<p>
+Because this is an MULTI_SZ string, you can specify more than one filter for the device or class. If you specify more than one, the load order is in the order they are listed – the filter at the end of list is the topmost driver in the stack, and so on. However filter drivers should not be written to rely on this order, because the load order can change and other filter drivers may or may not be there in the group. You can install device specific filters by using a [.HW] section that specifies AddReg section, and class specific filters by specifying AddReg section from the base install section in your INF file. The <I>busf.inf</I> and <I>toasterf.inf</I> show how to do that. 
+<p>
+ 
+
+The <I>filter.inf</I> file is a special .inf file that enables you to install a filter driver for the toaster device after it has been installed and enumerated. To install an upper device filter for a toaster device on Windows 2000: 
+
+ <OL>
+  
+<LI>
+      Enumerate a toaster device.
+
+<LI>
+      Open the Device Manager. 
+
+<LI>
+      Open the Properties of the Toaster device for which you want to install filter.
+
+<LI>
+       Click the Driver tab, and then click Update Driver. 
+
+<LI>
+      Follow the wizard's prompts, and when prompted, select the Display a list of the known drivers option. 
+
+<LI>
+      Click Have Disk and point to the location of the filter.inf file. 
+
+<LI>
+      Proceed through the rest of the install. 
+</OL>
+
+ <p>
+
+
+<H3>Device Parameters Subkey</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+
+Currently the sample doesn’t show how to read Device Parameters value from the registry. This feature will be added in the future updates of this driver.
+<P>
+Under Windows 2000/XP, the configuration information is not stored under the Services key of the driver. It is stored in three different places, depending on whether it’s device instance specific, driver specific or interface specific. 
+
+ <P>
+
+You can store device-specific configuration information under the Hardware key of that particular device instance (HKLM\SYSTEM\CCS\Enum\&lt;DeviceId&gt;\&lt;VendorId&gt;\&lt;InstanceId&gt;\Device Parameters) and driver-specific information under the Software key (HKLM\SYSTEM\CCS\Control\Class\&lt;GUID&gt;\&lt;driver-instance-id&gt;\ Device Parameters) of the driver by using <B>IoOpenDeviceRegistryKey</B> function. 
+
+ <P>
+
+You can store interface-specific information under the device-interface key (HKLM\SYSTEM\CurrentControlSet\Control\DeviceClasses\{GUID}\&lt;SymbolicLinkName&gt;\Device Parameters) by calling <B>IopenDeviceInterfaceRegistryKey</B> with the symbolic link name of the device interface. Both of these functions return the handle to the <B>Device Parameters</B> subkey. For legacy support, you can continue to store information under the Services key.
+
+<P>
+<H3>Power Management</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+
+In this example, the function driver acts as a power policy owner for the toaster device and supports DO and D3 power mode. You can use the same power logic to implement power policy in the bus driver. You need a system with an ACPI-compatible BIOS in order to test the power management code. If you have an ACPI compatible system, you will see a Standby option in the Shutdown submenu.
+
+ 
+<P>
+
+<H3>WMI</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+A WMI interface is provided to both the function and bus driver. The WMI library is used to handle WMI IRPs. The MOF files, which define WMI data and event blocks, are compiled along with the driver and included in the driver’s binary image. 
+
+ <P>
+
+To test the WMI interface, first install the WMI SDK on your system. Then, use either <I>wbemtest.exe</I> or CIM Studio to enumerate the instances registered by these drivers. 
+
+ <P>
+
+For example, to see the data exported by the Toaster driver:  <P>
+
+
+<OL>
+ 
+ <LI>
+     Run <I>wbemtest.exe</I>. 
+
+ <LI>
+      Connect to “root\WMI” class. 
+
+ <LI>
+      Click Enum Instances. 
+
+ <LI>
+     Type ToasterDeviceInformation and press Enter. 
+
+ </OL>
+
+You should see the toaster device instances. The DebugPrintLevel data in both the drivers have been made read/write, so that it is possible to dynamically change the value of these variables with the WMI application and control the driver debug trace seen on Windbg.
+
+<p>
+You can also generate a HTML script using the bmf file (wmimofck -whtml toaster.bmf) and test both the data and event blocks exported by the driver. The toaster driver fires a ToasterNotifyDeviceArrival event every time a device is plugged in and started successfully. For more information on WMI testing, check http://support.microsoft.com/support/kb/articles/q252/6/79.asp. The function driver's WMI handler also responds to WMI queries from Device Manager to provide Power Manangement tab in the device properties dialog.
+
+ <P>
+
+
+<P>
+<H3>Toastmon</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+
+This driver demonstrates how to handle PnP notification in kernel-mode. Using the toastmon.inf file you can install this driver with Add Hardware wizard. This driver gets root-enumerated and in it's AddDevice it registers for device arrival notification on the Toaster interface class. When you plugin a toaster device, the system calls the notification handler and the driver opens the associated device and registers for Device Change notification. When you disable/unplug/eject the toaster device the driver notification handler is called to close handle to the device. The technique demonstrated in this sample is useful when you write a driver that wants to talk to a device that your driver is not controlling.
+ 
+<P>
+
+</FONT><P ALIGN="CENTER"><A HREF="#top"><FONT FACE="Verdana" SIZE=2>Top of page</FONT></A><FONT FACE="Verdana" SIZE=2> </P></FONT>
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=624>
+<TR><TD VALIGN="MIDDLE" BGCOLOR="#00ffff" HEIGHT=2>
+<P></TD>
+</TR>
+</TABLE>
+
+<FONT FACE="MS Sans Serif" SIZE=1><P>&copy; Microsoft Corporation 1999</FONT><FONT FACE="Verdana" SIZE=2> </P></FONT></BODY>
+</HTML>
+

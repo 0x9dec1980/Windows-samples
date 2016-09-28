@@ -1,0 +1,9 @@
+DIRS= \
+     atmsmple \
+     coisdn \
+     e100bex \
+     isdnwan \
+     mux \
+     ndisuio \
+     passthru \
+     tbatm155
