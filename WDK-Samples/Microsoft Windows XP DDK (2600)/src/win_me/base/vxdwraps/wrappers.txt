@@ -1,0 +1,280 @@
+*****************************************************************************
+*                                                                           *
+* THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY     *
+* KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE       *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR     *
+* PURPOSE.                                                                  *
+*                                                                           *
+* Copyright (C) 1993-95  Microsoft Corporation.  All Rights Reserved.       *
+*                                                                           *
+*****************************************************************************
+
+CONFIGMG
+--------
+cm02z.asm:      _CONFIGMG_Initialize
+cm03z.asm:      _CONFIGMG_Locate_DevNode
+cm04z.asm:      _CONFIGMG_Get_Parent
+cm05z.asm:      _CONFIGMG_Get_Child
+cm06z.asm:      _CONFIGMG_Get_Sibling
+cm07z.asm:      _CONFIGMG_Get_Device_ID_Size
+cm08z.asm:      _CONFIGMG_Get_Device_ID
+cm09z.asm:      _CONFIGMG_Get_Depth
+cm0az.asm:      _CONFIGMG_Get_Private_DWord
+cm0bz.asm:      _CONFIGMG_Set_Private_DWord
+cm0cz.asm:      _CONFIGMG_Create_DevNode
+cm0dz.asm:      _CONFIGMG_Query_Remove_SubTree
+cm0ez.asm:      _CONFIGMG_Remove_SubTree
+cm0fz.asm:      _CONFIGMG_Register_Device_Driver
+cm10z.asm:      _CONFIGMG_Register_Enumerator
+cm11z.asm:      _CONFIGMG_Register_Arbitrator
+cm12z.asm:      _CONFIGMG_Deregister_Arbitrator
+cm13z.asm:      _CONFIGMG_Query_Arbitrator_Free_Size
+cm14z.asm:      _CONFIGMG_Query_Arbitrator_Free_Data
+cm15z.asm:      _CONFIGMG_Sort_NodeList
+cm16z.asm:      _CONFIGMG_Yield
+cm17z.asm:      _CONFIGMG_Lock
+cm18z.asm:      _CONFIGMG_Unlock
+cm19z.asm:      _CONFIGMG_Add_Empty_Log_Conf
+cm1az.asm:      _CONFIGMG_Free_Log_Conf
+cm1bz.asm:      _CONFIGMG_Get_First_Log_Conf
+cm1cz.asm:      _CONFIGMG_Get_Next_Log_Conf
+cm1dz.asm:      _CONFIGMG_Add_Res_Des
+cm1ez.asm:      _CONFIGMG_Modify_Res_Des
+cm1fz.asm:      _CONFIGMG_Free_Res_Des
+cm20z.asm:      _CONFIGMG_Get_Next_Res_Des
+cm21z.asm:      _CONFIGMG_Get_Performance_Info
+cm22z.asm:      _CONFIGMG_Get_Res_Des_Data_Size
+cm23z.asm:      _CONFIGMG_Get_Res_Des_Data
+cm24z.asm:      _CONFIGMG_Process_Events_Now
+cm25z.asm:      _CONFIGMG_Create_Range_List
+cm26z.asm:      _CONFIGMG_Add_Range
+cm27z.asm:      _CONFIGMG_Delete_Range
+cm28z.asm:      _CONFIGMG_Test_Range_Available
+cm29z.asm:      _CONFIGMG_Dup_Range_List
+cm2az.asm:      _CONFIGMG_Free_Range_List
+cm2bz.asm:      _CONFIGMG_Invert_Range_List
+cm2cz.asm:      _CONFIGMG_Intersect_Range_List
+cm2dz.asm:      _CONFIGMG_First_Range
+cm2ez.asm:      _CONFIGMG_Next_Range
+cm2fz.asm:      _CONFIGMG_Dump_Range_List
+cm30z.asm:      _CONFIGMG_Load_DLVxDs
+cm31z.asm:      _CONFIGMG_Get_DDBs
+cm32z.asm:      _CONFIGMG_Get_CRC_CheckSum
+cm33z.asm:      _CONFIGMG_Register_DevLoader
+cm34z.asm:      _CONFIGMG_Reenumerate_DevNode
+cm35z.asm:      _CONFIGMG_Setup_DevNode
+cm36z.asm:      _CONFIGMG_Reset_Children_Marks
+cm37z.asm:      _CONFIGMG_Get_DevNode_Status
+cm38z.asm:      _CONFIGMG_Remove_Unmarked_Children
+cm39z.asm:      _CONFIGMG_ISAPNP_To_CM
+cm3az.asm:      _CONFIGMG_CallBack_Device_Driver
+cm3bz.asm:      _CONFIGMG_CallBack_Enumerator
+cm3cz.asm:      _CONFIGMG_Get_Alloc_Log_Conf
+cm3dz.asm:      _CONFIGMG_Get_DevNode_Key_Size
+cm3ez.asm:      _CONFIGMG_Get_DevNode_Key
+cm3fz.asm:      _CONFIGMG_Read_Registry_Value
+cm40z.asm:      _CONFIGMG_Write_Registry_Value
+cm41z.asm:      _CONFIGMG_Disable_DevNode
+cm42z.asm:      _CONFIGMG_Enable_DevNode
+cm43z.asm:      _CONFIGMG_Move_DevNode
+cm44z.asm:      _CONFIGMG_Set_Bus_Info
+cm45z.asm:      _CONFIGMG_Get_Bus_Info
+cm46z.asm:      _CONFIGMG_Set_HW_Prof
+cm47z.asm:      _CONFIGMG_Recompute_HW_Prof
+cm48z.asm:      _CONFIGMG_Query_Change_HW_Prof
+cm49z.asm:      _CONFIGMG_Get_Device_Driver_Private_DWord
+cm4az.asm:      _CONFIGMG_Set_Device_Driver_Private_DWord
+cm4bz.asm:      _CONFIGMG_Get_HW_Prof_Flags
+cm4cz.asm:      _CONFIGMG_Set_HW_Prof_Flags
+cm4dz.asm:      _CONFIGMG_Read_Registry_Log_Confs
+cm4ez.asm:      _CONFIGMG_Run_Detection
+cm4fz.asm:      _CONFIGMG_Call_At_Appy_Time
+cm50z.asm:      _CONFIGMG_Fail_Change_HW_Prof
+cm51z.asm:      _CONFIGMG_Set_Private_Problem
+cm52z.asm:      _CONFIGMG_Debug_DevNode
+cm53z.asm:      _CONFIGMG_Get_Hardware_Profile_Info
+cm54z.asm:      _CONFIGMG_Register_Enumerator_Function
+cm55z.asm:      _CONFIGMG_Call_Enumerator_Function
+cm56z.asm:      _CONFIGMG_Add_ID
+cm57z.asm:      _CONFIGMG_Find_Range
+cm58z.asm:      _CONFIGMG_Get_Global_State
+cm59z.asm:      _CONFIGMG_Broadcast_Device_Change_Message
+cm5az.asm:      _CONFIGMG_Call_DevNode_Handler
+cm5bz.asm:      _CONFIGMG_Remove_Reinsert_All
+cm5cz.asm:      _CONFIGMG_Change_DevNode_Status
+cm5dz.asm:      _CONFIGMG_Reprocess_DevNode
+cm5ez.asm:      _CONFIGMG_Assert_Structure
+
+
+IOS
+---
+ios01z.asm:     IOS_Requestor_Service
+
+SHELL
+-----
+shell01z.asm:   _SHELL_CallAtAppyTime
+shell02z.asm:   _SHELL_QueryAppyTimeAvailable
+shell03z.asm:   _SHELL_LocalAllocEx
+shell04z.asm:   _SHELL_LocalFree
+shell05z.asm:   _SHELL_CallDll
+shell06z.asm:   _SHELL_BroadcastSystemMessage
+shell07z.asm:   _SHELL_HookSystemBroadcast
+shell08z.asm:   _SHELL_UnhookSystemBroadcast
+shell09z.asm:   _SHELL_CancelAppyTimeEvent
+shell0az.asm:   _SHELL_LoadLibrary
+shell0bz.asm:   _SHELL_FreeLibrary
+shell0cz.asm:   _SHELL_GetProcAddress
+shell0dz.asm:   SHELL_SYSMODAL_Message
+
+VCOMM
+-----
+vcomm02z.asm:   _VCOMM_Register_Port_Driver
+vcomm03z.asm:   _VCOMM_Acquire_Port
+vcomm04z.asm:   _VCOMM_Release_Port
+vcomm05z.asm:   _VCOMM_OpenComm
+vcomm06z.asm:   _VCOMM_SetCommState
+vcomm07z.asm:   _VCOMM_GetCommState
+vcomm08z.asm:   _VCOMM_SetupComm
+vcomm09z.asm:   _VCOMM_TransmitCommChar
+vcomm0az.asm:   _VCOMM_CloseComm
+vcomm0bz.asm:   _VCOMM_GetCommQueueStatus
+vcomm0cz.asm:   _VCOMM_ClearCommError
+vcomm0dz.asm:   _VCOMM_GetModemStatus
+vcomm0ez.asm:   _VCOMM_GetCommProperties
+vcomm0fz.asm:   _VCOMM_EscapeCommFunction
+vcomm10z.asm:   _VCOMM_PurgeComm
+vcomm11z.asm:   _VCOMM_SetCommEventMask
+vcomm12z.asm:   _VCOMM_GetCommEventMask
+vcomm13z.asm:   _VCOMM_WriteComm
+vcomm14z.asm:   _VCOMM_ReadComm
+vcomm15z.asm:   _VCOMM_EnableCommNotification
+vcomm16z.asm:   _VCOMM_GetLastError
+vcomm17z.asm:   _VCOMM_Steal_Port
+vcomm18z.asm:   _VCOMM_SetReadCallBack
+vcomm19z.asm:   _VCOMM_SetWriteCallBack
+vcomm1az.asm:   _VCOMM_Add_Port
+vcomm1bz.asm:   _VCOMM_GetSetCommTimeouts
+vcomm1cz.asm:   _VCOMM_SetWriteRequest
+vcomm1dz.asm:   _VCOMM_SetReadRequest
+vcomm1ez.asm:   _VCOMM_Dequeue_Request
+vcomm1fz.asm:   _VCOMM_Get_Contention_Handler
+vcomm20z.asm:   _VCOMM_Enumerate_DevNodes
+vcomm21z.asm:   _VCOMM_Map_Name_To_Resource
+
+VMM
+---
+vmm01z.asm:     _MapPhysToLinear
+vmm02z.asm:     _HeapAllocate
+vmm03z.asm:     _HeapFree
+vmm04z.asm:     _HeapReAllocate
+vmm05z.asm:     _HeapGetSize
+vmm06z.asm:     _Trace_Out_Service
+vmm07z.asm:     _Debug_Out_Service
+vmm08z.asm:     _Debug_Flags_Service
+vmm09z.asm:     _Debug_Printf_Service
+vmm0bz.asm:     Begin_Critical_Section
+vmm0cz.asm:     Schedule_Global_Event
+vmm0dz.asm:     Get_Sys_VM_Handle
+vmm0ez.asm:     Get_Profile_Hex_Int
+vmm0fz.asm:     Create_Semaphore
+vmm0az.asm:     Fatal_Error_Handler
+vmm10z.asm:     Destroy_Semaphore
+vmm11z.asm:     Signal_Semaphore
+vmm12z.asm:     Wait_Semaphore
+vmm13z.asm:     Get_Execution_Focus
+vmm14z.asm:     Set_VM_Time_Out
+vmm15z.asm:     Set_Global_Time_Out
+vmm16z.asm:     Cancel_Time_Out
+vmm17z.asm:     Update_System_Clock
+vmm18z.asm:     Set_Async_Time_Out
+vmm19z.asm:     Get_DDB
+vmm1az.asm:     Directed_Sys_Control
+vmm1bz.asm:     Install_Exception_Handler
+vmm1cz.asm:     Get_Exec_Path
+vmm1dz.asm:     Get_Last_Updated_System_Time
+vmm1ez.asm:     List_Allocate
+vmm1fz.asm:     List_Attach
+vmm20z.asm:     List_Attach_Tail
+vmm21z.asm:     List_Create
+vmm22z.asm:     List_Deallocate
+vmm23z.asm:     List_Destroy
+vmm24z.asm:     List_Get_First
+vmm25z.asm:     List_Get_Next
+vmm26z.asm:     List_Insert
+vmm27z.asm:     List_Remove
+vmm28z.asm:     List_Remove
+vmm29z.asm:     _Assert_Range
+vmm2az.asm:     _Sprintf
+vmm2bz.asm:     _PageAllocate
+vmm2cz.asm:     VMM_GetSystemInitState
+vmm2dz.asm:     _PageFree
+vmm2ez.asm:     _CreateMutex
+vmm2fz.asm:     _DestroyMutex
+vmm30z.asm:     _EnterMutex
+vmm31z.asm:     _GetMutexOwner
+vmm32z.asm:     _LeaveMutex
+vmm33z.asm:     _BlockOnID
+vmm34z.asm:     _SignalID
+vmm35z.asm:     _AddFreePhysPage
+vmm36z.asm:     Get_Cur_VM_Handle
+vmm37z.asm:     Get_Boot_Flags
+vmm38z.asm:     Cancel_Global_Event
+vmm39z.asm:     _lstrcpyn
+vmm3az.asm:     _lstrlen
+vmm3bz.asm:     _lmemcpy
+vmm3cz.asm:     Get_Cur_Thread_Handle
+vmm3dz.asm:     _GetVxDName
+vmm3ez.asm:     _LinPageLock
+vmm3fz.asm:     _LinPageUnlock
+vmm40z.asm:     Get_Profile_Boolean
+vmm41z.asm:     _Call_On_My_Stack
+vmm42z.asm:     Get_Next_VM_Handle
+vmm43z.asm:     Test_Cur_VM_Handle
+vmm44z.asm:     Test_Sys_VM_Handle
+vmm45z.asm:     Hook_V86_Int_Chain
+vmm46z.asm:     Unhook_V86_Int_Chain
+vmm47z.asm:     _Allocate_Device_CB_Area
+
+VMMREG
+------
+reg01z.asm:     _RegOpenKey
+reg02z.asm:     _RegCloseKey
+reg03z.asm:     _RegCreateKey
+reg04z.asm:     _RegDeleteKey
+reg05z.asm:     _RegEnumKey
+reg06z.asm:     _RegQueryValue
+reg07z.asm:     _RegSetValue
+reg08z.asm:     _RegDeleteValue
+reg09z.asm:     _RegEnumValue
+reg0az.asm:     _RegQueryValueEx
+reg0bz.asm:     _RegSetValueEx
+reg0cz.asm:     _RegFlushKey
+reg0dz.asm:     _RegQueryInfoKey
+reg0ez.asm:     _GetRegistryPath
+reg0fz.asm:     _GetRegistryKey
+reg10z.asm:     _RegRemapPreDefKey
+reg11z.asm:     _RegCreateDynKey
+reg12z.asm:     _RegQMulti
+
+VPOWERD
+-------
+pw02z.asm:      _VPOWERD_Get_APM_BIOS_Version
+pw03z.asm:      _VPOWERD_Get_Power_Management_Level
+pw04z.asm:      _VPOWERD_Set_Power_Management_Level
+pw05z.asm:      _VPOWERD_Set_Device_Power_State
+pw06z.asm:      _VPOWERD_Set_System_Power_State
+pw07z.asm:      _VPOWERD_Restore_Power_On_Defaults
+pw08z.asm:      _VPOWERD_Get_Power_Status
+pw09z.asm:      _VPOWERD_Get_Power_State
+pw0az.asm:      _VPOWERD_OEM_APM_Function
+pw0bz.asm:      _VPOWERD_Register_Power_Handler
+pw0cz.asm:      _VPOWERD_Deregister_Power_Handler
+
+VXDLDR
+------
+dl02z.asm:      VXDLDR_LoadDevice
+dl03z.asm:      VXDLDR_UnloadDevice
+dl04z.asm:      VXDLDR_DevInitSucceeded
+dl05z.asm:      VXDLDR_DevInitFailed
+dl06z.asm:      VXDLDR_GetDeviceList
+

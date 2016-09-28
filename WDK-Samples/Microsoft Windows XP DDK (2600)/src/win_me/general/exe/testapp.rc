@@ -1,0 +1,208 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+APPICON                 ICON    DISCARDABLE     "appicon.ico"
+ICON3                   ICON    DISCARDABLE     "icon1.ico"
+ICON2                   ICON    DISCARDABLE     "icon2.ico"
+ICON1                   ICON    DISCARDABLE     "icon3.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUTBOX DIALOG DISCARDABLE  50, 50, 181, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "About TestApp"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,65,75,50,14,BS_CENTER | WS_GROUP
+    LTEXT           "Test Application for WDM Template Driver",IDC_STATIC,37,
+                    17,135,9
+    CTEXT           "Author: Tom Green",IDC_STATIC,49,53,83,10
+    ICON            "APPICON",IDC_ABOUTBOX_ICON,8,14,18,20
+    CTEXT           "Microsoft (c) 1996",IDC_STATIC,45,35,86,8
+END
+
+SETLOGSIZE DIALOG DISCARDABLE  50, 50, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Set Number of Entries"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,30,65,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,96,65,50,14
+    EDITTEXT        IDC_LOG_SIZE,56,32,40,14,ES_AUTOHSCROLL
+    LTEXT           "Sample Log or Table Name",IDC_SIZE_NAME,55,15,87,8
+    ICON            "APPICON",IDC_SETLOG_ICON,15,16,18,20
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+APPMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Save Buffer As...",          IDM_SAVE_BUFFER_AS
+        MENUITEM "&Clear Buffer",               IDM_CLEAR_BUFFER
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+    POPUP "&Driver Information"
+    BEGIN
+        MENUITEM "Get &Driver Log",             IDM_GET_DRIVER_LOG
+        MENUITEM "Get &IRP History",            IDM_GET_IRP_HIST
+        MENUITEM "Get &Execution Path History", IDM_GET_PATH_HIST
+        MENUITEM "Get Error &Log",              IDM_GET_ERROR_LOG
+        MENUITEM "Get &Attached Devices",       IDM_GET_DEVICES
+        MENUITEM "&Get Driver Information",     IDM_GET_DRIVER_INFO
+    END
+    POPUP "&Loopback"
+    BEGIN
+        MENUITEM "&Start Loopback",             IDM_START_LOOPBACK
+        MENUITEM "Stop &Loopback",              IDM_STOP_LOOPBACK, GRAYED
+    END
+    POPUP "Driver &Configuration"
+    BEGIN
+        MENUITEM "Set &IRP History Size",       IDM_SET_IRP_HIST_SIZE
+        MENUITEM "Set &Path History Size",      IDM_SET_PATH_HIST_SIZE
+        MENUITEM "Set &Error Log Size",         IDM_SET_ERROR_LOG_SIZE
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      IDM_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+APPACC ACCELERATORS DISCARDABLE 
+BEGIN
+    VK_F1,          IDM_GET_DRIVER_LOG,     VIRTKEY, NOINVERT
+    VK_F2,          IDM_GET_IRP_HIST,       VIRTKEY, NOINVERT
+    VK_F3,          IDM_GET_PATH_HIST,      VIRTKEY, NOINVERT
+    VK_F4,          IDM_GET_ERROR_LOG,      VIRTKEY, NOINVERT
+    VK_F5,          IDM_GET_DEVICES,        VIRTKEY, NOINVERT
+    VK_F6,          IDM_GET_DRIVER_INFO,    VIRTKEY, NOINVERT
+    VK_F7,          IDM_SET_IRP_HIST_SIZE,  VIRTKEY, NOINVERT
+    VK_F8,          IDM_SET_PATH_HIST_SIZE, VIRTKEY, NOINVERT
+    VK_F9,          IDM_SET_ERROR_LOG_SIZE, VIRTKEY, NOINVERT
+    "X",            IDM_EXIT,               VIRTKEY, ALT, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    "SETLOGSIZE", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_NAME            "Test Application for WDM Template Driver"
+    IDS_CLASS_NAME          "TestApp"
+    IDS_OPEN_FAILED         "Device %s failed to open."
+    IDS_DEVIO_FAILED        "DeviceIoControl for device %s failed."
+    IDS_ERROR_MSG           "Error"
+    IDS_BUFFER_CMP_FAILED   "Read and write buffers did not compare."
+    IDS_FILE_OPEN_FAILED    "File %s failed to open."
+    IDS_UNDER_CONSTRUCTION  "Under Construction"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
+

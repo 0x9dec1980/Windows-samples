@@ -1,0 +1,23 @@
+LIBRARY FAKECAM
+
+EXPORTS
+        DllCanUnloadNow      PRIVATE
+        WiaMCamInit
+        WiaMCamUnInit
+        WiaMCamOpen
+        WiaMCamClose
+        WiaMCamGetDeviceInfo
+        WiaMCamReadEvent
+        WiaMCamStopEvents
+        WiaMCamGetItemInfo
+        WiaMCamFreeItemInfo
+        WiaMCamGetThumbnail
+        WiaMCamFreeThumbnail
+        WiaMCamGetItemData
+        WiaMCamDeleteItem
+        WiaMCamSetItemProt
+        WiaMCamTakePicture
+        WiaMCamStatus
+        WiaMCamReset
+        
+

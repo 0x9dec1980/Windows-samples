@@ -1,0 +1,10 @@
+LIBRARY WIASCROLL
+
+EXPORTS
+        DllGetClassObject   PRIVATE
+        DllCanUnloadNow     PRIVATE
+        ;DllRegisterServer
+        ;DllUnregisterServer
+
+
+

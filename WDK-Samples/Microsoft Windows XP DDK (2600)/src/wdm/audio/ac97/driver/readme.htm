@@ -1,0 +1,212 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./readme_files/filelist.xml">
+<title>AC97</title>
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;
+	mso-font-alt:Arial;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+pre
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=blue style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<h2><span style='font-family:Verdana'>AC97 WDM Sample Driver<o:p></o:p></span></h2>
+
+<p><span style='font-size:10.0pt;font-family:Arial;color:red'>[This is
+preliminary documentation and subject to change.]</span><span style='font-size:
+10.0pt;font-family:Verdana'><o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>SUMMARY<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>This sample driver
+demonstrates the basics of writing a WDM audio driver, and can be used as a base
+to write your own WDM driver. The sample driver should work with any AC97 codec
+connected to an Intel® motherboard with integrated AC97 controller, like the
+Intel 810 Chipset.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>Its functionality may be
+expanded for non-AC97 design features or to convert the driver to use a
+different DMA engine. For more information, please see the &quot;Driver
+Issues&quot; section below. <o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>BUILDING THE SAMPLE<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>To build this sample,
+enter the free or checked build environment and run <b>build</b> from the Audio
+parent directory, rather than the Ac97 subdirectory. This sample links with
+Stdunk.lib, which is also built if you run build from Audio.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>The .inf included in the
+Ac97 subdirectory (Ac97smpl.inf) can be used to install the sample driver after
+it has been built. Simply copy the .inf and the driver binary to a floppy disk
+and the update the driver for the device with the one from the floppy. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>Once the driver has been
+installed with the .inf, the driver may be updated by copying the binary into
+\\Winnt\System32\Drivers on the target machine and rebooting to test the new
+driver, provided that there are no .inf changes.<o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>DRIVER INSTALLATION<o:p></o:p></span></h3>
+
+<h3><span style='font-size:10.0pt;mso-bidi-font-size:13.5pt;font-family:Verdana;
+font-weight:normal'>In the ac97smpl.inf, a Win9x migrate.dll is added to have
+the Win98SE/Millennium WDM audio driver survive the upgrade to Win2k/Win XP.
+Please reference to WINDDK\..\src\setup\devupgrd\devupgrd.doc for details.<o:p></o:p></span></h3>
+
+<h3><span style='font-family:Verdana'>DRIVER ISSUES<o:p></o:p></span></h3>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>1. At the time of
+writing, there is no AC97 implementation available for Alpha
+machines—therefore, the DDK sample source does not install on Alpha machines. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>2. This driver supports the
+old Intel 810/820/840 implementation as well as the new Intel 820
+implementation (82801BA/BAM). This new chipset supports multichannel AC97
+codecs, but the sample driver will only run satisfying with 100% AC97
+compatible codecs. The double rate playback (96KHz, for example) feature is
+still unsupported. The sample driver could be expanded to use this feature, but
+at this time, there is no hardware available with this feature. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>3. The AC97 low-priority
+Microphone capability is disabled. You can record using Microphone as you would
+record from any other source (for example, a CD) using the normal recording
+selector, but the second recording line that is optionally defined in the AC97
+specification is disabled. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>4. The AC97 inputs
+reported to the operating system may be disabled through the .inf. The .inf has
+a section where you can disable specific input lines of the codec that are not
+attached to any adapters. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:Verdana'>5. This driver works with
+Microsoft® Windows® 2000 (or higher) and Microsoft® Windows® 98 Second Edition
+(or higher) only. It will neither run nor install on the original release of
+Microsoft® Windows® 98. <o:p></o:p></span></p>
+
+<h3><span style='font-family:Verdana'>CODE TOUR<o:p></o:p></span></h3>
+
+<h4><span style='font-family:Verdana'>File Manifest<o:p></o:p></span></h4>
+
+<pre><u>File<span style='mso-tab-count:2'>           </span>Description<o:p></o:p></u></pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre>Ac97reg.h<span style="mso-spacerun: yes">   </span><span
+style='mso-tab-count:1'>   </span>Definition of the AC97 registers</pre><pre>Ac97smpl.inf<span
+style='mso-tab-count:1'>   </span>Setup information</pre><pre>Ac97smpl.rc <span
+style='mso-tab-count:1'>   </span>Resource file containing version information</pre><pre>Adapter.cpp <span
+style='mso-tab-count:1'>   </span>Connects driver with the system</pre><pre>Adapter.h<span style="mso-spacerun: yes">   </span><span
+style='mso-tab-count:1'>   </span>Header file for adapter.cpp</pre><pre>Common.cpp<span style="mso-spacerun: yes">  </span><span
+style='mso-tab-count:1'>   </span>Common object used by all miniports</pre><pre>Common.h<span style="mso-spacerun: yes">    </span><span
+style='mso-tab-count:1'>   </span>Header file for the common object</pre><pre>Debug.h<span style="mso-spacerun: yes">     </span><span
+style='mso-tab-count:1'>   </span>Debug output support</pre><pre>Guids.h<span style="mso-spacerun: yes">     </span><span
+style='mso-tab-count:1'>   </span>Private GUIDs used by the driver (like name definitions)</pre><pre>Ichreg.h<span style="mso-spacerun: yes">    </span><span
+style='mso-tab-count:1'>   </span>Defines the registers of the INTEL AC97 interface (ICH)</pre><pre>Ichwave.cpp <span
+style='mso-tab-count:1'>   </span>Implementation of the stream object (DMA programming)</pre><pre>Ichwave.h<span style="mso-spacerun: yes">   </span><span
+style='mso-tab-count:1'>   </span>Header file for the stream object</pre><pre>Makefile<span style="mso-spacerun: yes">  </span><span style="mso-spacerun: yes">  </span><span
+style='mso-tab-count:1'>   </span>Standard Windows NT makefile</pre><pre>Mintopo.cpp <span
+style='mso-tab-count:1'>   </span>Implementation of the topology miniport</pre><pre>Mintopo.h<span style="mso-spacerun: yes">   </span><span
+style='mso-tab-count:1'>   </span>Header file for the topology miniport</pre><pre>Minwave.cpp <span
+style='mso-tab-count:1'>   </span>Implementation of the wave PCI miniport</pre><pre>Minwave.h<span style="mso-spacerun: yes">   </span><span
+style='mso-tab-count:1'>   </span>Header file for the wave PCI miniport</pre><pre>Prophnd.cpp <span
+style='mso-tab-count:1'>   </span>Implementation of the property handler (part of the topology miniport)</pre><pre>Readme.htm<span style="mso-spacerun: yes">  </span><span
+style='mso-tab-count:1'>   </span>Documentation for this sample (this file)</pre><pre>Shared.h<span style="mso-spacerun: yes">    </span><span
+style='mso-tab-count:1'>   </span>Header file shared by every C++ source file</pre><pre>Sources<span style="mso-spacerun: yes">     </span><span
+style='mso-tab-count:1'>   </span>Dependency information for compiling</pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<p align=center style='margin:0in;margin-bottom:.0001pt;text-align:center;
+tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:10.0pt;font-family:"Courier New";mso-fareast-font-family:"Courier New"'><a
+href="#top"><span style='font-family:Verdana'>Top of page</span></a></span><span
+style='font-size:10.0pt;font-family:Verdana;mso-fareast-font-family:"Courier New";
+mso-bidi-font-family:"Courier New"'> <o:p></o:p></span></p>
+
+<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<table border=0 cellspacing=0 cellpadding=0 width=624 style='width:6.5in;
+ mso-cellspacing:0in;mso-padding-alt:0in 0in 0in 0in'>
+ <tr style='height:1.5pt'>
+  <td style='background:aqua;padding:.75pt .75pt .75pt .75pt;height:1.5pt'>
+  <p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre><pre><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></pre>
+
+<p style='margin:0in;margin-bottom:.0001pt;tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt'><span
+style='font-size:7.5pt;font-family:"MS Sans Serif";mso-fareast-font-family:
+"Courier New";mso-bidi-font-family:"Courier New"'>© Microsoft Corporation 1999</span><span
+style='font-size:10.0pt;font-family:Verdana;mso-fareast-font-family:"Courier New";
+mso-bidi-font-family:"Courier New"'> <o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,74 @@
+LIBRARY DISPLAY
+
+DESCRIPTION 'DISPLAY : 100, 96, 96 : DIB Engine based Permedia2 driver.'
+
+EXETYPE WINDOWS
+
+;;DATA PRELOAD MOVEABLE SINGLE
+;;CODE PRELOAD MOVEABLE DISCARDABLE
+
+DATA PRELOAD FIXED SINGLE
+CODE PRELOAD FIXED
+
+HEAPSIZE 64
+
+SEGMENTS
+    _TEXT       PRELOAD                       SHARED
+    _INIT       PRELOAD  MOVEABLE DISCARDABLE SHARED
+
+EXPORTS
+;;;;WEP
+    ValidateMode
+;   ValidateDesk
+    BitBlt              @1
+    ColorInfo           @2
+    Control             @3
+    Disable             @4
+    Enable              @5
+    EnumDFonts          @6
+    EnumObj             @7
+    Output              @8
+    Pixel               @9
+    RealizeObject       @10
+    StrBlt              @11
+    ScanLR              @12
+;   DeviceMode          @13
+    ExtTextOut          @14
+    GetCharWidth        @15
+    DeviceBitmap        @16
+;   FastBorder          @17
+    SetAttribute        @18
+    DibBlt              @19
+    CreateDIBitmap      @20
+    DibToDevice         @21
+    SetPalette          @22
+    GetPalette          @23
+    SetPaletteTranslate @24
+    GetPaletteTranslate @25
+    UpdateColors        @26
+    StretchBlt          @27
+    StretchDIBits       @28
+    SelectBitmap        @29
+    BitmapBits          @30
+    ReEnable            @31
+    DDIGammaRamp        @32
+    Inquire             @101
+    SetCursor           @102
+    MoveCursor          @103
+    CheckCursor         @104
+
+IMPORTS
+    AllocCSToDSAlias            = KERNEL.170
+    AllocDSToCSAlias            = KERNEL.171
+    KernelsScreenSel            = KERNEL.174
+    AllocSelector               = KERNEL.175
+    FreeSelector                = KERNEL.176
+    PrestoChangoSelector        = KERNEL.177
+    __WinFlags                  = KERNEL.178
+    GetSelectorBase             = KERNEL.186
+    SetSelectorBase             = KERNEL.187
+    SetSelectorLimit            = KERNEL.189
+    __A000h                     = KERNEL.174
+    __B800h                     = KERNEL.182
+    __C000h                     = KERNEL.195
+    GlobalSmartPageLock         = KERNEL.230

@@ -1,0 +1,14 @@
+LIBRARY plotui
+
+EXPORTS
+    PlotUIDLLEntryFunc
+    DrvDeviceCapabilities
+    DevQueryPrintEx
+    PrinterProperties
+    DrvDevicePropertySheets
+    DrvDocumentPropertySheets
+    DrvConvertDevMode
+    DrvPrinterEvent
+
+
+

@@ -1,0 +1,79 @@
+;Copyright 1995 Microsoft Corporation
+
+[version]
+signature="$CHICAGO$"
+Class=fdc
+Provider=%MSFT%
+
+;Class Install
+[ClassInstall]
+AddReg=FDC_Reg
+
+[FDC_Reg]
+HKR,,,,%FDCClassName%
+HKR,,Icon,,-9
+
+[Manufacturer]
+%Compaq%=Compaq
+
+[Compaq]
+%CPQ3MFD_10.DeviceDesc% = CPQ_3MODE10, CPQ_3MODE10_ID ;Deskpro/prolinear series
+%CPQ3MFD_20.DeviceDesc% = CPQ_3MODE20, CPQ_3MODE20_ID ;Prolinear MT series
+%CPQ3MFD_30.DeviceDesc% = CPQ_3MODE30, CPQ_3MODE30_ID ;Contura 400 series
+%CPQ3MFD_40.DeviceDesc% = CPQ_3MODE40, CPQ_3MODE40_ID ;Prolinear III series
+
+;======================
+;Installation 3mode VxD
+;======================
+[CPQ_3MODE10]
+AddReg = CPQ_3MODE10_AddReg
+CopyFiles=@COMPAQ1.vxd
+Reboot
+
+[CPQ_3MODE20]
+AddReg = CPQ_3MODE20_AddReg
+CopyFiles=@COMPAQ2.vxd
+Reboot
+
+[CPQ_3MODE30]
+AddReg = CPQ_3MODE30_AddReg
+CopyFiles=@COMPAQ3.vxd
+Reboot
+
+[CPQ_3MODE40]
+AddReg = CPQ_3MODE10_AddReg
+CopyFiles=@COMPAQ4.vxd
+Reboot
+
+;=====================================
+;Set filename of 3mode VxD to Registry
+;=====================================
+
+[CPQ_3MODE10_AddReg]
+HKLM,System\CurrentControlSet\control\3mode,3modeDrv,,"Compaq   3MFD 01"
+
+[CPQ_3MODE20_AddReg]
+HKLM,System\CurrentControlSet\control\3mode,3modeDrv,,"Compaq   3MFD 02"
+
+[CPQ_3MODE30_AddReg]
+HKLM,System\CurrentControlSet\control\3mode,3modeDrv,,"Compaq   3MFD 03"
+
+[CPQ_3MODE40_AddReg]
+HKLM,System\CurrentControlSet\control\3mode,3modeDrv,,"Compaq   3MFD 04"
+
+;==========================================================
+;IOSubsys directory is where 3mode VxD should be copied to.
+;==========================================================
+[DestinationDirs]
+DefaultDestDir=12
+
+
+[Strings]
+MSFT                    = "Microsoft Corp."
+Compaq			= "Compaq"
+FDCClassName            = "Floppy disk controllers"
+CPQ3MFD_10.DeviceDesc	= "Compaq 3-mode Floppy (Deskpro/prolinear series)"
+CPQ3MFD_20.DeviceDesc	= "Compaq 3-mode Floppy (Prolinear MT series)"
+CPQ3MFD_30.DeviceDesc	= "Compaq 3-mode Floppy (Contura 400 series)"
+CPQ3MFD_40.DeviceDesc	= "Compaq 3-mode Floppy (Prolinear III series)"
+

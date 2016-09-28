@@ -1,0 +1,11 @@
+DIRS= \
+     1394 \
+     acpi \
+     audio \
+     AVStream \
+     BDA \
+     hid \
+     usb \
+     videocap \
+     wia \
+     wmi

@@ -1,0 +1,16 @@
+TARGETNAME=BusEnum
+TARGETTYPE=DRIVER
+TARGETPATH=obj
+
+MSC_WARNING_LEVEL=-W3 -WX
+
+NTTARGETFILE0=mofcomp
+
+
+SOURCES= busenum.rc \
+         busenum.c \
+         pnp.c \
+	 power.c \
+         buspdo.c \
+	 wmi.c
+

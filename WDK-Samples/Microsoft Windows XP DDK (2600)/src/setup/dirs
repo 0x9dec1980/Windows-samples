@@ -1,0 +1,7 @@
+DIRS= \
+     cocpyinf \
+     devcon \
+     enable \
+     install \
+     pnpports \
+     remove

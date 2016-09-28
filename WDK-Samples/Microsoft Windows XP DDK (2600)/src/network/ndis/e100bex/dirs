@@ -1,0 +1,5 @@
+DIRS= \
+     50 \
+     51 \
+     kd \
+     testwmi

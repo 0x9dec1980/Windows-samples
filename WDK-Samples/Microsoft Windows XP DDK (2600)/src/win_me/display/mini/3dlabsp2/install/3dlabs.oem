@@ -1,0 +1,16 @@
+
+[Version]
+Signature=$CHICAGO$
+Class="3D Accelerators"
+Provider=%String0%
+
+[Manufacturer]
+%String1%=3Dlabs
+
+[3Dlabs]
+%String4%=Permedia2,PCI\VEN_3D3D&DEV_0009
+%String4%=Permedia2,PCI\VEN_3D3D&DEV_0007
+%String4%=Permedia2,PCI\VEN_104C&DEV_3D07
+
+[Strings]
+String4="PERMEDIA 2 3D Accelerator"

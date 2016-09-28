@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-
+1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>MPU-401 
+</TITLE>
+</HEAD>
+<BODY LINK="#0000ff">
+
+<FONT FACE="Verdana" SIZE=5><H2>MPU-401 
+</H2>
+</FONT><FONT FACE="Verdana" SIZE=2>
+<P><span style="color:#FF0000;font-size:10pt;font-family:Arial">[This is preliminary 
+documentation and subject to change.]</span></P>
+
+<H3>SUMMARY</H3></FONT><FONT FACE="Verdana" SIZE=2><P>
+This WDM driver implements standard functionality for an MPU-401 device. The driver is extremely small 
+because it leverages code built into PortCls. It simply specifies and connects the appropriate 
+port and miniport, which already exist in PortCls. The Msmpu401 driver is used by audio devices when 
+the MPU-401 hardware is on a separate devnode from other audio functionality.  If the MPU-401 shares 
+a devnode with other subdevices (such as PCM wave, in the Sb16 device), the built-in DMusUART miniport
+can still be used, but an adapter that handles multiple subdevices must be written.  The Sb16 sample 
+illustrates how this can be done.
+
+<P>
+If the built-in miniport is insufficient, a custom miniport can be built to handle any additional 
+functionality. There are a number of miniport samples in the DDK: the Dmusuart, Ddksynth, Fmsynth and 
+Uart samples show how to build miniports that interface to the DMus and MIDI ports; Sb16 and Ac97 
+include custom wave miniports. Additionally, the Ddksynth, Sb16 and Ac97 samples contain the necessary 
+code to connect the custom miniport into the driver.  If you choose to pursue this, try to follow the 
+sample as closely as possible.  You will prevent unnecessary complexity by taking advantage of what 
+PortCls will do for you.
+
+<P>
+This sample is compliant with x86, Alpha, iA64, and AXP64 platforms. 
+This driver builds properly with Microsoft&#174; Visual C&#174; 6.0. Since the driver is a PortCls client, it is compliant with Plug and Play and Power 
+Management. There are no known issues with this driver.<P>
+
+<H3>BUILDING THE SAMPLE</H3></FONT><FONT FACE="Verdana" 
+SIZE=2><P>
+To build this sample, enter the free or checked build environment and run <B>build</B> from the 98ddk\src\audio 
+directory, rather than the mpu401 subdirectory. This sample links with Stdunk.lib, which is also built if you run 
+build from 98ddk\src\audio. Once built, this sample produces msmpu401.sys. In addition to the files in the 
+directory, the following files are needed to build this sample:<p>
+Portcls.lib<br>
+Libcntpr.lib<br>
+Ksguid.lib<br>
+Stdunk.lib<br>
+Dmusicks.h<br>
+Dmusprop.h<br>
+Dmusbuff.h<br>
+Ks.h<br>
+Ksdebug.h<br>
+Ksmedia.h<br>
+Portcls.h<br>
+Unknown.h<br>
+Wdm.h<p>
+
+
+<H3>CODE TOUR</H3>
+<H4>File Manifest</H4>
+</FONT><U><PRE>File&#9;&#9;Description
+</U>
+Adapter.cpp&#9;Source file 
+Makefile&#9;Standard Windows NT makefile
+Mpu401.rc&#9;Resource file 
+Sources&#9;&#9;Dependency and include file
+
+</FONT><P ALIGN="CENTER"><A HREF="#top"><FONT FACE="Verdana" SIZE=2>Top of page</FONT></A><FONT FACE="Verdana" SIZE=2> </P></FONT>
+<TABLE CELLSPACING=0 BORDER=0 WIDTH=624>
+<TR><TD VALIGN="MIDDLE" BGCOLOR="#00ffff" HEIGHT=2>
+<P></TD>
+</TR>
+</TABLE>
+
+<FONT FACE="MS Sans Serif" SIZE=1><P>&copy; Microsoft Corporation 1999</FONT><FONT FACE="Verdana" SIZE=2> </P></FONT></BODY>
+</HTML>

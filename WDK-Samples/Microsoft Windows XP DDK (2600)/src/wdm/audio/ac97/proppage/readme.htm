@@ -1,0 +1,37 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>ADDITIONAL INFORMATION TO THE SAMPLE&nbsp; The private property is 
+exposed as a filter property</title>
+</head>
+
+<body>
+
+<p>ADDITIONAL INFORMATION TO THE SAMPLE<br>
+<br>
+The private property is exposed as a filter property. As a result of this, we 
+don't have to pass down a KSP_NODE structure but a KSPROPERTY structure (which 
+is missing the node). Add properties to the topology filter if they are generic 
+and not connected with a node.<br>
+<br>
+You can pass down additional information besides the KSPROPERTY structure. 
+Whatever you add after the structure is passed to the topology handler. The 
+&quot;Instance&quot; pointer points to the added data and the &quot;InstanceSize&quot; variable in 
+the PPCPROPERTY_REQUEST structure contains the additional buffer length. The 
+output buffer that was passed in the DeviceIoControl call is the &quot;Value&quot; pointer 
+(and &quot;ValueSize&quot; variable).<br>
+<br>
+Use node properties (define your own GUID, attach that to the node like the 
+KSPROPSETID_Audio is attached to for example volume nodes) if the property 
+changes values of that node (special 3d node for example). Make sure you specify 
+KSPROPERTY_TYPE_TOPOLOGY when you talk with a node and pass at least a KSP_NODE 
+structure down. Everything passed after KSP_NODE is again accessible with the 
+&quot;Instance&quot; and &quot;InstanceSize&quot; variables.</p>
+
+</body>
+
+</html>
+

@@ -1,0 +1,3 @@
+DIRS= \
+     agp440 \
+     agplib

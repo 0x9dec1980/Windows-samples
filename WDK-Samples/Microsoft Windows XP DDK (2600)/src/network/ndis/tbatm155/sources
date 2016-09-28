@@ -1,0 +1,38 @@
+TARGETNAME=tbatm155
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(DDK_LIB_PATH)\ndis.lib
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER -DNDIS50_MINIPORT
+C_DEFINES=$(C_DEFINES) -DNEW_DMA=1
+
+LINKER_FLAGS=$(LINKER_FLAGS) -map
+
+INCLUDES=..\..\inc
+
+MSC_WARNING_LEVEL=/W3 /WX
+
+SOURCES=init.c\
+        int.c\
+        receive.c\
+        request.c\
+        reset.c\
+        send.c\
+        vc.c\
+        debug.c\
+        data.c\
+        support.c\
+        peephole.c\
+        suni_lit.c\
+        plc_2.c\
+        tbmeteor.c\
+        tbatm155.rc\
+        tbatm155.mof
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj
+
+
+

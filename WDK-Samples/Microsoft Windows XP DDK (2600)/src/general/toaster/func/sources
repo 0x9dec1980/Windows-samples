@@ -1,0 +1,11 @@
+TARGETNAME=toaster
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+
+NTTARGETFILE0=mofcomp
+
+SOURCES= toaster.rc \
+         toaster.c  \
+         power.c \
+         wmi.c
+

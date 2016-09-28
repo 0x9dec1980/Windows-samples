@@ -1,0 +1,13 @@
+
+
+LIBRARY genprint
+
+
+EXPORTS
+    EnumPrintProcessorDatatypesW
+    OpenPrintProcessor
+    PrintDocumentOnPrintProcessor
+    ControlPrintProcessor
+    ClosePrintProcessor
+    GetPrintProcessorCapabilities
+
