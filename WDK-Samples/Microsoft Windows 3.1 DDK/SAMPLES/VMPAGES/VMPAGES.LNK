@@ -1,0 +1,5 @@
+vmpages.obj
+vmpages.386 /NOI /NOD /NOP
+vmpages.map /MAP
+
+vmpages.def

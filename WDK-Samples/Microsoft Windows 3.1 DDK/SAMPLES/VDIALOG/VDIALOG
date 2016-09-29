@@ -1,0 +1,23 @@
+# sample make file for building vdialog virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vdialog.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vdialog.obj : vdialog.asm  ..\include\debug.inc  ..\include\vmm.inc
+
+
+OBJS =  vdialog.obj 
+
+vdialog.386: vdialog.def $(OBJS)
+        link386 @vdialog.lnk
+        addhdr vdialog.386
+        mapsym32 vdialog

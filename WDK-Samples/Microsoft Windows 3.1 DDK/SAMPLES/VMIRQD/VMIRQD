@@ -1,0 +1,26 @@
+# sample make file for building vmirqd virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vmirqd.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vmirqd.obj : vmirqd.asm vmirqd.inc \
+                        ..\include\vpicd.inc \
+                        ..\include\debug.inc \
+                        ..\include\vmm.inc
+
+OBJS =  vmirqd.obj 
+
+vmirqd.386: vmirqd.def $(OBJS)
+        link386 @vmirqd.lnk
+        addhdr vmirqd.386
+        mapsym32 vmirqd
+

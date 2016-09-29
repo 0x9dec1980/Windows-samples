@@ -1,0 +1,32 @@
+# sample make file for building vfintd virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vfintd.386 tstfint.exe
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+tstfint.obj:  tstfint.asm vfintd.inc
+
+tstfint.exe: tstfint.obj
+      link tstfint.obj;     
+
+
+vfintd.obj : vfintd.asm vfintd.inc \
+                        ..\include\debug.inc \
+                        ..\include\vmm.inc   \
+                        ..\include\vpicd.inc
+
+OBJS =  vfintd.obj 
+
+vfintd.386: vfintd.def $(OBJS)
+        link386 @vfintd.lnk
+        addhdr vfintd.386
+        mapsym32 vfintd
+

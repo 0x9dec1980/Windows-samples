@@ -1,0 +1,25 @@
+# sample make file for building EatPages virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : eatpages.386 
+
+vxdstub.obj: vxdstub.asm
+    masm -I..\include vxdstub;
+
+vxdstub.exe: vxdstub.obj
+    link vxdstub.obj;
+
+
+eatpages.obj : eatpages.asm  ..\include\debug.inc ..\include\vmm.inc
+        masm5 -p -w2 -Mx $(Debug) -I..\include eatpages.asm;
+
+OBJS =  eatpages.obj 
+
+eatpages.386: eatpages.def $(OBJS) vxdstub.exe
+        link386 @eatpages.lnk
+        addhdr eatpages.386
+        mapsym32 eatpages
+        copy eatpages.386 eatpages.exe
+

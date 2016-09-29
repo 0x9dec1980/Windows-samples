@@ -1,0 +1,23 @@
+# sample make file for building vitd virtual device for Microsoft Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : VITD.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vitd.obj : vitd.asm  ..\include\debug.inc  ..\include\vmm.inc
+
+
+OBJS =  vitd.obj 
+
+vitd.386: vitd.def $(OBJS)
+        link386 @vitd.lnk
+        addhdr vitd.386
+        mapsym32 vitd

@@ -1,0 +1,242 @@
+#
+#   Makefile for VPOSTD.386, POSTHOST.DLL, POSTAPP.EXE, and POSTDOS.EXE
+#
+#   This is a sample demonstrating how to PostMessage from a VxD.
+#
+#   Author: cjp
+#
+
+
+#DEBUG_POSTDOS   =   TRUE                ; comment out for final build
+#DEBUG_POSTAPP   =   TRUE                ; comment out for final build
+#DEBUG_POSTHOST  =   TRUE                ; comment out for final build
+#DEBUG_VPOSTD    =   TRUE                ; comment out for final build
+
+
+OUTPUT  =   aux
+WINAPPS =   d:\mwin
+WINLIB  =   c:\windev\lib
+WININC  =   c:\windev\include
+!IFNDEF WINDIR
+WINDIR  =   d:\mwin
+!ENDIF
+
+
+#
+# for POSTDOS.EXE build
+#
+
+!IFDEF DEBUG_POSTDOS
+
+DAS =   masm /Zi
+DCC =   cl -c -Zi
+DLN =   link /CO
+DZZ =   POSTDOS: ***** DEBUG ***** DEBUG ***** DEBUG ***** DEBUG *****
+
+!ELSE
+
+DAS =   masm
+DCC =   cl -c
+DLN =   link
+DZZ =   POSTDOS: **** RELEASE *** RELEASE *** RELEASE *** RELEASE ****
+
+!ENDIF
+
+DSRCS   =   postdos.c
+DOBJS   =   postdos.obj
+
+
+#
+# for POSTAPP.EXE build
+#
+
+!IFDEF DEBUG_POSTAPP
+
+AAS =   masm /Zi
+ACC =   cl -c -DDEBUG -AM -G2sw -Owd -W3 -Ziped
+ALN =   link /NOD/NOE/A:16/CO
+ARC =   rc -v -DDEBUG
+AZZ =   POSTAPP: ***** DEBUG ***** DEBUG ***** DEBUG ***** DEBUG *****
+
+!ELSE
+
+AAS =   masm
+ACC =   cl -c -DRELEASE -AM -G2sw -Ows -W3 -Zpe
+ALN =   link /NOD/NOE/A:16
+ARC =   rc -v -DRELEASE
+AZZ =   POSTAPP: **** RELEASE *** RELEASE *** RELEASE *** RELEASE ****
+
+!ENDIF
+
+AMISC   =   postapp.def     postapp.lnk
+
+AINCS   =   postapp.h
+ASRCS   =   postapp.c
+AOBJS   =   postapp.obj
+
+
+#
+# for POSTHOST.DLL build
+#
+
+!IFDEF DEBUG_POSTHOST
+
+LAS =   masm /Zi
+LCC =   cl -c -DDEBUG -Alnw -G2sw -Owd -W3 -Ziped
+LLN =   link /NOD/NOE/A:16/CO
+LRC =   rc -v -DDEBUG
+LZZ =   POSTHOST: ***** DEBUG ***** DEBUG ***** DEBUG ***** DEBUG *****
+
+!ELSE
+
+LAS =   masm
+LCC =   cl -c -DRELEASE -Alnw -G2sw -Ows -W3 -Zpe
+LLN =   link /NOD/NOE/A:16
+LRC =   rc -v -DRELEASE
+LZZ =   POSTHOST: **** RELEASE *** RELEASE *** RELEASE *** RELEASE ****
+
+!ENDIF
+
+LMISC   =   posthost.def    posthost.lnk
+
+LINCS   =   posthost.h
+LSRCS   =   posthost.c      libentry.asm
+LOBJS   =   posthost.obj    libentry.obj
+
+
+#
+# for VPOSTD.386 build
+#
+
+!IFDEF DEBUG_VPOSTD
+
+VAS =   masm5 -p -w2 -Mx -DDEBUG
+VLN =   link386
+VRC =   rc -v -DDEBUG
+VZZ =   VPOSTD: ***** DEBUG ***** DEBUG ***** DEBUG ***** DEBUG *****
+
+!ELSE
+
+VAS =   masm5 -p -w2 -Mx -DRELEASE
+VLN =   link386
+VRC =   rc -v -DRELEASE
+VZZ =   VPOSTD: **** RELEASE *** RELEASE *** RELEASE *** RELEASE ****
+
+!ENDIF
+
+
+VMISC   =   vpostd.def  vpostd.lnk
+
+VINCS   =   vpostd.inc
+VSRCS   =   vpostd.asm
+VOBJS   =   vpostd.obj
+
+
+#
+# now the rules
+#
+
+all         :   vpostd.386 posthost.dll postapp.exe postdos.exe
+                @echo ================= BUILD COMPLETE ===================
+                @echo $(VZZ)
+                @echo $(LZZ)
+                @echo $(AZZ)
+                @echo $(DZZ)
+                @echo ================= BUILD COMPLETE ===================
+
+
+# VPOSTD.386
+
+vpostd.386  :   $(VOBJS) vpostd.def 
+                $(VLN) @vpostd.lnk
+                addhdr vpostd.386
+                mapsym32 vpostd
+                @echo $(VZZ)
+                @echo $(VZZ)
+                @echo $(VZZ)
+
+vpostd.obj  :   vpostd.asm  vpostd.inc
+                $(VAS) $*;
+
+vpostd.lst  :   vpostd.asm  vpostd.inc
+                $(VAS) $*;
+
+
+# POSTHOST.DLL
+
+posthost.dll:   $(LOBJS) posthost.def
+                $(LLN) @posthost.lnk
+                implib posthost.lib posthost.def
+                $(LRC) posthost.dll
+                @echo $(LZZ)
+                @echo $(LZZ)
+                @echo $(LZZ)
+
+posthost.obj:   posthost.c posthost.h
+                $(LCC) $*.c
+
+libentry.obj:   libentry.asm
+                $(LAS) $*;
+
+
+# POSTAPP.EXE
+
+postapp.exe :   $(AOBJS) postapp.def postapp.res posthost.dll
+                $(ALN) @postapp.lnk
+                $(ARC) postapp.res
+                @echo $(AZZ)
+                @echo $(AZZ)
+                @echo $(AZZ)
+
+postapp.exe :   postapp.res
+                $(ARC) postapp.res
+                @echo $(AZZ)
+                @echo $(AZZ)
+                @echo $(AZZ)
+
+postapp.obj :   postapp.c postapp.h posthost.h
+                $(ACC) $*.c
+
+postapp.res :   postapp.rc postapp.h postapp.ico
+                $(ARC) -r postapp.rc
+
+
+# POSTDOS.EXE
+
+postdos.exe :   $(DOBJS)
+                $(DLN) $*;
+                @echo $(DZZ)
+                @echo $(DZZ)
+                @echo $(DZZ)
+
+postdos.obj :   postdos.c
+                $(DCC) $*.c
+
+
+# MISC JUNK
+
+clean   :
+            del *.386
+            del *.lib
+            del *.dll
+            del *.exe
+            del *.res
+            del *.obj
+            del *.sym
+            del *.map
+            del *.lst
+            del *.zip
+
+zip     :   clean
+            pkzip -a vpostd.zip *.*
+
+ship    :   all
+            del *.lib
+            del *.res
+            del *.obj
+            del *.sym
+            del *.map
+            del *.lst
+            del *.zip
+            touch *.*
+            pkzip -a vpostd.zip *.*

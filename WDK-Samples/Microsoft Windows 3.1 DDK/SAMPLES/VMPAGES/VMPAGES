@@ -1,0 +1,29 @@
+# sample make file for building vmpages virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vmpages.386 vmpgs.exe
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vmpgs.obj : vmpgs.asm vmpages.inc
+
+vmpgs.exe : vmpgs.obj
+   link vmpgs.obj;
+
+
+vmpages.obj : vmpages.asm  ..\include\debug.inc ..\include\vmm.inc
+
+
+OBJS =  vmpages.obj 
+
+vmpages.386: vmpages.def $(OBJS)
+        link386 @vmpages.lnk
+        addhdr vmpages.386
+        mapsym32 vmpages

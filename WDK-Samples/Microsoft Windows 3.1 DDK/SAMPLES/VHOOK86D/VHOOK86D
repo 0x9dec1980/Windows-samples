@@ -1,0 +1,23 @@
+# sample make file for building vhook86d virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+.asm.obj:
+	masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+	masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+all : VHook86D.386
+
+VHook86D.obj VHook86D.lst: VHook86D.asm  \
+                           ..\include\debug.inc \
+                           ..\include\vmm.inc
+
+OBJS =  VHook86D.obj
+
+VHook86D.386: VHook86D.def $(OBJS)
+	link386 @VHook86D.lnk
+	addhdr VHook86D.386
+	mapsym32 VHook86D

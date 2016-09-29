@@ -1,0 +1,27 @@
+# sample make file for building gptrap virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : gptrap.exe
+
+vxdstub.obj: vxdstub.asm
+    masm -Mx -p -w2 -I..\include vxdstub;
+
+vxdstub.exe: vxdstub.obj
+    link vxdstub.obj;
+
+
+gptrap.obj : gptrap.asm ..\include\debug.inc ..\include\vmm.inc
+        masm5 -p -w2 -Mx $(Debug) -I..\include gptrap.asm;
+
+OBJS =  gptrap.obj 
+
+gptrap.386: vxdstub.exe gptrap.def $(OBJS)
+        link386 @gptrap.lnk
+        addhdr gptrap.386
+        mapsym32 gptrap
+
+gptrap.exe: gptrap.386
+        copy gptrap.386 gptrap.exe
+

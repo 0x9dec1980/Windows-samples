@@ -1,0 +1,31 @@
+# sample make file for building vwfd virtual device for Microsoft Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vwfd.386 tstwf.exe
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+tstwf.obj: tstwf.asm vwfd.inc
+
+tstwf.exe: tstwf.obj
+  link tstwf.obj;
+
+
+vwfd.obj : vwfd.asm ..\include\vdd.inc   \
+                      ..\include\debug.inc \
+                      ..\include\vmm.inc
+
+OBJS =  vwfd.obj 
+
+vwfd.386: vwfd.def $(OBJS)
+        link386 @vwfd.lnk
+        addhdr vwfd.386
+        mapsym32 vwfd
+

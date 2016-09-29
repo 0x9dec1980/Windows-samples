@@ -1,0 +1,22 @@
+/** postapp.rc                                                          **/
+
+
+/* the includes required */
+    #include <windows.h>
+    #include "postapp.h"
+
+
+/* misc. resources */
+    ICON_POSTAPP    ICON    postapp.ICO
+
+
+/* the menu */
+    MENU_POSTAPP MENU
+    BEGIN
+        MENUITEM "GetVersion!",         IDM_GETVERSION
+        MENUITEM "GetAPIAddr!",         IDM_GETAPIADDR
+        MENUITEM "CallPostHost!",       IDM_CALLPOSTHOST
+    END
+
+
+/** postapp.rc **/

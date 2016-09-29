@@ -1,0 +1,23 @@
+# sample make file for building vnmid virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vnmid.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vnmid.obj : vnmid.asm  ..\include\debug.inc  ..\include\vmm.inc
+
+
+OBJS =  vnmid.obj 
+
+vnmid.386: vnmid.def $(OBJS)
+        link386 @vnmid.lnk
+        addhdr vnmid.386
+        mapsym32 vnmid

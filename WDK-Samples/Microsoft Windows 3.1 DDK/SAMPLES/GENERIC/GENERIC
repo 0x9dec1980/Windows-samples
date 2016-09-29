@@ -1,0 +1,26 @@
+# sample make file for building vxd virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : generic.386 
+
+vxdstub.obj: vxdstub.asm
+    masm -I..\include vxdstub;
+
+vxdstub.exe: vxdstub.obj
+    link vxdstub.obj;
+
+
+generic.obj : generic.asm ..\include\debug.inc ..\include\vmm.inc
+        masm5 -p -w2 -Mx $(Debug) -I..\include generic.asm;
+
+
+generic.386: generic.def generic.obj vxdstub.exe
+        link386 @generic.lnk
+        addhdr generic.386
+        mapsym32 generic
+
+generic.exe: generic.386
+        copy generic.386 generic.exe
+

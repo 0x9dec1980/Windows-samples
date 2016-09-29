@@ -1,0 +1,25 @@
+# sample make file for building VIdleD virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vidled.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+
+VIdleD.obj : VIdleD.asm  VIdleD.inc ..\include\debug.inc ..\include\vmm.inc
+
+
+OBJS =  VIdleD.obj 
+
+VIdleD.386: VIdleD.def $(OBJS)
+        link386 @VIdleD.lnk
+        addhdr VIdleD.386
+        mapsym32 VIdleD
+

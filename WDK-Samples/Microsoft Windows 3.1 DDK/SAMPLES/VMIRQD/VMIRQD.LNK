@@ -1,0 +1,6 @@
+vmirqd.obj
+vmirqd.386 /NOI /NOD /NOP
+vmirqd.map /MAP
+
+vmirqd.def
+

@@ -1,0 +1,31 @@
+# sample make file for building VwatchD virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : VwatchD.386 test.exe
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+test.obj: test.c
+    cl test.c -c -W3
+
+test.exe: test.obj
+    link test.obj;
+
+
+VwatchD.obj VwatchD.lst: VwatchD.asm VwatchD.inc \
+                     ..\include\debug.inc  ..\include\vmm.inc
+
+
+OBJS =	VwatchD.obj
+
+VwatchD.386: VwatchD.def $(OBJS)
+	link386 @VwatchD.lnk
+	addhdr VwatchD.386
+	mapsym32 VwatchD

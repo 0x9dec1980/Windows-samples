@@ -1,0 +1,25 @@
+# sample make file for building vkxd virtual device for Microsoft Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : VKXD.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vkxd.obj : vkxd.asm ..\include\vkd.inc \
+                    ..\include\debug.inc \
+                    ..\include\vmm.inc
+
+
+OBJS =  vkxd.obj 
+
+vkxd.386: vkxd.def $(OBJS)
+        link386 @vkxd.lnk
+        addhdr vkxd.386
+        mapsym32 vkxd

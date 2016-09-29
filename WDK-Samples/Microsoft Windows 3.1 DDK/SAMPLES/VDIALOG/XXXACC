@@ -1,0 +1,43 @@
+# Standard Windows make file.  The utility MAKE.EXE compares the
+# creation date of the file to the left of the colon with the file(s)
+# to the right of the colon.  If the file(s) on the right are newer
+# then the file on the left, Make will execute all of the command lines
+# following this line that are indented by at least one tab or space.
+# Any valid MS-DOS command line may be used.
+
+# This line allows NMAKE to work as well
+
+all: winacc.exe dosacc.exe
+
+
+# Update the resource if necessary
+
+winacc.res: winacc.rc winacc.h
+    rc -r winacc.rc
+
+
+# Update the object file if necessary
+
+winacc.obj: winacc.c winacc.h
+    cl -c -AS -Gsw -Oas -W3 -Zpei winacc.c
+
+
+# Update the executable file if necessary, and if so, add the resource back in.
+
+winacc.exe: winacc.obj winacc.def
+    link /CO/NOD winacc,,, libw slibcew, winacc.def
+    rc winacc.res
+
+
+# If the .res file is new and the .exe file is not, update the resource.
+# Note that the .rc file can be updated without having to either 
+# compile or link the file.
+
+winacc.exe: winacc.res
+    rc winacc.res
+
+dosacc.obj: dosacc.asm vdevice.inc
+    masm -W2 dosacc.asm;
+
+dosacc.exe: dosacc.obj
+    link dosacc.obj;

@@ -1,0 +1,23 @@
+# sample make file for building vmiod virtual device for Windows
+
+# comment this definition out with a "#", if building a non-debugging version
+Debug=-DDEBUG
+
+all : vmiod.386
+
+.asm.obj:
+        masm5 -p -w2 -Mx $(Debug) -I..\include $*;
+
+.asm.lst:
+        masm5 -l -p -w2 -Mx $(Debug) -I..\include $*;
+
+
+vmiod.obj : vmiod.asm vmiod.inc  ..\include\debug.inc  ..\include\vmm.inc
+
+
+OBJS =  vmiod.obj 
+
+vmiod.386: vmiod.def $(OBJS)
+        link386 @vmiod.lnk
+        addhdr vmiod.386
+        mapsym32 vmiod
