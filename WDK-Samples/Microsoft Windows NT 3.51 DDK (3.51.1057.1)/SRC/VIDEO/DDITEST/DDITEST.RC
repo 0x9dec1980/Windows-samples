@@ -1,0 +1,16 @@
+/******************************Module*Header*******************************\
+* Module Name: wndstuff.rc
+*
+* Created: 09-Dec-1992 10:50:23
+*
+* Copyright (c) 1991 Microsoft Corporation
+*
+\**************************************************************************/
+
+#include <windows.h>
+#include "dditest.h"
+
+MainMenu MENU
+BEGIN
+    MENUITEM "&Test",          MM_TEST
+END

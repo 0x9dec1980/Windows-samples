@@ -1,0 +1,24 @@
+TARGETNAME=mmdrv
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+# Define libs we need and where to find them
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib        \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\libc.lib
+
+DLLBASE=0x69F00000
+INCLUDES=..\inc
+
+SOURCES=mmdrv.c         \
+        wavedd.c        \
+        mididd.c        \
+        auxdd.c         \
+        drvutil.c       \
+	mmdrv.rc
+
+# Set up the entry point
+
+DLLENTRY=DllInstanceInit

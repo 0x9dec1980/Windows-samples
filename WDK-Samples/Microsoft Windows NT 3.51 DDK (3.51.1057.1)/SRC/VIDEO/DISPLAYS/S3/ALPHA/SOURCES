@@ -1,0 +1,4 @@
+ALPHA_SOURCES=fastfill.c         \
+              intline.c          \
+              lines.c            \
+              str.c

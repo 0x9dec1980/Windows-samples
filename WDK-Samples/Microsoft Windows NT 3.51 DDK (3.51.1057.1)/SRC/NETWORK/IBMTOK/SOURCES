@@ -1,0 +1,14 @@
+TARGETNAME=ibmtok
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+INCLUDES=..\inc
+
+SOURCES=ibmtok.c        \
+        interrup.c      \
+        send.c          \
+        packet.c        \
+        transfer.c      \
+        ibmtok.rc

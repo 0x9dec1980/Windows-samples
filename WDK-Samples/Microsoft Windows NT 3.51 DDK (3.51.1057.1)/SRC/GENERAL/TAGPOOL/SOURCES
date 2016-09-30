@@ -1,0 +1,5 @@
+TARGETNAME=eapwt
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+SOURCES=eapwt.c eapwt.rc

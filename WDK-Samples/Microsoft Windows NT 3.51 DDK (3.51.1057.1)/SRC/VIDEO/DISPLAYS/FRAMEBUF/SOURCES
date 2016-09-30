@@ -1,0 +1,21 @@
+TARGETNAME=framebuf
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winsrv.lib
+
+DLLBASE=0x62200000
+
+INCLUDES=..\..\inc
+
+SOURCES=color.c         \
+        dci.c           \
+        debug.c         \
+        enable.c        \
+        escape.c        \
+        palette.c       \
+        pattern.c       \
+        pointer.c       \
+        screen.c        \
+        framebuf.rc

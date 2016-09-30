@@ -1,0 +1,12 @@
+TARGETNAME=miniqic
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\tape.lib         \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\class.lib        \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+INCLUDES=..\..\..\inc
+
+SOURCES=miniqic.c       \
+        miniqic.rc

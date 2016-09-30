@@ -1,0 +1,10 @@
+TARGETNAME=parport
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=parport.c       \
+        parport.rc
+
+NTTARGETFILE0=parlog.h

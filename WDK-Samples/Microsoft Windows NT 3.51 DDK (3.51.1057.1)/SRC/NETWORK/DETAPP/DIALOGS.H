@@ -1,0 +1,16 @@
+#define IDD_LISTBOX                 101
+#define ABOUT                       1000
+#define IDD_LISTBOX2                1001
+#define IDD_LISTBOX3                1002
+#define IDD_FIND                    1003
+#define IDD_LISTBOX4                1007
+#define IDD_LISTBOX5                1009
+#define IDD_CREATE                  1011
+#define IDD_RADIO1                  1013
+#define IDD_RADIO2                  1014
+#define IDD_RADIO3                  1015
+#define IDD_RADIO4                  1016
+#define IDD_DETECT                  100
+#define IDD_ABOUT                   200
+#define IDD_QUERY                   102
+#define IDD_VERIFY                  103

@@ -1,0 +1,27 @@
+#include <mindrvRC.h>
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_PRINTER
+#define VER_FILEDESCRIPTION_STR         "txtonly driver"
+#define VER_INTERNALNAME_STR            "txtonly.dll"
+#define VER_ORIGINALFILENAME_STR        "txtonly.dll"
+
+#include "common.ver"
+1      RC_TABLES   PRELOAD MOVEABLE         txtonly.GPC
+2      RC_TABLES   PRELOAD MOVEABLE         nt.GPC
+
+1      RC_FONT     LOADONCALL DISCARDABLE  ifi\cour10.ifi
+
+1      RC_TRANSTAB LOADONCALL MOVEABLE      rle\zero.rle
+
+STRINGTABLE
+
+BEGIN
+       1                  "Generic / Text Only"
+       257                "no graphic"
+       258                "Wide 80 characters"
+       259                "Wide 132 characters"
+END

@@ -1,0 +1,10 @@
+TARGETNAME=toshiba
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+INCLUDES=..\inc
+
+DLLBASE=0x20000000
+
+SOURCES=code.c \
+        toshiba.rc

@@ -1,0 +1,4 @@
+DIRS=appints    \
+     com_vdd    \
+     dosioctl   \
+     vdmints

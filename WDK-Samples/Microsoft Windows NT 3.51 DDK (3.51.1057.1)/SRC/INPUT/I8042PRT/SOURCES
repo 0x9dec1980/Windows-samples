@@ -1,0 +1,15 @@
+TARGETNAME=i8042prt
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=i8042prt.rc     \
+        i8042cmn.c      \
+        i8042dep.c      \
+        kbdcmn.c        \
+        kbddep.c        \
+        moucmn.c        \
+        moudep.c
+
+NTTARGETFILE0=i8042log.h

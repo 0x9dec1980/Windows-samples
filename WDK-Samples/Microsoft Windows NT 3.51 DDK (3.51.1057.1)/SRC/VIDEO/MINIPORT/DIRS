@@ -1,0 +1,5 @@
+DIRS=cirrus     \
+     dell_dgx   \
+     et4000     \
+     s3         \
+     wdvga

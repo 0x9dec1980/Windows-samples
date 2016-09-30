@@ -1,0 +1,8 @@
+TARGETNAME=tape
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=..\..\inc
+
+SOURCES=tape.c          \
+        physlogi.c

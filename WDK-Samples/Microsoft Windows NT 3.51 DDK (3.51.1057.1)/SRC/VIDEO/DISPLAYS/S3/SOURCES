@@ -1,0 +1,41 @@
+TARGETNAME=s3
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\winsrv.lib       \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib
+
+DLLBASE=0x62200000
+
+INCLUDES=..\..\inc
+
+SOURCES=bank.c          \
+        bitblt.c        \
+        bltio.c         \
+        bltmm.c         \
+        brush.c         \
+        color.c         \
+        dci.c           \
+        debug.c         \
+        enable.c        \
+        escape.c        \
+        fillpath.c      \
+        heap.c          \
+        misc.c          \
+        multi.c         \
+        paint.c         \
+        palette.c       \
+        pointer.c       \
+        rxddi.c         \
+        rxhw.c          \
+        rxlines.c       \
+        stretch.c       \
+        strips.c        \
+        stroke.c        \
+        textout.c       \
+        thunk.c         \
+        res.rc
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj

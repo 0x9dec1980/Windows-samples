@@ -1,0 +1,6 @@
+DIRS= aha154x    \
+      aha174x    \
+      atapi      \
+      fd8xx      \
+      ncr53c9x   \
+      smpi

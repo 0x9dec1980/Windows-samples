@@ -1,0 +1,12 @@
+DIRS= async    \
+      delay    \
+      dosdev   \
+      errorlog \
+      int      \
+      instdrv  \
+      mapmem   \
+      mono     \
+      portio   \
+      simple   \
+      tagpool  \
+      zwcreate

@@ -1,0 +1,8 @@
+LIBRARY vgactrs
+
+DESCRIPTION 'Performance Monitor Counter'
+
+EXPORTS
+    OpenVgaPerformanceData	 @1
+    CollectVgaPerformanceData	 @2
+    CloseVgaPerformanceData	 @3

@@ -1,0 +1,9 @@
+LIBRARY VGA64K
+
+DESCRIPTION '32K/64K Color VGA Display Driver Library'
+
+EXPORTS
+    DrvEnableDriver
+    DrvDisableDriver
+
+PROTMODE

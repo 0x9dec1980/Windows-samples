@@ -1,0 +1,10 @@
+TARGETNAME=aha174x
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=MINIPORT
+
+INCLUDES=..\..\inc
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+SOURCES=aha174x.c       \
+        aha174x.rc

@@ -1,0 +1,11 @@
+TARGETNAME=intpar
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=pardrvr.c       \
+        initunlo.c      \
+        parallel.rc
+
+NTTARGETFILE0=parlog.h

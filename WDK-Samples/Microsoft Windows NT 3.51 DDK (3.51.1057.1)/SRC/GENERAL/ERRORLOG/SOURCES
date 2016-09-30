@@ -1,0 +1,7 @@
+TARGETNAME=simlog
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+SOURCES=simlog.c simlog.rc
+
+NTTARGETFILE0=simlog.h

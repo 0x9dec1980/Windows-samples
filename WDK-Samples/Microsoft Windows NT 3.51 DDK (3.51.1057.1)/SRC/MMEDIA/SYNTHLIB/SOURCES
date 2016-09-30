@@ -1,0 +1,23 @@
+##
+#   Create a generic synth library
+#
+
+TARGETNAME=synthlib
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+# Define libs we need and where to find them
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib
+
+INCLUDES=..\inc;..\drvlib\inc
+
+C_DEFINES=-DUNICODE
+
+SOURCES=midint.c    \
+        midi.c      \
+        adlib.c     \
+        opl3.c

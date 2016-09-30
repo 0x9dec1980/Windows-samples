@@ -1,0 +1,14 @@
+TARGETNAME=ioctlvdd
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\ntvdm.lib
+
+DLLENTRY=VDDInitialize
+DLLBASE=0x2000000
+
+INCLUDES=$(BASEDIR)\inc;.
+
+SOURCES=ioctlvdd.c

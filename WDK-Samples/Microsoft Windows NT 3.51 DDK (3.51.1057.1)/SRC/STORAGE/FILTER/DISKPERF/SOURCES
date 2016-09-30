@@ -1,0 +1,8 @@
+TARGETNAME=diskperf
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+
+SOURCES=diskperf.c      \
+        diskperf.rc

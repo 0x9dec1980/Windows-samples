@@ -1,0 +1,14 @@
+TARGETNAME=libprt
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+SOURCES=debug.c         \
+        halftone.c      \
+        wsz2heap.c      \
+        str2wchr.c      \
+        mapfile.c       \
+        fontfile.c      \
+        bwrite.c        \
+        hndcopy.c       \
+        hndncopy.c      \
+        fontread.c

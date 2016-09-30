@@ -1,0 +1,107 @@
+#include <mindrvrc.h>
+
+1      RC_TABLES   PRELOAD MOVEABLE         EPSON9.GPC
+
+1      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN10.PFM
+2      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN12.PFM
+3      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN17.PFM
+4      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN20.PFM
+5      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN05.PFM
+6      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN06.PFM
+7      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMNPS.PFM
+8      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMNPX.PFM
+9      RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN10DH.PFM
+10     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN12DH.PFM
+11     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN05DH.PFM
+12     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN06DH.PFM
+13     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMNPSDH.PFM
+14     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMIPS.PFM
+15     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMIPSDH.PFM
+16     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMIPX.PFM
+17     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS10.PFM
+18     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS12.PFM
+19     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS17.PFM
+20     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS20.PFM
+21     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS05.PFM
+22     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS06.PFM
+23     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANSPS.PFM
+24     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANSPX.PFM
+25     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS10DH.PFM
+26     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS12DH.PFM
+27     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS05DH.PFM
+28     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANS06DH.PFM
+29     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANSPSDH.PFM
+30     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANIPS.PFM
+31     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANIPSDH.PFM
+32     RC_FONT     LOADONCALL DISCARDABLE  PFM\SANIPX.PFM
+33     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN107.PFM
+34     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN127.PFM
+35     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN177.PFM
+36     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN207.PFM
+37     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN057.PFM
+38     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMN067.PFM
+39     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMNPS7.PFM
+40     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMNPX7.PFM
+41     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMIPS7.PFM
+42     RC_FONT     LOADONCALL DISCARDABLE  PFM\ROMIPX7.PFM
+
+1      RC_TRANSTAB LOADONCALL MOVEABLE     RLE\EPSONXTA.RLE
+2      RC_TRANSTAB LOADONCALL MOVEABLE     RLE\epn_intl.RLE
+3      RC_TRANSTAB LOADONCALL MOVEABLE     RLE\no_intl.RLE
+
+STRINGTABLE
+
+BEGIN
+       1                  "Epson MX-80"
+       2                  "Epson MX-80 F/T"
+       3                  "Epson MX-100"
+       4                  "Epson RX-80"
+       5                  "Epson RX-80 F/T"
+       6                  "Epson RX-100"
+       7                  "Epson RX-80 F/T+"
+       8                  "Epson RX-100+"
+       9                  "Epson FX-80"
+       10                 "Epson FX-100"
+       11                 "Epson FX-80+"
+       12                 "Epson FX-100+"
+       13                 "Epson FX-85"
+       14                 "Epson FX-105"
+       15                 "Epson FX-185"
+       16                 "Epson FX-286"
+       17                 "Epson FX-86e"
+       18                 "Epson FX-800"
+       19                 "Epson FX-286e"
+       20                 "Epson FX-1000"
+       21                 "Epson DFX-5000"
+       22                 "Epson T-750"
+       23                 "Epson FX-850"
+       24                 "Epson FX-1050"
+       25                 "Epson JX-80"
+       26                 "Epson EX-800"
+       27                 "Epson EX-1000"
+       28                 "Epson LX-80"
+       29                 "Epson LX-86"
+       30                 "Epson LX-800"
+       31                 "Epson LX-810"
+       32                 "Epson LX-850"
+       33                 "Epson LX-850+"
+       35                 "Epson LX-1050"
+       36                 "Epson T-1000"
+       37                 "Epson Compatible 9 Pin"
+       257                "%d x %d"
+       258                "Fanfold 8.5 x 12 in"
+       259                "Sheet Feeder - Bin 1"
+       260                "Sheet Feeder - Bin 2"
+       34                 "Epson LX-400"
+END
+
+#include <windows.h>
+#include <ntverp.h>
+
+#define VER_FILETYPE                    VFT_DRV
+#define VER_FILESUBTYPE                 VFT2_DRV_PRINTER
+#define VER_FILEDESCRIPTION_STR         "Epson 9 pin driver"
+#define VER_INTERNALNAME_STR            "EPSON9.dll"
+#define VER_ORIGINALFILENAME_STR        "EPSON9.dll"
+
+#include "common.ver"

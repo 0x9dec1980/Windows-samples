@@ -1,0 +1,22 @@
+TARGETNAME=winprint
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\gdi32.lib        \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\spoolss.lib
+
+DLLBASE=0x6A900000
+INCLUDES=..\inc
+
+SOURCES=journal.c       \
+        parsparm.c      \
+        raw.c           \
+        msnull.c        \
+        support.c       \
+        text.c          \
+        winprint.c      \
+        winprint.rc
+
+C_DEFINES=-DUNICODE -DNO_STRICT

@@ -1,0 +1,25 @@
+#
+#   build instructions for the Vidcap user-mode library
+#
+
+TARGETNAME=vcuser
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+C_DEFINES=-DWIN32 -DUNICODE
+
+# Define libs we need and where to find them
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib    \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\libc.lib      \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib  \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\gdi32.lib     \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=vcuser.c    \
+        vcworker.c  \
+        vcinstal.c  \
+        registry.c  \
+        debug.c

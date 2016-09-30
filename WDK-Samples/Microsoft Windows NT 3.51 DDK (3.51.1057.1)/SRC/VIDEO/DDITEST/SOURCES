@@ -1,0 +1,28 @@
+!IF 0
+
+Abstract:
+
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+
+!ENDIF
+
+TARGETNAME=dditest
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=PROGRAM
+TARGETLIBS=
+
+INCLUDES=$(BASEDIR)\src\video\inc
+
+386_FLAGS=-QIfdiv-
+
+SOURCES=wndtest.c \
+	dditest.c \
+	dditest.rc
+
+UMTYPE=windows
+UMENTRY=main
+UMBASE=0x100000

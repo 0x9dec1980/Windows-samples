@@ -1,0 +1,12 @@
+TARGETNAME=synth
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\soundlib.lib
+
+INCLUDES=..\..\inc;..\..\soundlib\inc
+
+SOURCES=mididisp.c      \
+        init.c          \
+	config.c        \
+        synth.rc

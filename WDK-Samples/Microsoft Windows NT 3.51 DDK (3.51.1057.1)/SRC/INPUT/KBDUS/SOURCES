@@ -1,0 +1,9 @@
+TARGETNAME=kbdus
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+DLLBASE=0x73700000
+INCLUDES=..\inc
+
+SOURCES=kbdus.c         \
+        us.rc

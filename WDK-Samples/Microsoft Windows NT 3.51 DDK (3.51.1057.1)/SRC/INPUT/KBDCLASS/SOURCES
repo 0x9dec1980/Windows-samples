@@ -1,0 +1,10 @@
+TARGETNAME=kbdclass
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=kbdclass.rc     \
+        kbdclass.c
+
+NTTARGETFILE0=kbdlog.h

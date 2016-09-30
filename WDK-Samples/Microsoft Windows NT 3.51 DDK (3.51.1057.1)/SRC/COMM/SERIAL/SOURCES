@@ -1,0 +1,27 @@
+TARGETNAME=serial
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=error.c         \
+        flush.c         \
+        immediat.c      \
+        initunlo.c      \
+        ioctl.c         \
+        isr.c           \
+        modmflow.c      \
+        openclos.c      \
+        purge.c         \
+        qsfile.c        \
+        read.c          \
+        serial.rc       \
+        utils.c         \
+        waitmask.c      \
+        write.c
+
+NTTARGETFILE0=serlog.h
+
+PRECOMPILED_INCLUDE=precomp.h
+PRECOMPILED_PCH=precomp.pch
+PRECOMPILED_OBJ=precomp.obj

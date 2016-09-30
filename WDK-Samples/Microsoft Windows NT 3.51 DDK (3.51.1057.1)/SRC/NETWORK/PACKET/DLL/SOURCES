@@ -1,0 +1,15 @@
+TARGETNAME=packet32
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib
+
+
+DLLBASE=0x10000000
+
+DLLENTRY=PacketInit
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=packet32.c

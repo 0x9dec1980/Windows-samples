@@ -1,0 +1,14 @@
+DIRS=detect     \
+     detapp     \
+     ibmtok     \
+     ibmtok2i   \
+     lance      \
+     macaddr    \
+     ne2000     \
+     ne3200     \
+     packet     \
+     raswan     \
+     sonic      \
+     streams    \
+     tdi        \
+     wshsmple

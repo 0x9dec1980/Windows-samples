@@ -1,0 +1,11 @@
+TARGETNAME=pollpar
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=pardrvr.c       \
+        parallel.rc     \
+        initunlo.c
+
+NTTARGETFILE0=parlog.h

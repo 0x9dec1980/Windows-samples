@@ -1,0 +1,22 @@
+TARGETNAME=localmon
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib     \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib     \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib       \
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\spoolss.lib
+
+C_DEFINES=-DUNICODE -DNO_STRICT
+
+DLLENTRY=LibMain
+DLLBASE=0x6AA00000
+
+INCLUDES=..\inc
+
+USE_CRTDLL=1
+
+SOURCES=localmon.c      \
+        util.c          \
+        dialogs.c       \
+        localmon.rc

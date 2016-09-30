@@ -1,0 +1,29 @@
+#
+#   Create an MCI handler DLL
+#
+
+TARGETNAME=mcipnr32
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+# Define libs we need and where to find them
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib    \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib  \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib
+
+INCLUDES=..\inc
+
+C_DEFINES=-DWIN32 -DUNICODE -DDEBUG
+
+SOURCES=mcipionr.c \
+        pioncnfg.c \
+        piondrvr.c \
+        ntcomm.c   \
+        mcipionr.rc
+
+# Set up the entry point
+
+DLLENTRY=DllInstanceInit
+
+DLLBASE=0x68300000

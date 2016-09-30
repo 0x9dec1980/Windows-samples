@@ -1,0 +1,17 @@
+
+TARGETNAME=wshsmple
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\wsock32.lib
+
+
+INCLUDES=..\inc;..\streams\inc
+
+USE_CRTDLL=1
+
+SOURCES=wshsmple.c
+
+UMTYPE=console
+DLLBASE=0x200000

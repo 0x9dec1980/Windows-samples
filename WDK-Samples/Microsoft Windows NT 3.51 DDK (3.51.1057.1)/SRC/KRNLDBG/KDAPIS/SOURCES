@@ -1,0 +1,12 @@
+TARGETNAME=dbgkd
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+SOURCES=dbgkdapi.c      \
+        dbgkdsup.c      \
+        packet.c
+
+UMTYPE=console
+UMAPPL=givit
+UMBASE=0x01000000
+UMLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\dbgkd.lib

@@ -1,0 +1,14 @@
+DIRS=lib        \
+     pslib      \
+     pscript    \
+     pscrptui   \
+     localmon   \
+     winprint   \
+     dec3200    \
+     epson24    \
+     epson9     \
+     hppcl5ms   \
+     paintjet   \
+     toshiba    \
+     txtonly    \
+     plot

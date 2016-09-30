@@ -1,0 +1,21 @@
+TARGETNAME=s3
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=MINIPORT
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\videoprt.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\libcntpr.lib
+
+INCLUDES=..\..\inc
+
+!IF $(MIPS) || $(PPC)
+C_DEFINES=-DS3_USE_FIXED_TABLES
+!ENDIF
+
+
+SOURCES=nnclk.c         \
+        s3.c            \
+        s3data.c        \
+        s3.rc           \
+        sdac.c
+
+NTTARGETFILE0=s3logerr.h

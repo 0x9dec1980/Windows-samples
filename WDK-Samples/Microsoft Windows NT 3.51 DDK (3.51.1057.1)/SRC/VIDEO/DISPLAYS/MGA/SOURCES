@@ -1,0 +1,58 @@
+!IF 0
+
+Copyright (C) 1989-1995 Microsoft Corporation
+All rights reserved.
+
+Module Name:
+
+    sources.
+
+Abstract:
+
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+!ENDIF
+
+MAJORCOMP=windows
+MINORCOMP=mgadisp
+
+DLLBASE=0x62200000
+TARGETNAME=mga
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\winsrv.lib	\
+	   $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib
+
+INCLUDES=..\inc;..\..\inc;..\..\..\inc
+
+SOURCES=bitblt.c      \
+        blt.c         \
+        blt16.c       \
+        blt24.c       \
+        blt8.c        \
+        brush.c       \
+        color.c       \
+        debug.c       \
+        enable.c      \
+        fastfill.c    \
+        fillpath.c    \
+        heap.c        \
+        lines.c       \
+        misc.c        \
+        multi.c       \
+        paint.c       \
+        palette.c     \
+        pointer.c     \
+        rxddi.c       \
+        rxhw.c        \
+        rxline.c      \
+        rxspan.c      \
+        rxtri.c       \
+        stretch.c     \
+        strips.c      \
+        textout.c     \
+        thunk.c       \
+        res.rc

@@ -1,0 +1,12 @@
+TARGETNAME=archqic
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\tape.lib         \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\class.lib        \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+INCLUDES=..\..\..\inc
+
+SOURCES=archqic.c       \
+        archqic.rc

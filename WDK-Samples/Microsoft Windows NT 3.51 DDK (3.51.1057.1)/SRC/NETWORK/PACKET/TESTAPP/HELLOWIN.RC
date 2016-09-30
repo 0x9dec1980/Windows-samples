@@ -1,0 +1,30 @@
+#include "windows.h"
+
+#include "hellowin.h"
+;
+
+
+GenericMenu MENU
+  {
+    POPUP    "Adapter"
+    {
+      MENUITEM "Open",  IDM_OPEN
+      MENUITEM "Close", IDM_CLOSE
+      MENUITEM "Read",  IDM_READ
+      MENUITEM "Send",  IDM_SEND
+      MENUITEM "Reset", IDM_RESET
+      MENUITEM SEPARATOR
+      MENUITEM "About...",IDM_ABOUT
+    }
+
+    POPUP    "Filter"
+    {
+      MENUITEM "None",          IDM_NO_FILTER
+      MENUITEM "Directed",      IDM_DIRECTED
+      MENUITEM "Multicast",     IDM_MULTICAST
+      MENUITEM "Broadcast",     IDM_BROADCAST
+      MENUITEM "All-Multicast", IDM_ALL_MULTICAST
+      MENUITEM "Promiscuous",   IDM_PROMISCUOUS
+    }
+
+  }

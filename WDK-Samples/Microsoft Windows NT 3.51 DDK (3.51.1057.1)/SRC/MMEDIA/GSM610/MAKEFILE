@@ -1,0 +1,19 @@
+#
+#   MSGSM32.ACM -- Microsoft ACM CODEC for GSM 6.10
+#
+#   Copyright (c) 1992 - 1994  Microsoft Corporation.  All Rights Reserved.
+#
+#
+#
+
+!if "$(NTDEBUG)" == "retail"
+ACM_DEBUG_DEFS=
+!else
+!if "$(NTDEBUG)" == ""
+ACM_DEBUG_DEFS=-DRDEBUG
+!else
+ACM_DEBUG_DEFS=-DDEBUG
+!endif
+!endif
+
+!INCLUDE $(NTMAKEENV)\makefile.def

@@ -1,0 +1,9 @@
+LIBRARY MGA
+
+DESCRIPTION 'MGA Display Driver Library'
+
+EXPORTS
+    DrvEnableDriver
+    DrvDisableDriver
+
+PROTMODE

@@ -1,0 +1,20 @@
+TARGETNAME=sndsys
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\soundlib.lib
+
+C_DEFINES=-DWIN32
+
+INCLUDES=..\..\soundlib\inc;..\..\inc
+
+SOURCES=\
+        mixer.c    \
+        controls.c \
+        isr.c      \
+        devcaps.c  \
+        init.c     \
+        config.c   \
+        soundsys.rc\
+        hardware.c \
+        mix_objs.c

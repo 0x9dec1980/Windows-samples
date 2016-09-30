@@ -1,0 +1,90 @@
+
+
+DOSIOCTL
+
+This sample demonstrates the simulation of DOS function calls under NT.
+Specifically, it shows how a DOS driver and VDD can tranlate DOS OPEN's,
+CLOSE's and IOCTL's to the Win32 calls CreateFile(), CloseHandle() and
+DeviceIoControl().
+
+This 4 modules that make up this sample are listed below:
+
+    DOSAPP      - DOS Application
+    DOSDRVR     - DOS Device Driver
+    VDD         - NT Virtual Device Driver
+    KRLNDRVR    - NT Kernel Device Driver
+
+These four modules work together to illustrate the basic communication
+mechanisms that exist for each component.  When these components are
+properly installed, running the DOS application will cause the following
+chain of events to occur:
+
+
+  1) DOSAPP issues an IOCTL Read.
+
+  2) DOSDRV passes the call and buffer pointer to the VDD with the
+     DispatchCall() function.
+
+  3) VDD passes the buffer pointer from DOSDRV to KRNLDRVR with
+     the Win32 DeviceIoControl() function.
+
+  4) KRNLDRVR responds to the IOCTL with static information.
+
+  5) The chain returns, and DOSAPP displays the information.
+
+
+When the DOS application is run, it should produce the following line:
+
+IOCTL Read returns: 12345678
+
+The significance of this output is that the value x'12345678' is
+defined only in the NT kernel driver. The sole purpose of the other
+components is to deliver this single piece of data from the NT
+driver to the DOS application.
+
+
+Installing and Running this sample
+----------------------------------
+
+KRNLDRVR
+--------
+
+You can use Regedt32 to create a SERVICES entry for
+the krnldrvr driver. Create a key under:
+
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\KRNLDRVR
+
+with the following values:
+
+    ErrorControl:DWORD 1
+    Start:DWORD 3
+    Type:DWORD 1
+
+Copy the KRNLDRVR.SYS created by the build process to the NT
+SYSTEM32\DRIVERS directory. From and administrator account on
+the machine, issue:
+
+    NET START KRNLDRVR
+
+Starting the driver manually in this manner can be beneficial
+during the coding and testing phase of creating your own driver.
+
+
+VDD
+---
+
+Because the DOS driver explicitly loads the VDD with a RegisterModule(),
+the VDD.DLL file produced by the build process need only be available
+in the search path.
+
+DOSDRVR
+-------
+
+The DOS driver can be loaded by adding a "device=" line in the CONFIG.NT
+file in the SYSTEM32 directory.
+
+
+DOSAPP
+------
+
+The DOSAPP may simply be executed from any directory.

@@ -1,0 +1,11 @@
+TARGETNAME=pslib
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=..\inc;..\pscript;..\lib
+
+SOURCES=pfmtontm.c      \
+        devmode.c       \
+        ppd.c
+
+C_DEFINES=-DUNICODE -DSTRICT

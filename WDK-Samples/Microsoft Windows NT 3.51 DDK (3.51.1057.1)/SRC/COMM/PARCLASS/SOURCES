@@ -1,0 +1,10 @@
+TARGETNAME=parallel
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\inc
+
+SOURCES=parclass.c      \
+        parclass.rc
+
+NTTARGETFILE0=parlog.h

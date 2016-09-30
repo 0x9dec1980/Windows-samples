@@ -1,0 +1,19 @@
+######################################################################
+#
+#   IMAADPCM.ACM -- Audio Compression Manager CODEC for IMA/DVI ADPCM
+#
+#   Copyright (C) Microsoft Corporation 1992-1994. All Rights reserved.
+#
+######################################################################
+
+!if "$(NTDEBUG)" == "retail"
+ACM_DEBUG_DEFS=
+!else
+!if "$(NTDEBUG)" == ""
+ACM_DEBUG_DEFS=-DRDEBUG
+!else
+ACM_DEBUG_DEFS=-DDEBUG
+!endif
+!endif
+
+!INCLUDE $(NTMAKEENV)\makefile.def

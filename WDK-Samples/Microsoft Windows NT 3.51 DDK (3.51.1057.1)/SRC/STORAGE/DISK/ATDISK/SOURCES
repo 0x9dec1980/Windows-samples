@@ -1,0 +1,9 @@
+TARGETNAME=atdisk
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+
+SOURCES=atdisk.c        \
+        atdisk.rc       \
+        atd_conf.c

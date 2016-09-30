@@ -1,0 +1,19 @@
+TARGETNAME=sonic
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+DRIVER_ALIGNMENT=0x200
+
+INCLUDES=..\inc
+
+SOURCES=alloc.c         \
+        interrup.c      \
+        request.c       \
+        send.c          \
+        sonic.c         \
+        transfer.c      \
+        sonic.rc

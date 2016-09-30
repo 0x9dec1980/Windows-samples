@@ -1,0 +1,5 @@
+DIRS= class     \
+      scsicdrm  \
+      scsidisk  \
+      scsitape  \
+      spti

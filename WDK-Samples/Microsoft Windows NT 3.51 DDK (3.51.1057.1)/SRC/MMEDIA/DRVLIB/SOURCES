@@ -1,0 +1,29 @@
+#
+#   Create DRVLIB.LIB - Generic multimedia device driver library
+#
+
+TARGETNAME=drvlib
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=LIBRARY
+
+SYNCHRONIZE_BLOCK=1
+
+# Define libs we need and where to find them
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib  \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib    \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib
+
+C_DEFINES=-DWIN32 -DUNICODE -D_UNICODE
+
+INCLUDES=inc;..\inc
+
+SOURCES=drvlib.c    \
+        reslist.c   \
+        reslist1.c  \
+        registry.c  \
+        mixerdd.c   \
+        wavedd.c    \
+        mididd.c    \
+        auxdd.c     \
+        drvutil.c

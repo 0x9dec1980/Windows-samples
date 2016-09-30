@@ -1,0 +1,19 @@
+#
+#   MSACM[32].DRV -- Audio Compression Manager 'Sound Mapper' Wave Driver
+#
+#   Copyright (C) Microsoft Corporation 1992-1993. All Rights reserved.
+#
+#
+#
+
+!if "$(NTDEBUG)" == "retail"
+ACM_DEBUG_DEFS=
+!else
+!if "$(NTDEBUG)" == ""
+ACM_DEBUG_DEFS=-DRDEBUG
+!else
+ACM_DEBUG_DEFS=-DDEBUG
+!endif
+!endif
+
+!INCLUDE $(NTMAKEENV)\makefile.def

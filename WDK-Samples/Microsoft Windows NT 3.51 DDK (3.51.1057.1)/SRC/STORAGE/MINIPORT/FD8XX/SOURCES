@@ -1,0 +1,10 @@
+TARGETNAME=fd8xx
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\scsiport.lib
+
+SOURCES=fd8xx.c         \
+        fd8xx.rc

@@ -1,0 +1,29 @@
+#
+#   Create a codec DLL
+#
+
+TARGETNAME=msyuv
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DYNLINK
+
+C_DEFINES=-DWIN32 -DUNICODE
+
+# Define libs we need and where to find them
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\vcuser.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\gdi32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\user32.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\libc.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\kernel32.lib \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\advapi32.lib   \
+           $(BASEDIR)\lib\*\$(DDKBUILDENV)\winmm.lib
+
+INCLUDES=..\inc;..\..\inc
+
+SOURCES=drvproc.c   \
+        msyuv.c     \
+        xlate.c     \
+        draw.c      \
+        msyuv.rc
+
+DLLBASE=0x1c300000

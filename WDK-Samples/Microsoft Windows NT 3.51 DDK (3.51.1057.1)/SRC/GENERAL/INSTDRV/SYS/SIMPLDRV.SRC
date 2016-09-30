@@ -1,0 +1,4 @@
+NAME        MONO.SYS
+DESCRIPTION 'MONO.SYS'
+EXPORTS
+  MonoDbgPrint

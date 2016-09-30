@@ -1,0 +1,18 @@
+TARGETNAME=lance
+TARGETPATH=$(BASEDIR)\lib
+TARGETTYPE=DRIVER
+
+TARGETLIBS=$(BASEDIR)\lib\*\$(DDKBUILDENV)\ndis.lib
+
+C_DEFINES=$(C_DEFINES) -DNDIS_MINIPORT_DRIVER
+
+DRIVER_ALIGNMENT=0x200
+
+INCLUDES=..\inc
+
+SOURCES=lance.c         \
+        send.c          \
+        transfer.c      \
+        details.c       \
+        dectc.c         \
+        lance.rc
